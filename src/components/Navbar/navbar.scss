@@ -1,0 +1,29 @@
+.navbar.is-hidden {
+  transition: all 300ms linear;
+  .navbar-logo {
+    justify-content: center;
+  }
+
+  .navbar-wrapper {
+    padding-top: 1.5rem;
+  }
+
+  .navbar-list {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-item {
+    width: 100%;
+    a {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .item-toggle {
+    display: none;
+  }
+}
