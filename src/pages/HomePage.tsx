@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getHomePlaylist, getHomeBanner } from '../api/home'
 import Slider from '../components/Slider'
 import MainLayout from '../containers/MainLayout'
+import Playlist from '../containers/PlayList'
 
 const HomePage: React.FC = () => {
   const [sliderList, setSliderList] = useState<any>([])
@@ -25,7 +26,17 @@ const HomePage: React.FC = () => {
       <div className="pt-5">
         <Slider data={sliderList} cols={3} />
       </div>
-
+      {
+        playList && playList.map((item: any, index: number) => 
+          <Playlist 
+            key={index} 
+            title={item.title}
+            sectionId={item.sectionId}
+            link={item.link}
+            playList={item.items}
+          />
+        )
+      }
     </MainLayout>
   )
 }

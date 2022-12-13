@@ -15,6 +15,9 @@ module.exports = {
         ltr: 'ltr 0.75s infinite',
       },
     },
+    fontFamily: {
+      'inter': ['Inter', 'sans-serif'],
+    }
   },
   plugins: [],
 }

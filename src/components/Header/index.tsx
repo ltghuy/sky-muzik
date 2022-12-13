@@ -10,19 +10,29 @@ const Header: React.FC = () => {
     <section className='header w-full h-20 bg-indigo-50 bg-opacity-30'>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
-          <ArrowIcon className='cursor-pointer w-[20px] -rotate-90' />
-          <ArrowIcon className='cursor-pointer w-[20px] rotate-90 mx-5' />
+          <button className='hover:text-[color:var(--primary)] transition'>
+            <ArrowIcon className='w-[20px] -rotate-90' />
+          </button>
+          <button className='hover:text-[color:var(--primary)] transition mx-5'>
+            <ArrowIcon className='w-[20px] rotate-90' />
+          </button>
           <SearchBox />
         </div>
         <ul className="header-right flex items-center gap-4">
           <li>
-            <button><SettingIcon className='w-[30px]' /></button>
+            <button className='hover:text-[color:var(--primary)] transition'>
+              <SettingIcon className='w-[30px]' />
+            </button>
           </li>
           <li>
-            <button><MessageIcon className='w-[30px]' /></button>
+            <button className='hover:text-[color:var(--primary)] transition'>
+              <MessageIcon className='w-[30px]' />
+            </button>
           </li>
           <li>
-            <button><NotificationIcon className='w-[23px]' /></button>
+            <button className='hover:text-[color:var(--primary)] transition'>
+              <NotificationIcon className='w-[23px]' />
+            </button>
           </li>
           <li>
             <button>
