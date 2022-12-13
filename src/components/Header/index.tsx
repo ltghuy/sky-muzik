@@ -7,7 +7,7 @@ import { ReactComponent as NotificationIcon } from '../../static/icons/notificat
 
 const Header: React.FC = () => {
   return (
-    <section className='header w-full h-20 bg-indigo-50 bg-opacity-30'>
+    <section className='header fixed top-0 right-0 left-[var(--sidebar-width)] h-20 bg-[color:var(--white)] z-10'>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
           <button className='hover:text-[color:var(--primary)] transition'>
