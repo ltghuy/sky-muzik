@@ -1,19 +1,21 @@
 import React from 'react'
 import SearchBox from './SearchBox'
+import { useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowIcon } from '../../static/icons/arrow-icon.svg'
 import { ReactComponent as SettingIcon } from '../../static/icons/setting-icon.svg'
 import { ReactComponent as MessageIcon } from '../../static/icons/message-icon.svg'
 import { ReactComponent as NotificationIcon } from '../../static/icons/notification-icon.svg'
 
 const Header: React.FC = () => {
+  const navigate = useNavigate()
   return (
     <section className='header fixed top-0 right-0 left-[var(--sidebar-width)] h-20 bg-[color:var(--white)] z-10'>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
-          <button className='hover:text-[color:var(--primary)] transition'>
+          <button className='hover:text-[color:var(--primary)] transition' onClick={() => navigate(-1)}>
             <ArrowIcon className='w-[20px] -rotate-90' />
           </button>
-          <button className='hover:text-[color:var(--primary)] transition mx-5'>
+          <button className='hover:text-[color:var(--primary)] transition mx-5' onClick={() => navigate(+1)}>
             <ArrowIcon className='w-[20px] rotate-90' />
           </button>
           <SearchBox />

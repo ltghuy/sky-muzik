@@ -17,15 +17,9 @@ const HomePage: React.FC = () => {
     )()
   }, [])
 
-  useEffect(() => {
-    console.log('List playlist', playList)
-  },[ playList])
-
   return (
     <MainLayout>
-      <div className="pt-5">
-        <Slider data={sliderList} cols={3} />
-      </div>
+      <Slider data={sliderList} cols={3} />
       {
         playList && playList.map((item: any, index: number) => 
           <Playlist 
