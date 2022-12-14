@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { getDetailPlaylist } from '../api/detailPlaylist'
 import { PlaylistDetailProps } from '../types/common'
 import { useParams } from 'react-router-dom'
+import Loading from '../components/Loading'
 import MainLayout from '../containers/MainLayout'
 import PlayListInfo from '../components/PlayListInfo'
-import Loading from '../components/Loading'
+import PlaylistTrack from '../components/PlaylistTrack'
 
 const PlaylistPage: React.FC = () => {
   const [dataDetailPlaylist, setDataDetailPlaylist] = useState<PlaylistDetailProps>()
@@ -23,8 +24,8 @@ const PlaylistPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className='playlist grid grid-cols-5 pt-5'>
-        <div className='col-span-2 px-5 relative min-h-[200px]'>
+      <div className='playlist grid grid-cols-8 pt-5'>
+        <section className='col-span-3 relative min-h-[200px]'>
           {
             dataDetailPlaylist ? 
             <PlayListInfo 
@@ -36,9 +37,16 @@ const PlaylistPage: React.FC = () => {
             /> :
             <Loading />
           }
-        </div>
-        <section className="col-span-3">
-          Track list here
+        </section>
+        <section className="col-span-5 relative min-h-[500px] ml-5">
+          {
+            dataDetailPlaylist ?
+            <PlaylistTrack
+              description={dataDetailPlaylist?.description}
+              song={dataDetailPlaylist?.song}
+            /> :
+            <Loading />
+          }
         </section>
       </div>
     </MainLayout>

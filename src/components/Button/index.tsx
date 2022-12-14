@@ -10,7 +10,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ classStyle, icon, text, handleClick }) => {
   return (
     <div 
-      className={`button cursor-pointer inline-block rounded-3xl py-3 text-white px-4 bg-[color:var(--primary)] hover:contrast-125 ${classStyle}`}
+      className={`button cursor-pointer inline-block rounded-3xl py-2 text-white px-6 bg-[color:var(--primary)] hover:contrast-125 ${classStyle}`}
       onClick={() => handleClick()}
     >
       <span>{icon}</span>

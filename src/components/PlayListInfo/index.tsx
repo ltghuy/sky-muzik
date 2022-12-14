@@ -6,16 +6,16 @@ import { ReactComponent as LikedIcon } from '../../static/icons/heart-icon.svg'
 import Button from '../Button'
 
 const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like }) => {
-  const playlistLastUpdate =  (new Date(contentLastUpdate * 1000)).toLocaleDateString("vi-VN")
+  const playlistLastUpdate =  contentLastUpdate && (new Date(contentLastUpdate * 1000)).toLocaleDateString("vi-VN")
 
   const onPlaylistPlay = () => {
     console.log('Button clicked!')
   }
 
   return (
-    <section className='playlist-info'>
-      <div className="playlist-thumbnail w-[60%] relative animate-rotate mx-auto">
-        <img src={thumbnailM} alt="aaa" className='w-full object-cover rounded-full'/>
+    <div className='playlist-info px-5'>
+      <div className="playlist-thumbnail w-[65%] relative mx-auto">
+        <img src={thumbnailM} alt="aaa" className='w-full object-cover rounded-full animate-rotate'/>
         <div className="absolute w-full h-full inset-0 flex justify-center items-center">
           <button className='text-white p-3 border border-white rounded-full'>
             <PlayIcon />
@@ -56,7 +56,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
           handleClick={onPlaylistPlay}
         />
       </div>
-    </section>
+    </div>
   )
 }
 
