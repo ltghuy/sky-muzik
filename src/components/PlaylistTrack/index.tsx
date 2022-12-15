@@ -11,7 +11,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song }) => 
         <span>{description}</span>
       </div>
       <h6 className="playlist-count flex items-center pl-5 mt-2 text-[color:var(--primary)] text-base">
-        <span className="total-song">{`${song?.total} bài hát`}</span>
+        <span className="total-song">{`${song?.items.length} bài hát`}</span>
         <span className='px-2'>&bull;</span>
         <span className="total-time">{totalDuration}</span>
       </h6>
@@ -26,6 +26,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song }) => 
               duration={item?.duration}
               streamingStatus={item?.streamingStatus}
               artists={item?.artists}
+              artistsNames={item?.artistsNames}
               album={item?.album}
             />
           </li>

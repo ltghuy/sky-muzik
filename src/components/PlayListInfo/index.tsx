@@ -29,7 +29,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
         <p className='playlist-updated text-sm max-w-[70%] font-semibold pt-2'>
           {`Cập nhật lần cuối: ${playlistLastUpdate}`}
         </p>
-        <div className="artist-list flex">
+        <div className="artist-list flex one-line">
           {
             artists && artists.map((artist: any, index: number) => (
               <span key={artist.id}>
@@ -38,7 +38,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
                   to={`artist/${artist.alias}`}
                   className="hover:text-[color:var(--primary)] text-sm"
                 >
-                  {artist.name}
+                  <span title={artist.name}>{artist.name}</span>
                 </Link>
               </span>
             ))

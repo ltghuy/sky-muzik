@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { getTop100 } from '../api/top100'
+import Loading from '../components/Loading'
 import MainLayout from '../containers/MainLayout'
+import Playlist from '../containers/PlayList'
 
 const Top100: React.FC = () => {
+  const [dataTop100, setDataTop100] = useState<Array<Object>>()
+  
+  useEffect(() => {
+    (
+      async () => {
+        setDataTop100(await getTop100())
+      }
+    )()
+  }, [])
+
   return (
     <MainLayout>
-      <h3 className='text-slate-900'>
-        Top 100 Page
-      </h3>
+      <div className="top100 relative min-h-[300px]">
+        {
+          dataTop100 ? 
+          dataTop100.map((item: any, index: number) => 
+            <Playlist 
+              key={index} 
+              title={item.title}
+              sectionId={item.sectionId}
+              link={item.link}
+              playList={item.items}
+            />
+          ) : <Loading />
+        }
+      </div>
     </MainLayout>
   )
 }

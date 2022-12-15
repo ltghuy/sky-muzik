@@ -10,8 +10,10 @@
   --body-text: #4a525f;
   --grey-100: #c7c7c7;
   --primary: #554994;
+  --primary-dark: #170d30;
   --sidebar-width: 260px;
   --header-height: 5rem;
+  --player-height: 7rem;
 }
 
 *, 

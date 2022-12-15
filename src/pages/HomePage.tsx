@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getHomePlaylist, getHomeBanner } from '../api/home'
+import Loading from '../components/Loading'
 import Slider from '../components/Slider'
 import MainLayout from '../containers/MainLayout'
 import Playlist from '../containers/PlayList'
@@ -20,17 +21,20 @@ const HomePage: React.FC = () => {
   return (
     <MainLayout>
       <Slider data={sliderList} cols={3} />
-      {
-        playList && playList.map((item: any, index: number) => 
-          <Playlist 
-            key={index} 
-            title={item.title}
-            sectionId={item.sectionId}
-            link={item.link}
-            playList={item.items}
-          />
-        )
-      }
+      <div className="playlist-wrapper mt-12 relative min-h-[200px]">
+        {
+          playList.length > 0 ? 
+          playList.map((item: any, index: number) => 
+            <Playlist 
+              key={index} 
+              title={item.title}
+              sectionId={item.sectionId}
+              link={item.link}
+              playList={item.items}
+            />
+          ) : <Loading />
+        }
+      </div>
     </MainLayout>
   )
 }

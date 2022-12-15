@@ -11,7 +11,6 @@ export interface PlaylistDetailProps {
   like?: number,
   song?: {
     items : Array<Object>,
-    total: number,
     totalDuration: number
   }
 }
@@ -23,5 +22,6 @@ export interface SongProps {
   duration: number,
   streamingStatus: number,
   artists: [],
+  artistsNames?: string,
   album: any
 }

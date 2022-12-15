@@ -25,7 +25,7 @@ const PlaylistPage: React.FC = () => {
   return (
     <MainLayout>
       <div className='playlist grid grid-cols-8 pt-5'>
-        <section className='col-span-3 relative min-h-[200px]'>
+        <section className='col-span-3 relative min-h-[200px] rounded-3xl'>
           {
             dataDetailPlaylist ? 
             <PlayListInfo 
@@ -38,7 +38,7 @@ const PlaylistPage: React.FC = () => {
             <Loading />
           }
         </section>
-        <section className="col-span-5 relative min-h-[500px] ml-5">
+        <section className="col-span-5 relative min-h-[500px] rounded-3xl ml-5">
           {
             dataDetailPlaylist ?
             <PlaylistTrack

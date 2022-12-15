@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
   }, [toggleSidebar])
 
   return (
-    <section className='navbar w-[var(--sidebar-width)] fixed left-0 top-0 bottom-28 bg-[color:var(--white)] shadow transition-all ease-in-out duration-150 z-20' ref={navbarRef} >
+    <section className='navbar w-[var(--sidebar-width)] fixed left-0 top-0 bottom-[var(--player-height)] bg-[color:var(--white)] shadow transition-all ease-in-out duration-150 z-20' ref={navbarRef} >
       <div className="navbar-wrapper py-4">
         <div className="navbar-logo flex items-center justify-between px-3">
           <NavLink to={'/'} className='item-toggle flex items-center' >
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
           </li>
           <li className='navbar-item mb-8'>
             <NavLink 
-              to='/top-100' 
+              to='/top100' 
               className='flex items-center hover:text-[color:var(--primary)] py-2 transition-all'
               style={({ isActive }) => isActive ? {color:"var(--primary)", borderRight: "3px solid currentColor"} : {borderRight: "3px solid transparent"} }>
               <Top100 className='w-[20px] h-[20px] fill-current' />

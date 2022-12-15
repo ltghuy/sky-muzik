@@ -9,7 +9,7 @@ import { ReactComponent as NotificationIcon } from '../../static/icons/notificat
 const Header: React.FC = () => {
   const navigate = useNavigate()
   return (
-    <section className='header fixed top-0 right-0 left-[var(--sidebar-width)] h-20 bg-[color:var(--white)] z-10'>
+    <section className='header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] bg-[color:var(--white)] z-10'>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
           <button className='hover:text-[color:var(--primary)] transition' onClick={() => navigate(-1)}>

@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { SongProps } from '../../types/common'
 import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
+import { ReactComponent as VipIcon} from '../../static/icons/vip-icon.svg'
 
-const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus, artists, album, duration }) => {
+const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration }) => {
   const SONG_VIP = 2
   const songDuration =  duration && (new Date(duration * 1000).toISOString().slice(14, 19))
   const handleChangeSong = (encodeId: string) => {
@@ -22,9 +23,13 @@ const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus,
             </div>
           </div>
           <div className='song-desc ml-2 flex flex-col text-[color:var(--black)]'>
-            <h3 className='song-name text-sm leading-4 font-medium'>{title}</h3>
+            <h3 className='song-name text-sm leading-4 font-medium flex items-center'>
+              <span>{title}</span>
+              { streamingStatus === SONG_VIP && <span className='ml-1'><VipIcon /></span> }
+            </h3>
             <div className='song-artist font-medium'>
               {
+                artists ? 
                 artists.map((item: any, index: number) => (
                   <span key={index} className='group'>
                     { (index > 0) ? (<span className='opacity-50'>, </span>) : ("") }
@@ -35,7 +40,10 @@ const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus,
                       {item.name}
                     </Link>
                   </span>
-                ))
+                )) : 
+                <span className='text-xs hover:text-[color:var(--primary)] opacity-50 group-hover:opacity-100'>
+                  { artistsNames }
+                </span>
               }
             </div>
           </div>
