@@ -3,7 +3,7 @@ import { store } from "./redux/store"
 import { Provider } from "react-redux"
 import RouterPage from "./routes"
 import Navbar from "./components/Navbar"
-import Player from "./components/Player"
+import Player from "./containers/Player"
 
 const App: React.FC = () => {
 

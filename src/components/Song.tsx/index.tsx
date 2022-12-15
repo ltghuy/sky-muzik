@@ -14,7 +14,7 @@ const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus,
   return (
     <div className="song w-full font-inter h-16 rounded-lg hover:bg-gray-100 my-2 transition">
       <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
-        <div className="song-info w-1/2 flex-shrink-0 mr-2 flex items-center">
+        <div className="song-info w-1/2 flex-shrink-0 pr-5 flex items-center">
           <div className={`song-thumbnail w-10 h-10 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 
             onClick={() => handleChangeSong(encodeId)}>
             <img src={thumbnail} alt={title} className='rounded-md' />
@@ -23,8 +23,8 @@ const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus,
             </div>
           </div>
           <div className='song-desc ml-2 flex flex-col text-[color:var(--black)]'>
-            <h3 className='song-name text-sm leading-4 font-medium flex items-center'>
-              <span>{title}</span>
+            <h3 className='song-name text-sm leading-4 font-medium flex items-center' title={title}>
+              <span className='one-line '>{title}</span>
               { streamingStatus === SONG_VIP && <span className='ml-1'><VipIcon /></span> }
             </h3>
             <div className='song-artist font-medium'>
@@ -37,12 +37,12 @@ const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus,
                       className='text-xs hover:text-[color:var(--primary)] opacity-50 group-hover:opacity-100'
                       to={`/artist/${item.alias}`}
                     >
-                      {item.name}
+                      <span title={item.name}>{item.name}</span>
                     </Link>
                   </span>
                 )) : 
                 <span className='text-xs hover:text-[color:var(--primary)] opacity-50 group-hover:opacity-100'>
-                  { artistsNames }
+                  <span title={artistsNames}>{ artistsNames }</span>
                 </span>
               }
             </div>

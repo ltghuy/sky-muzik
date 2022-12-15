@@ -1,0 +1,18 @@
+import React from 'react'
+import { ReactComponent as PreviousIcon } from '../../../../static/icons/previous-icon.svg'
+
+const PreviousControl: React.FC = () => {
+  const handlePreviousSong = () => {
+    console.log('Changed to previous song!')
+  }
+
+  return (
+    <button 
+      className='text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition'
+      onClick={handlePreviousSong} >
+      <PreviousIcon className='w-5 h-5' />
+    </button>
+  )
+}
+
+export default PreviousControl

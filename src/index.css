@@ -11,9 +11,10 @@
   --grey-100: #c7c7c7;
   --primary: #554994;
   --primary-dark: #170d30;
+  --primary-light: #ae9ffa;
   --sidebar-width: 260px;
   --header-height: 5rem;
-  --player-height: 7rem;
+  --player-height: 5.5rem;
 }
 
 *, 
