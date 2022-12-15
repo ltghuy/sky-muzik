@@ -13,7 +13,7 @@ const PlayControl: React.FC = () => {
     <button 
       className='w-12 h-12 text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition border border-current rounded-full flex justify-center items-center'
       onClick={handlePlaySong} >
-      {isPlay ? <PauseIcon className='w-4' /> : <PlayIcon className='w-4' />}  
+      {isPlay ? <PauseIcon className='w-4' /> : <PlayIcon className='w-4 ml-1' />}  
     </button>
   )
 }

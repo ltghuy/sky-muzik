@@ -1,4 +1,5 @@
 import React from 'react'
+import DragBar from '../../DragBar'
 
 const Timeline: React.FC = () => {
   return (
@@ -6,9 +7,7 @@ const Timeline: React.FC = () => {
       <span className='time-start text-xs font-bold min-w-[45px] flex-shrink-0 opacity-50 text-right mr-3'>
         03:01
       </span>
-      <span className='time-duration flex-1 h-[3px] hover:h-[6px] bg-white bg-opacity-50 rounded-2xl transition cursor-pointer relative'>
-
-      </span>
+      <DragBar />
       <span className='time-end text-xs font-bold min-w-[45px] flex-shrink-0 opacity-50 text-left ml-3'>
         03:59
       </span>

@@ -8,7 +8,7 @@ const PreviousControl: React.FC = () => {
 
   return (
     <button 
-      className='text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition'
+      className='text-[color:var(--white)] button-hover transition'
       onClick={handlePreviousSong} >
       <PreviousIcon className='w-5 h-5' />
     </button>

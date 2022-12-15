@@ -8,8 +8,9 @@ const ShuffleControl: React.FC = () => {
 
   return (
     <button 
-      className='text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition'
-      onClick={handleShuffleSong} >
+      className='text-[color:var(--white)] button-hover transition'
+      onClick={handleShuffleSong}
+      title='Bật phát ngẫu nhiên' >
       <ShuffleIcon className='w-5 h-5' />
     </button>
   )

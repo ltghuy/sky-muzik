@@ -8,8 +8,9 @@ const RepeatControl: React.FC = () => {
 
   return (
     <button 
-      className='text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition'
-      onClick={handleRepeat} >
+      className='text-[color:var(--white)] button-hover transition'
+      onClick={handleRepeat} 
+      title='Lặp lại bài hát'>
       <RepeatIcon className='w-5 h-5' />
     </button>
   )

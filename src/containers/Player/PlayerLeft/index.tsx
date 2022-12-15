@@ -25,10 +25,10 @@ const PlayerLeft:React.FC = () => {
         </div>
       </div>
       <div className="media-controls ml-5">
-        <button className='text-[color:var(--white)] p-2 hover:bg-gray-50 hover:bg-opacity-30 rounded-full transition'>
+        <button className='text-[color:var(--white)] button-hover transition'>
           <HeartIcon />
         </button>
-        <button className='text-[color:var(--white)] ml-1 p-2 hover:bg-gray-50 hover:bg-opacity-30 rounded-full transition'>
+        <button className='text-[color:var(--white)] ml-1 button-hover transition'>
           <DotstIcon />
         </button>
       </div>
