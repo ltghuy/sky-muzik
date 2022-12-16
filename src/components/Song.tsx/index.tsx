@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { SongProps } from '../../types/common'
 import { useAppDispatch } from '../../utils/customRedux'
 import { formatDuration } from '../../utils/formatTime'
-import { changePlayIcon, setCurrentIndexPlaylist, setSongId, setAutoplay } from '../../redux/features/audioSlice'
+import { changePlayIcon, setCurrentIndexPlaylist, setCurrentAlbum, setSongId, setAutoplay } from '../../redux/features/audioSlice'
 import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
 import { ReactComponent as VipIcon} from '../../static/icons/vip-icon.svg'
 
@@ -11,16 +11,19 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
   const SONG_VIP = 2
   const SONG_NORMAL = 1
   const dispatch = useAppDispatch()
+  const params = useParams<{playlistID: string}>()
   const songDuration =  duration && formatDuration(duration)
 
   const handleChangeSong = (encodeId: string, streamingStatus: number, index: number) => {
-    if (streamingStatus === SONG_NORMAL) {
+    if (streamingStatus === SONG_NORMAL && params.playlistID) {
       dispatch(changePlayIcon(true))
       dispatch(setCurrentIndexPlaylist(index))
+      dispatch(setCurrentAlbum(params.playlistID))
       dispatch(setSongId(encodeId))
       dispatch(setAutoplay(true))
       
       localStorage.setItem('songId', encodeId)
+      localStorage.setItem('currentAlbum', params.playlistID)
     }
   }
 

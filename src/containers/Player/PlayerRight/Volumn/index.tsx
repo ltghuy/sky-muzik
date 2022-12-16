@@ -14,9 +14,9 @@ const VolumnControl: React.FC = () => {
   const handleTurnVolume = () => {
     if (isVolumeOn) {
       dispatch(changeVolumeIcon(false))
-      dispatch(setVolume(Number(localStorage.getItem("volume"))))
+      dispatch(setVolume(Number(localStorage.getItem("volume")) || 0.5))
       if (audioRef) {
-        audioRef.volume = Number(localStorage.getItem("volume"))
+        audioRef.volume = Number(localStorage.getItem("volume") || 0.5)
       }
     } else {
       dispatch(changeVolumeIcon(true))

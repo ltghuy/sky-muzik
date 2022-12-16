@@ -6,12 +6,13 @@ import { ReactComponent as DotstIcon } from '../../../static/icons/triple-dots.s
 
 const PlayerLeft:React.FC = () => {
   const songInfo = useAppSelector((state) => state.audio.infoSong)
+  const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
 
   return (
     <section className='player-left w-[30%] flex items-center justify-start flex-shrink-0 basis-auto'>
       <div className="media-thumnail">
         <div className="w-16 h-16 bg-white rounded-lg overflow-hidden">
-          <Link to={'/'} className='block w-full h-full'>
+          <Link to={`/playlist/${currentAlbum}`} className='block w-full h-full'>
             <img 
               className='object-cover'
               src={songInfo.thumbnail} 
@@ -21,7 +22,7 @@ const PlayerLeft:React.FC = () => {
       </div>
       <div className="media-info ml-3 font-inter">
         <div className='media-name text-[color:var(--white)] text-sm font-medium one-line' title={songInfo.title}>
-          <Link to={`/playlist/${songInfo.album.encodeId}`}>{songInfo.title}</Link>
+          <Link to={`/playlist/${currentAlbum}`}>{songInfo.title}</Link>
         </div>
         <div className='media-artist flex one-line'>
           {
@@ -29,9 +30,11 @@ const PlayerLeft:React.FC = () => {
               <Link 
                 key={index}
                 to={`/artist/${artist.alias}`} 
-                className='text-[color:var(--grey-100)] hover:text-[color:var(--primary-light)] hover:underline text-xs leading-5 font-medium'>
+                className='text-[color:var(--grey-100)] text-xs leading-5 font-medium'>
                 <span>{index > 0 ? ', ' : ''}</span>
-                <span title={artist.name}>{artist.name}</span>
+                <span className='hover:text-[color:var(--primary-light)] hover:underline' title={artist.name}>
+                  {artist.name}
+                </span>
               </Link>
             ))
           }

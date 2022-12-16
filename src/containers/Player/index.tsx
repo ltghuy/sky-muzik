@@ -23,7 +23,6 @@ const Player: React.FC = () => {
       dispatch(changePlayIcon(false))
       if (playlistSong !== undefined && playlistSong.length > 0) {
         let currentIndex
-
         if (currentIndexPlaylist === playlistSong.length - 1) {
           currentIndex = 0
         } else {

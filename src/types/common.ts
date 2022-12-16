@@ -32,15 +32,16 @@ export interface AudioState {
   isPlay: boolean,
   isMute: boolean,
   isLoop: boolean,
+  isShuffle: boolean,
   isLyric: boolean,
   autoPlay: boolean,
   currentIndexPlaylist: number,
+  currentAlbum: string,
   infoSong: {
     title: string,
     thumbnail: string,
     artists: Array<object>,
-    artistsNames: string,
-    album: any
+    artistsNames: string
   },
   srcAudio: string,
   currentTime: number,

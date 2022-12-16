@@ -11,15 +11,16 @@ const initialState: AudioState = {
   isPlay: false,
   isMute: false,
   isLoop: false,
+  isShuffle: false,
   isLyric: false,
   autoPlay: false,
   currentIndexPlaylist: 0,
+  currentAlbum: localStorage.getItem("currentAlbum") || "",
   infoSong: {
     title: "",
     thumbnail: "",
     artists: [],
-    artistsNames: "",
-    album: {}
+    artistsNames: ""
   },
   srcAudio: "",
   currentTime: 0,
@@ -44,6 +45,9 @@ export const audioSlice = createSlice({
     setCurrentIndexPlaylist: (state, action: PayloadAction<number>) => {
       state.currentIndexPlaylist = action.payload
     },
+    setCurrentAlbum: (state, action: PayloadAction<string>) => {
+      state.currentAlbum = action.payload
+    },
     setAutoplay: (state, action: PayloadAction<boolean>) => {
       state.autoPlay = action.payload
     },
@@ -58,6 +62,9 @@ export const audioSlice = createSlice({
     },
     setLoop: (state, action: PayloadAction<boolean>) => {
       state.isLoop = action.payload
+    },
+    setShuffle: (state, action: PayloadAction<boolean>) => {
+      state.isShuffle = action.payload
     },
     setOpenLyric: (state, action: PayloadAction<boolean>) => {
       state.isLyric = action.payload
@@ -86,8 +93,10 @@ export const {
   setAutoplay,
   setSongId,
   setCurrentTime,
+  setCurrentAlbum,
   setDuration,
   setLoop,
+  setShuffle,
   setOpenLyric,
   setInfoSong,
   setPlaylistSong,
