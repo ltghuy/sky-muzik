@@ -1,14 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { SongProps } from '../../types/common'
+import { useAppDispatch } from '../../utils/customRedux'
+import { formatDuration } from '../../utils/formatTime'
+import { changePlayIcon, setCurrentIndexPlaylist, setSongId, setAutoplay } from '../../redux/features/audioSlice'
 import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
 import { ReactComponent as VipIcon} from '../../static/icons/vip-icon.svg'
 
-const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration }) => {
+const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration }) => {
   const SONG_VIP = 2
-  const songDuration =  duration && (new Date(duration * 1000).toISOString().slice(14, 19))
-  const handleChangeSong = (encodeId: string) => {
-    console.log('Change to song with encode: ', encodeId)
+  const SONG_NORMAL = 1
+  const dispatch = useAppDispatch()
+  const songDuration =  duration && formatDuration(duration)
+
+  const handleChangeSong = (encodeId: string, streamingStatus: number, index: number) => {
+    if (streamingStatus === SONG_NORMAL) {
+      dispatch(changePlayIcon(true))
+      dispatch(setCurrentIndexPlaylist(index))
+      dispatch(setSongId(encodeId))
+      dispatch(setAutoplay(true))
+      
+      localStorage.setItem('songId', encodeId)
+    }
   }
 
   return (
@@ -16,7 +29,7 @@ const Song:React.FC<SongProps> = ({ thumbnail, title, encodeId, streamingStatus,
       <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
         <div className="song-info w-1/2 flex-shrink-0 pr-5 flex items-center">
           <div className={`song-thumbnail w-10 h-10 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 
-            onClick={() => handleChangeSong(encodeId)}>
+            onClick={() => handleChangeSong(encodeId, streamingStatus, index)}>
             <img src={thumbnail} alt={title} className='rounded-md' />
             <div className='absolute w-full h-full inset-0 hidden group-hover:flex justify-center items-center bg-black bg-opacity-30 text-white cursor-pointer'>
               <PlayIcon />

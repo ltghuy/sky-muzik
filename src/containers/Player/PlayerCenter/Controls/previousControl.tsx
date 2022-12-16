@@ -2,8 +2,9 @@ import React from 'react'
 import { ReactComponent as PreviousIcon } from '../../../../static/icons/previous-icon.svg'
 
 const PreviousControl: React.FC = () => {
+
   const handlePreviousSong = () => {
-    console.log('Changed to previous song!')
+    console.log('Go to prev song...')
   }
 
   return (

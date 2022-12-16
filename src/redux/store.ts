@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
-import counterSlice from './features/counterSlice'
+import { configureStore } from "@reduxjs/toolkit"
+import audioReducer from "./features/audioSlice"
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    audio: audioReducer,
   },
 })
 
@@ -11,3 +11,5 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch
+
+export { store }

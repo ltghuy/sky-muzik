@@ -1,12 +1,26 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { AudioContext } from '../..'
+import { useAppDispatch, useAppSelector } from '../../../../utils/customRedux'
+import { changePlayIcon } from '../../../../redux/features/audioSlice'
 import { ReactComponent as PlayIcon } from '../../../../static/icons/play-solid.svg'
 import { ReactComponent as PauseIcon } from '../../../../static/icons/pause-solid.svg'
 
 const PlayControl: React.FC = () => {
-  const [isPlay, setIsPlay] = useState<boolean>(false)
+  const isPlay = useAppSelector((state) => state.audio.isPlay)
+  const audioRef = useContext(AudioContext)
+  const dispatch = useAppDispatch()
   const handlePlaySong = () => {
-    console.log('Play button clicked!')
-    setIsPlay(isPlay => !isPlay)
+    if (isPlay) {
+      dispatch(changePlayIcon(false))
+      if(audioRef) {
+        audioRef.pause()
+      }
+    } else {
+      dispatch(changePlayIcon(true))
+      if(audioRef) {
+        audioRef.play()
+      }
+    }
   }
 
   return (

@@ -13,3 +13,7 @@ export const formatTime = ( sec_num: number ):string => {
     }
     return (hours !== 0 ? hours + ':' : '') + minutes + ':' + seconds;
 }
+
+export const formatDuration = (duration: number) => {
+    return new Date(duration * 1000).toISOString().slice(14, 19)
+}

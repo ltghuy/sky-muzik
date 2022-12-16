@@ -16,6 +16,7 @@ export interface PlaylistDetailProps {
 }
 
 export interface SongProps {
+  index: number,
   title: string,
   thumbnail: string,
   encodeId: string,
@@ -23,5 +24,27 @@ export interface SongProps {
   streamingStatus: number,
   artists: [],
   artistsNames?: string,
-  album: any
+  album?: any
+}
+
+export interface AudioState {
+  songID: string,
+  isPlay: boolean,
+  isMute: boolean,
+  isLoop: boolean,
+  isLyric: boolean,
+  autoPlay: boolean,
+  currentIndexPlaylist: number,
+  infoSong: {
+    title: string,
+    thumbnail: string,
+    artists: Array<object>,
+    artistsNames: string,
+    album: any
+  },
+  srcAudio: string,
+  currentTime: number,
+  duration: number,
+  volume: number,
+  playListSong: Array<object>
 }

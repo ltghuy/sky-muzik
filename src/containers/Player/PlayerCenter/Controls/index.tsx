@@ -5,7 +5,7 @@ import PreviousControl from './previousControl'
 import RepeatControl from './repeatControl'
 import ShuffleControl from './shuffleControl'
 
-const PlayerControls: React.FC = () => {
+const PlayerControls: React.FC = ({}) => {
   return (
     <div className='player-controls text-white flex justify-center items-center gap-5'>
       <ShuffleControl />

@@ -20,6 +20,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song }) => 
          song && song.items.map((item: any, index: number) => (
           <li className="playlist-item" key={index}>
             <Song 
+              index={index}
               thumbnail={item?.thumbnail}
               title={item?.title}
               encodeId={item?.encodeId}
