@@ -8,6 +8,7 @@ import DragBar from '../../DragBar'
 
 const VolumnControl: React.FC = () => {
   const isVolumeOn = useAppSelector((state) => state.audio.isMute)
+  const volume = useAppSelector((state) => state.audio.volume)
   const audioRef = useContext(AudioContext)
   const dispatch = useAppDispatch()
 
@@ -25,6 +26,14 @@ const VolumnControl: React.FC = () => {
     }
   }
 
+  const updateVolume = (value: number) => {
+    if (audioRef) {
+      localStorage.setItem("volume", String(value / 100))
+      dispatch(setVolume(value / 100))
+      audioRef.volume = value / 100
+    }
+  }
+
   return (
     <div className='flex items-center'>
       <button
@@ -32,7 +41,13 @@ const VolumnControl: React.FC = () => {
         onClick={handleTurnVolume}>
         { isVolumeOn ? <VolumnOff className='w-5 h-5' /> : <VolumnOn className='w-5 h-5' /> }
       </button>
-      <DragBar />
+      <DragBar 
+        width='100px'
+        height='3px'
+        hoverHeight='6px'
+        currentPercent={Number(volume) * 100}
+        percentUpdate={updateVolume}
+      />
     </div>
   )
 }
