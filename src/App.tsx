@@ -21,7 +21,7 @@ const App: React.FC = () => {
         }
       }
     )()
-  }, [])
+  }, [currentAlbum])
 
   return (
     <Provider store={ store }>

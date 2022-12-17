@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { SongProps } from '../../types/common'
-import { useAppDispatch } from '../../utils/customRedux'
+import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
 import { formatDuration } from '../../utils/formatTime'
 import { changePlayIcon, setCurrentIndexPlaylist, setCurrentAlbum, setSongId, setAutoplay } from '../../redux/features/audioSlice'
 import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
@@ -10,6 +10,8 @@ import { ReactComponent as VipIcon} from '../../static/icons/vip-icon.svg'
 const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration }) => {
   const SONG_VIP = 2
   const SONG_NORMAL = 1
+  const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
+  const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
   const dispatch = useAppDispatch()
   const params = useParams<{playlistID: string}>()
   const songDuration =  duration && formatDuration(duration)
@@ -24,11 +26,12 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
       
       localStorage.setItem('songId', encodeId)
       localStorage.setItem('currentAlbum', params.playlistID)
+      localStorage.setItem('currentIndex', index.toString())
     }
   }
 
   return (
-    <div className="song w-full font-inter h-16 rounded-lg hover:bg-gray-100 my-2 transition">
+    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && currentAlbum === params.playlistID  ? 'bg-[color:var(--primary-light)]' : 'hover:bg-gray-100'}`}>
       <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
         <div className="song-info w-1/2 flex-shrink-0 pr-5 flex items-center">
           <div className={`song-thumbnail w-10 h-10 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 

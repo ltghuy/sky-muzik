@@ -14,7 +14,7 @@ const initialState: AudioState = {
   isShuffle: false,
   isLyric: false,
   autoPlay: false,
-  currentIndexPlaylist: 0,
+  currentIndexPlaylist: Number(localStorage.getItem("currentIndex")) || 0,
   currentAlbum: localStorage.getItem("currentAlbum") || "",
   infoSong: {
     title: "",
