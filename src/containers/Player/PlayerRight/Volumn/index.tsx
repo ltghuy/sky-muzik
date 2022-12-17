@@ -44,7 +44,6 @@ const VolumnControl: React.FC = () => {
       <DragBar 
         width='100px'
         height='3px'
-        hoverHeight='6px'
         currentPercent={Number(volume) * 100}
         percentUpdate={updateVolume}
       />

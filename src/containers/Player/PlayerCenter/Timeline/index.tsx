@@ -24,7 +24,6 @@ const Timeline: React.FC = () => {
       <DragBar 
         width='100%'
         height='3px'
-        hoverHeight='6px'
         currentPercent={(currentTime / duration) *100}
         percentUpdate={updateCurrentVolume}
       />
