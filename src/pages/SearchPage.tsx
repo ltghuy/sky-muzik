@@ -22,7 +22,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <main className="search-page">
+      <main className="search-page px-8 py-5">
         <section className="search-artists relative min-h-[30vh]">
           {
             dataSearch.artists !== undefined ? (

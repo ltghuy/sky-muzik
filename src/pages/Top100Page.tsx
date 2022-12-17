@@ -17,19 +17,21 @@ const Top100: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="top100 relative min-h-[300px]">
-        {
-          dataTop100 ? 
-          dataTop100.map((item: any, index: number) => 
-            <Playlist 
-              key={index} 
-              title={item.title}
-              sectionId={item.sectionId}
-              link={item.link}
-              playList={item.items}
-            />
-          ) : <Loading />
-        }
+      <div className="px-8 py-5">
+        <div className="top100 relative min-h-[300px]">
+          {
+            dataTop100 ?
+            dataTop100.map((item: any, index: number) =>
+              <Playlist
+                key={index}
+                title={item.title}
+                sectionId={item.sectionId}
+                link={item.link}
+                playList={item.items}
+              />
+            ) : <Loading />
+          }
+        </div>
       </div>
     </MainLayout>
   )

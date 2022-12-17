@@ -5,7 +5,7 @@ import { ReactComponent as HomeIcon } from '../../static/icons/home-icon.svg'
 import { ReactComponent as ChartIcon } from '../../static/icons/chart-icon.svg'
 import { ReactComponent as Top100 } from '../../static/icons/top-100-icon.svg'
 import { ReactComponent as MVIcon } from '../../static/icons/mv-icon.svg'
-import logo from '../../static/images/logo.gif'
+import logo from '../../static/images/sky.gif'
 import './navbar.scss'
 
 const Navbar: React.FC = () => {

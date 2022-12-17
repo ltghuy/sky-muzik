@@ -1,21 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
+import { changePlayIcon } from '../../redux/features/audioSlice'
 import { PlaylistDetailProps } from '../../types/common'
 import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
 import { ReactComponent as LikedIcon } from '../../static/icons/heart-icon.svg'
 import Button from '../Button'
 
-const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like }) => {
+const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like, isCurrentPlaylist }) => {
+  const isPlay = useAppSelector((state) => state.audio.isPlay)
+  const dispatch = useAppDispatch()
   const playlistLastUpdate =  contentLastUpdate && (new Date(contentLastUpdate * 1000)).toLocaleDateString("vi-VN")
 
   const onPlaylistPlay = () => {
-    console.log('Button clicked!')
+    const audio = document.querySelector('audio')
+    if (isPlay) {
+      dispatch(changePlayIcon(false))
+      audio?.pause()
+    } else {
+      dispatch(changePlayIcon(true))
+      audio?.play()
+    }
   }
 
   return (
     <div className='playlist-info px-5'>
       <div className="playlist-thumbnail w-[65%] relative mx-auto">
-        <img src={thumbnailM} alt="aaa" className='w-full object-cover rounded-full animate-rotate'/>
+        <img 
+        src={thumbnailM} 
+        alt={title} 
+        className={`w-full object-cover ${isCurrentPlaylist && isPlay ? 'rounded-full animate-rotate' : 'rounded-2xl'}`} />
         <div className="absolute w-full h-full inset-0 flex justify-center items-center">
           <button className='text-white p-3 border border-white rounded-full'>
             <PlayIcon />
@@ -52,7 +66,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
       <div className="playlist-button flex justify-center my-5">
         <Button 
           classStyle='w-[175px] flex justify-center uppercase'  
-          text='Tiếp tục phát'
+          text={isPlay ? 'Tạm dừng' : 'Tiếp tục phát'}
           handleClick={onPlaylistPlay}
         />
       </div>

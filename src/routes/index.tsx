@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage'
 import ChartPage from '../pages/ChartPage'
 import PlaylistPage from '../pages/PlaylistPage'
 import SearchPage from '../pages/SearchPage'
+import ArtistPage from '../pages/ArtistPage'
 
 const RouterPage: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ const RouterPage: React.FC = () => {
       </Route>
       <Route path="/search" element={<SearchPage />}>
         <Route path=":keyword" element={<SearchPage />} />
+      </ Route>
+      <Route path="/artist" element={<ArtistPage />}>
+        <Route path=":artistID" element={<ArtistPage />} />
       </ Route>
     </Routes>
   )

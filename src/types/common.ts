@@ -12,7 +12,8 @@ export interface PlaylistDetailProps {
   song?: {
     items : Array<Object>,
     totalDuration: number
-  }
+  },
+  isCurrentPlaylist?: boolean
 }
 
 export interface SongProps {
@@ -49,4 +50,8 @@ export interface AudioState {
   duration: number,
   volume: number,
   playListSong: Array<object>
+}
+
+export interface ArtistProps {
+  cover: string
 }

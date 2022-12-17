@@ -86,4 +86,7 @@ body {
   .button-hover {
     @apply p-2 hover:bg-gray-50 hover:bg-opacity-30 rounded-full;
   }
+  .button-shadow {
+    @apply p-2 bg-gray-50 bg-opacity-30 rounded-full;
+  }
 }

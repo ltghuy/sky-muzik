@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useAppSelector } from '../../utils/customRedux'
 import { PlaylistDetailProps } from '../../types/common'
 import Song from '../Song.tsx'
 
-const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song }) => {
+const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCurrentPlaylist }) => {
+  const currentIndex = useAppSelector((state) => state.audio.currentIndexPlaylist)
   const totalDuration =  song?.totalDuration && (new Date(song?.totalDuration * 1000).toISOString().slice(11, 19))
+
+  useEffect(() => {
+    if (isCurrentPlaylist && document) {
+      const currentSongItem = document.querySelector(`#playlist-item-${currentIndex}`) as HTMLLIElement
+      currentSongItem.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }
+  }, [])
+
   return (
     <div className='playlist-track font-inter'>
       <div className="playlist-title text-sm text-[color:var(--black)] font-medium">
@@ -18,7 +28,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song }) => 
       <ul className="playlist-list mt-5">
         {
          song && song.items.map((item: any, index: number) => (
-          <li className="playlist-item" key={index}>
+          <li className="playlist-item" id={`playlist-item-${index}`} key={index}>
             <Song 
               index={index}
               thumbnail={item?.thumbnail}

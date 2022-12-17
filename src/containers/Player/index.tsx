@@ -13,6 +13,7 @@ const Player: React.FC = () => {
   const songId = useAppSelector((state) => state.audio.songID)
   const srcAudio = useAppSelector((state) => state.audio.srcAudio)
   const isLoop = useAppSelector((state) => state.audio.isLoop)
+  const volume = useAppSelector((state) => state.audio.volume)
   const playlistSong: any = useAppSelector((state) => state.audio.playListSong)
   const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
   const dispatch = useAppDispatch()
@@ -38,6 +39,7 @@ const Player: React.FC = () => {
   const handleAudioLoaded = () => {
     if (audioRef.current) {
       dispatch(setDuration((audioRef.current.duration)))
+      audioRef.current.volume = volume
     }
   }
 

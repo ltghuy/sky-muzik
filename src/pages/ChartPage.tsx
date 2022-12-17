@@ -4,9 +4,11 @@ import MainLayout from '../containers/MainLayout'
 const ChartPage: React.FC = () => {
   return (
     <MainLayout>
-      <h3 className='text-slate-900'>
-        Chart Page
-      </h3>
+      <div className="px-8 py-5">
+        <h3 className='text-slate-900'>
+          Chart Page
+        </h3>
+      </div>
     </MainLayout>
   )
 }

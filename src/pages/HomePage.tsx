@@ -20,20 +20,22 @@ const HomePage: React.FC = () => {
 
   return (
     <MainLayout>
-      <Slider data={sliderList} cols={3} />
-      <div className="playlist-wrapper mt-12 relative min-h-[200px]">
-        {
-          playList.length > 0 ? 
-          playList.map((item: any, index: number) => 
-            <Playlist 
-              key={index} 
-              title={item.title}
-              sectionId={item.sectionId}
-              link={item.link}
-              playList={item.items}
-            />
-          ) : <Loading />
-        }
+      <div className="px-8 py-5">
+        <Slider data={sliderList} cols={3} />
+        <div className="playlist-wrapper mt-12 relative min-h-[200px]">
+          {
+            playList.length > 0 ?
+            playList.map((item: any, index: number) =>
+              <Playlist
+                key={index}
+                title={item.title}
+                sectionId={item.sectionId}
+                link={item.link}
+                playList={item.items}
+              />
+            ) : <Loading />
+          }
+        </div>
       </div>
     </MainLayout>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchBox from './SearchBox'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowIcon } from '../../static/icons/arrow-icon.svg'
@@ -8,8 +8,23 @@ import { ReactComponent as NotificationIcon } from '../../static/icons/notificat
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
+  const [stickyClass, setStickyClass] = useState<string>('bg-none')
+
+  useEffect(() => {
+    const wrapper = document.querySelector('.main-wrapper') as HTMLElement
+
+    const isSticky = (e: any) => {
+      wrapper.scrollTop >= 100 ? setStickyClass('bg-white') : setStickyClass('bg-none')
+    }
+
+    wrapper.addEventListener('scroll', isSticky)
+    return () => {
+      wrapper.removeEventListener('scroll', isSticky)
+    }
+  }, [])
+
   return (
-    <section className='header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] bg-[color:var(--white)] z-10'>
+    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] transition z-10 ${stickyClass}`} >
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
           <button className='hover:text-[color:var(--primary)] transition' onClick={() => navigate(-1)}>
@@ -22,18 +37,18 @@ const Header: React.FC = () => {
         </div>
         <ul className="header-right flex items-center gap-4">
           <li>
-            <button className='hover:text-[color:var(--primary)] transition'>
-              <SettingIcon className='w-[30px]' />
+            <button className='hover:text-[color:var(--primary)] transition w-8 button-shadow'>
+              <SettingIcon />
             </button>
           </li>
           <li>
-            <button className='hover:text-[color:var(--primary)] transition'>
-              <MessageIcon className='w-[30px]' />
+            <button className='hover:text-[color:var(--primary)] transition w-8 button-shadow'>
+              <MessageIcon />
             </button>
           </li>
           <li>
-            <button className='hover:text-[color:var(--primary)] transition'>
-              <NotificationIcon className='w-[23px]' />
+            <button className='hover:text-[color:var(--primary)] transition w-8 button-shadow'>
+              <NotificationIcon />
             </button>
           </li>
           <li>
