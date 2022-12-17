@@ -31,7 +31,6 @@ const Player: React.FC = () => {
         
         dispatch(setCurrentIndexPlaylist(currentIndex))
         dispatch(setSongId(playlistSong[currentIndex].encodeId))
-        dispatch(changePlayIcon(true))
       }
     }
   }

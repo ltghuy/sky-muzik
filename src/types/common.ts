@@ -24,7 +24,8 @@ export interface SongProps {
   streamingStatus: number,
   artists: [],
   artistsNames?: string,
-  album?: any
+  album?: any,
+  playAllList?: boolean
 }
 
 export interface AudioState {
