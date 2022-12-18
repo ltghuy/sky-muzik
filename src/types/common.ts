@@ -53,5 +53,10 @@ export interface AudioState {
 }
 
 export interface ArtistProps {
-  cover: string
+  cover: string,
+  name: string,
+  totalFollow: number,
+  thumbnailM: string,
+  biography: string,
+  awards: [],
 }

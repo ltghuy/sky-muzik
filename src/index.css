@@ -75,6 +75,19 @@ body {
   -webkit-box-orient: vertical;
 }
 
+.eight-line {
+  overflow: scroll;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  line-clamp: 8; 
+  -webkit-box-orient: vertical;
+}
+
+.eight-line::-webkit-scrollbar {
+  width: 3px;
+}
+
 .shadow {
   box-shadow: 0 4px 20px 0 rgb(44 101 144 / 10%);
 }
