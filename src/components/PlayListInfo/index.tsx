@@ -49,7 +49,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
               <span key={artist.id}>
                 { (index > 0) ? (<span>, </span>) : ("") }
                 <Link 
-                  to={`artist/${artist.alias}`}
+                  to={`/artist/${artist.alias}`}
                   className="hover:text-[color:var(--primary)] text-sm"
                 >
                   <span title={artist.name}>{artist.name}</span>
