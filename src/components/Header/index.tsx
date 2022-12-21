@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import SearchBox from './SearchBox'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowIcon } from '../../static/icons/arrow-icon.svg'
@@ -8,13 +8,17 @@ import { ReactComponent as NotificationIcon } from '../../static/icons/notificat
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
+  const headerRef = useRef<HTMLElement>(null)
   const [stickyClass, setStickyClass] = useState<string>('bg-none')
 
   useEffect(() => {
     const wrapper = document.querySelector('.main-wrapper') as HTMLElement
 
     const isSticky = (e: any) => {
-      wrapper.scrollTop >= 100 ? setStickyClass('bg-white') : setStickyClass('bg-none')
+      if (headerRef.current) {
+        const headerHeight = headerRef.current.clientHeight
+        wrapper.scrollTop >= headerHeight ? setStickyClass('bg-white') : setStickyClass('bg-none')
+      }
     }
 
     wrapper.addEventListener('scroll', isSticky)
@@ -24,7 +28,7 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] transition z-10 ${stickyClass}`} >
+    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] transition z-10 ${stickyClass}`} ref={headerRef}>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
           <button className='hover:text-[color:var(--primary)] transition' onClick={() => navigate(-1)}>
@@ -38,7 +42,7 @@ const Header: React.FC = () => {
         <ul className="header-right flex items-center gap-4">
           <li>
             <button className='hover:text-[color:var(--primary)] transition w-8 button-shadow'>
-              <SettingIcon />
+              <SettingIcon className='scale-150' />
             </button>
           </li>
           <li>

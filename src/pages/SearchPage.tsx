@@ -65,7 +65,7 @@ const SearchPage: React.FC = () => {
             <Loading />
           }
         </section>
-        <section className="search-artists relative min-h-[30vh] mt-5">
+        <section className="search-list-song relative min-h-[30vh] mt-5">
           {
             dataSearch.songs !== undefined ? (
               <>
@@ -73,7 +73,7 @@ const SearchPage: React.FC = () => {
                   Bài hát
                 </h3>
                 <div className="search-list h-max w-full">
-                  <div className="search-wrapper h-full grid grid-cols-2 gap-x-24 gap-y-4 overflow-hidden">
+                  <div className="search-wrapper h-full grid grid-cols-2 gap-x-24 gap-y-4">
                     {
                       // Only get max 6 songs
                       dataSearch.songs.slice(0, 6)
@@ -109,7 +109,7 @@ const SearchPage: React.FC = () => {
                 <div className="search-list h-max w-full">
                   <div className="search-wrapper h-full grid grid-cols-5 gap-x-8 gap-y-10 overflow-hidden">
                     {
-                      // Only get max 6 songs
+                      // Only get max 5 songs
                       dataSearch.playlists.slice(0, 5)
                       .map((item: any, index: number) => (
                         <PlayListItem 
@@ -129,7 +129,7 @@ const SearchPage: React.FC = () => {
             <Loading />
           }
         </section>
-        <section className="search-playlists relative min-h-[30vh] mt-5">
+        <section className="search-mv relative min-h-[30vh] mt-5">
           {
             dataSearch.videos !== undefined ? (
               <>

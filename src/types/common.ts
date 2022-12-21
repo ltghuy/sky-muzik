@@ -59,4 +59,5 @@ export interface ArtistProps {
   thumbnailM: string,
   biography: string,
   awards: [],
+  sections: [],
 }
