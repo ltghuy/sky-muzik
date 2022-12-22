@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect} from 'react'
 import { AudioContext } from '..'
 import { useAppSelector, useAppDispatch } from '../../../utils/customRedux'
-import { setOpenLyric } from '../../../redux/features/audioSlice'
+import { setOpenLyric, changePlayIcon } from '../../../redux/features/audioSlice'
 import useLyric from '../../../hooks/useLyric'
 import { ReactComponent as ArrowIcon } from '../../../static/icons/arrow-right-icon.svg'
 
@@ -43,10 +43,13 @@ const LyricPanel: React.FC = () => {
           </button>
         </div>
         <div className="lyric-main w-full flex-1 max-h-[90vh] flex items-end px-20 py-10">
-          <div className="lyric-thumbnail w-max flex-shrink-0">
-            <img src={songInfo.thumbnailM} alt={songInfo.title} />
+          <div className="lyric-thumbnail w-96 h-96 flex-shrink-0 p-5 bg-white shadow-lg shadow-[color:var(--body-text)] relative">
+            <img 
+              className='absolute w-full object-cover inset-0'
+              src={songInfo.thumbnailM} 
+              alt={songInfo.title} />
           </div>
-          <div className="lyric-timeline flex-1 h-full ml-20 rounded-3xl overflow-y-scroll hidden-scrollbar" ref={lyricRef}>
+          <div className="lyric-timeline flex-1 h-full ml-20 space-y-12 overflow-y-scroll hidden-scrollbar" ref={lyricRef}>
             {
             lyric &&
             lyric.map((e: {data: string, startTime: number, endTime: number}, index: number) => {
@@ -57,10 +60,12 @@ const LyricPanel: React.FC = () => {
                 <div
                   id={`line-${index}`}
                   key={index}
-                  className={`my-8 mx-0 transition-all duration-500 box-border ${inTimeLine(e) ? "origin-[center_left] scale-105" : ""}`}
+                  className={`transition-all duration-500 box-border ${inTimeLine(e) ? "origin-[center_left] scale-105" : ""}`}
                   onDoubleClick={() => {
                     if (audioRef) {
                       audioRef.currentTime = e.startTime / 1000
+                      audioRef.play()
+                      dispatch(changePlayIcon(true))
                     }
                   }}
                   >
