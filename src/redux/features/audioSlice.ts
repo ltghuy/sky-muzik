@@ -19,8 +19,10 @@ const initialState: AudioState = {
   infoSong: {
     title: "",
     thumbnail: "",
+    thumbnailM: "",
     artists: [],
-    artistsNames: ""
+    artistsNames: "",
+    hasLyric: false
   },
   srcAudio: "",
   currentTime: 0,

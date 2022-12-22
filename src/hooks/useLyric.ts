@@ -18,7 +18,7 @@ const useLyric = ( songId: string | null): any => {
             let sTime: number = 0
             let eTime: number = 0
 
-            e.words.forEach((element: {data: string, startTime: number, endTime: number}, index:number) => {
+            e.words.forEach((element: {data: string, startTime: number, endTime: number}, index: number) => {
               if (index === 0) {
                 sTime = element.startTime
               }

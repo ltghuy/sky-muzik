@@ -92,6 +92,15 @@ body {
   box-shadow: 0 4px 20px 0 rgb(44 101 144 / 10%);
 }
 
+.hidden-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hidden-scrollbar::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 @layer components {
   .slider-arrow {
     @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white bg-opacity-30 cursor-pointer justify-center items-center;
@@ -101,5 +110,11 @@ body {
   }
   .button-shadow {
     @apply p-2 bg-gray-50 bg-opacity-30 rounded-full;
+  }
+  .show-lyric {
+    @apply transform translate-y-0;
+  }
+  .close-lyric {
+    @apply transform translate-y-full;
   }
 }

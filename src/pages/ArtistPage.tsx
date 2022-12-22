@@ -46,7 +46,7 @@ const ArtistPage: React.FC = () => {
             dataDetailArtist?.sections ?
             dataDetailArtist.sections.filter((section: any) => section.sectionType === 'song')
             .map((e: any) => (
-              <>
+              <div key={e.title}>
                 <h3 className="heading text-xl text-[color:var(--black)] font-bold">
                   {e.title}
                 </h3>
@@ -71,7 +71,7 @@ const ArtistPage: React.FC = () => {
                     }
                   </div>
                 </div>
-              </>
+              </div>
             )) 
             : <Loading />
           }

@@ -5,6 +5,7 @@ import { setCurrentTime, setDuration, setCurrentIndexPlaylist, setSongId, setSrc
 import PlayerLeft from './PlayerLeft'
 import PlayerCenter from './PlayerCenter'
 import PlayerRight from './PlayerRight'
+import LyricPanel from './LyricPanel'
 
 export const AudioContext = createContext<HTMLAudioElement | null | undefined>(null)
 
@@ -64,9 +65,10 @@ const Player: React.FC = () => {
               {
                 title: infoSong.title,
                 thumbnail: infoSong.thumbnail,
+                thumbnailM: infoSong.thumbnailM,
                 artistsNames: infoSong.artistsNames,
                 artists: infoSong.artists,
-                album: infoSong.album
+                hasLyric: infoSong.hasLyric,
               }
             ))
           }
@@ -85,6 +87,7 @@ const Player: React.FC = () => {
           <PlayerCenter />
           <PlayerRight />
         </main>
+        <LyricPanel />
         <audio
           ref={audioRef}
           src={srcAudio}

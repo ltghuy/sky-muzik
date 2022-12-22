@@ -42,8 +42,10 @@ export interface AudioState {
   infoSong: {
     title: string,
     thumbnail: string,
+    thumbnailM: string,
     artists: Array<object>,
-    artistsNames: string
+    artistsNames: string,
+    hasLyric?: boolean,
   },
   srcAudio: string,
   currentTime: number,

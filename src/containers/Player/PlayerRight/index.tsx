@@ -1,5 +1,5 @@
 import React from 'react'
-import LyricControl from './Lyric'
+import LyricControl from './LyricControl'
 import MusicList from './MusicList'
 import MVControl from './MV'
 import VolumnControl from './Volumn'
