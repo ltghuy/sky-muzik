@@ -79,12 +79,12 @@ const Player: React.FC = () => {
 
   return (
     <section className='player fixed left-0 bottom-0 w-full h-[var(--player-height)] z-50 bg-[color:var(--primary-dark)]'>
-      <main className="player-wrapper h-full px-5 flex justify-center items-center">
-        <AudioContext.Provider value={audioRef.current}>
+      <AudioContext.Provider value={audioRef.current}>
+        <main className="player-wrapper h-full px-5 flex justify-center items-center">
           <PlayerLeft />
           <PlayerCenter />
           <PlayerRight />
-        </AudioContext.Provider>
+        </main>
         <audio
           ref={audioRef}
           src={srcAudio}
@@ -96,7 +96,7 @@ const Player: React.FC = () => {
           onLoadedData={handleAudioLoaded}
           onEnded={handleAudioEnd}
         />
-      </main>
+      </AudioContext.Provider>
     </section>
   )
 }
