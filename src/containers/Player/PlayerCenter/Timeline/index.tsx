@@ -28,7 +28,7 @@ const Timeline: React.FC = () => {
         percentUpdate={updateCurrentVolume}
       />
       <span className='time-end text-xs font-bold min-w-[45px] flex-shrink-0 opacity-50 text-left ml-4'>
-      { duration && formatDuration(duration) }
+        { duration > 0 ? formatDuration(duration) : '00:00' }
       </span>
     </div>
   )
