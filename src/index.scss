@@ -101,6 +101,15 @@ body {
   display: none;  /* Safari and Chrome */
 }
 
+/* Dragbar CSS */
+.drag-bar {
+  accent-color: var(--primary-light);
+}
+
+.drag-bar:hover {
+  opacity: 1;
+}
+
 @layer components {
   .slider-arrow {
     @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white bg-opacity-30 cursor-pointer justify-center items-center;

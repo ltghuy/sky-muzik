@@ -43,7 +43,7 @@ const LyricPanel: React.FC = () => {
           </button>
         </div>
         <div className="lyric-main w-full flex-1 max-h-[90vh] flex items-end px-20 py-10">
-          <div className="lyric-thumbnail w-96 h-96 flex-shrink-0 p-5 bg-white shadow-lg shadow-[color:var(--body-text)] relative">
+          <div className="lyric-thumbnail w-[22rem] h-[22rem] flex-shrink-0 p-5 bg-white shadow-lg shadow-[color:var(--body-text)] relative">
             <img 
               className='absolute w-full object-cover inset-0'
               src={songInfo.thumbnailM} 
