@@ -63,3 +63,15 @@ export interface ArtistProps {
   awards: [],
   sections: [],
 }
+
+export interface MVProps {
+  title: string,
+  encodeId: string,
+  thumbnailM: string,
+  artist: {
+    name: string,
+    alias: string,
+    thumbnail: string
+  },
+  artistsNames: string
+}

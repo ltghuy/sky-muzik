@@ -15,7 +15,8 @@ const RouterPage: React.FC = () => {
       <Route path='/' element={<HomePage />} />
       <Route path='/top100' element={ <Top100 />} />
       <Route path='/chart' element={ <ChartPage />} />
-      <Route path='/mv' element={ <MVPage />} />
+      <Route path='/mv' element={ <MVPage />}>
+      </Route>
       <Route path='/playlist' element={ <PlaylistPage /> }>
         <Route path=':playlistID' element={ <PlaylistPage />} />
       </Route>
