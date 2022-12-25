@@ -1,9 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { MVProps } from '../../types/common'
+import { useAppDispatch } from '../../utils/customRedux'
+import { useNavigate, Link } from 'react-router-dom'
+import { changePlayIcon } from '../../redux/features/audioSlice'
 import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
 
 const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames}) => {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  const playMV = (id: string) => {
+    navigate(`/mv/${id}`)
+    dispatch(changePlayIcon(false))
+    document.querySelector('audio')?.pause()
+  }
+
   return (
     <div className="mv-item h-72 flex flex-col" key={encodeId}>
       <div className="mv-top w-full flex-1 overflow-hidden group rounded-2xl cursor-pointer relative">
@@ -13,11 +24,11 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
           className="absolute w-full h-full object-cover group-hover:scale-110 transition-all" 
         />
         <div className="absolute w-full h-full inset-0 bg-black bg-opacity-50 hidden group-hover:flex items-center justify-center">
-          <Link 
-            to={`/mv/${encodeId}`}
+          <button 
+            onClick={() => playMV(encodeId)}
             className='text-white p-3 border border-white rounded-full'>
             <PlayIcon />
-          </Link>
+          </button>
         </div>
       </div>
       <div className="mv-bottom h-14 flex-shrink-0 flex items-center">
@@ -30,11 +41,11 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
           </Link>
         </div>
         <div className="mv-description font-inter ml-2">
-          <Link to={`/mv/${encodeId}`} className="mv-name">
+          <button className="mv-name" onClick={() => playMV(encodeId)}>
             <span className='text-sm leading-4 font-medium text-[color:var(--black)] hover:text-[color:var(--primary)] cursor-pointer transition'>
               {title}
             </span>
-          </Link>
+          </button>
           <div className="mv-artists text-xs font-medium text-[color:var(--black)] opacity-50">
             {artistsNames}
           </div>
