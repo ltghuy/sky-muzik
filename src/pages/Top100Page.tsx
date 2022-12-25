@@ -18,7 +18,7 @@ const Top100: React.FC = () => {
   return (
     <MainLayout>
       <div className="px-8 py-5">
-        <div className="top100 relative min-h-[500px]">
+        <div className="top100 rounded-2xl relative min-h-[500px]">
           {
             dataTop100 ?
             dataTop100.map((item: any, index: number) =>

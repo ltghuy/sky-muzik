@@ -7,6 +7,7 @@ import Loading from '../components/Loading'
 import MainLayout from '../containers/MainLayout'
 import PlayListItem from '../components/PlayListItem'
 import Song from '../components/Song.tsx'
+import MVItem from '../components/MVItem'
 
 const SearchPage: React.FC = () => {
   const params: any = useParams()
@@ -139,11 +140,17 @@ const SearchPage: React.FC = () => {
                 <div className="search-list h-max w-full">
                   <div className="search-wrapper h-full grid grid-cols-3 gap-x-8 gap-y-10 overflow-hidden">
                     {
-                      // Only get max 6 songs
+                      // Only get max 3 songs
                       dataSearch.videos.slice(0, 3)
-                      .map((item: any, index: number) => (
-                        // <Video />
-                        <p>Component video here</p>
+                      .map((item: any) => (
+                        <MVItem 
+                          key={item.title}
+                          artist={item.artist}
+                          artistsNames={item.artistsNames}
+                          encodeId={item.encodeId}
+                          thumbnailM={item.thumbnailM}
+                          title={item.title}
+                        />
                       ))
                     }
                   </div>

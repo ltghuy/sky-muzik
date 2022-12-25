@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
     <MainLayout>
       <div className="px-8 py-5">
         <Slider data={sliderList} cols={3} />
-        <div className="playlist-wrapper mt-12 relative min-h-[200px]">
+        <div className="playlist-wrapper mt-12 relative rounded-2xl min-h-[300px]">
           {
             playList.length > 0 ?
             playList.map((item: any, index: number) =>

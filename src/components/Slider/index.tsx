@@ -22,7 +22,7 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
 
   return (     
     <section className='slider w-full h-60 relative group'>
-      <div className="slider-container w-full h-full flex justify-between items-center overflow-hidden rounded-lg">
+      <div className="slider-container w-full h-full flex justify-between items-center overflow-hidden rounded-2xl">
         {
           data?.length > 0 ? 
           data.map((slide: any, index: number) => (
