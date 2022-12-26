@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { AudioContext } from '..'
 import { useAppSelector, useAppDispatch } from '../../../utils/customRedux'
 import { setOpenLyric, changePlayIcon } from '../../../redux/features/audioSlice'
@@ -27,6 +27,12 @@ const LyricPanel: React.FC = () => {
     if (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime) return true
     else return false
   }
+
+  useEffect(() => {
+    lyricRef?.current?.scroll({
+      top: 0
+    })
+  }, [songId, songInfo])
 
   return (
     <main 
