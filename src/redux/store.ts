@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import audioReducer from "./features/audioSlice"
+import mvReducer from "./features/mvSlice"
 
 const store = configureStore({
   reducer: {
     audio: audioReducer,
+    mv: mvReducer,
   },
 })
 

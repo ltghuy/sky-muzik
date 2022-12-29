@@ -33,16 +33,16 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
       </div>
       <div className="mv-bottom h-14 flex-shrink-0 flex items-center">
         <div className="artist-avatar w-10 h-10">
-          <Link to={`/artist/${artist.alias}`}>
+          <Link to={artist?.alias ? `/artist/${artist.alias}` : '#'}>
             <img 
               className='w-full h-full object-cover rounded-full'
-              src={artist.thumbnail} 
-              alt={artist.name} />
+              src={artist?.thumbnail} 
+              alt={artist?.name} />
           </Link>
         </div>
         <div className="mv-description font-inter ml-2">
           <button className="mv-name" onClick={() => playMV(encodeId)}>
-            <span className='text-sm leading-4 font-medium text-[color:var(--black)] hover:text-[color:var(--primary)] cursor-pointer transition'>
+            <span className='text-sm leading-4 font-medium text-[color:var(--black)] hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
               {title}
             </span>
           </button>

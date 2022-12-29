@@ -21,8 +21,6 @@ const Player: React.FC = () => {
 
   const handleAudioEnd = () => {
     if (!isLoop) {
-      dispatch(setCurrentTime(0))
-      dispatch(changePlayIcon(false))
       if (playlistSong !== undefined && playlistSong.length > 0) {
         let currentIndex
         if (currentIndexPlaylist === playlistSong.length - 1) {
@@ -33,7 +31,11 @@ const Player: React.FC = () => {
         
         dispatch(setCurrentIndexPlaylist(currentIndex))
         dispatch(setSongId(playlistSong[currentIndex].encodeId))
+        dispatch(changePlayIcon(true))
       }
+    } else {
+      dispatch(setCurrentTime(0))
+      dispatch(changePlayIcon(false))
     }
   }
 
