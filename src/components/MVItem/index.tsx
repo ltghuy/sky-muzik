@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { changePlayIcon } from '../../redux/features/audioSlice'
 import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
 
+
 const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames}) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -16,7 +17,7 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
   }
 
   return (
-    <div className="mv-item h-72 flex flex-col" key={encodeId}>
+    <div className="mv-item h-full flex flex-col">
       <div className="mv-top w-full flex-1 overflow-hidden group rounded-2xl cursor-pointer relative">
         <img 
           src={thumbnailM} 

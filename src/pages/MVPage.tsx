@@ -50,14 +50,15 @@ const MVPage: React.FC = () => {
             <div className="mv-list grid grid-cols-3 gap-x-5 gap-y-10" id='mv-list'>
               {
                 mvList.map((e: MVProps, index: number) => (
-                  <MVItem 
-                    key={index}
-                    artist={e.artist}
-                    artistsNames={e.artistsNames}
-                    encodeId={e.encodeId}
-                    thumbnailM={e.thumbnailM}
-                    title={e.title}
-                  />
+                  <div className="h-72" key={index}>
+                    <MVItem 
+                      artist={e.artist}
+                      artistsNames={e.artistsNames}
+                      encodeId={e.encodeId}
+                      thumbnailM={e.thumbnailM}
+                      title={e.title}
+                    />
+                  </div>
                 ))
               }
             </div>
@@ -65,7 +66,7 @@ const MVPage: React.FC = () => {
             <Loading />
           }
         </div>
-        <div className={`load-more ${loadMore ? 'block' : 'hidden'} relative rounded-2xl min-h-[150px]`}>
+        <div className={`load-more ${loadMore ? 'block' : 'hidden'} relative rounded-2xl min-h-[200px]`}>
           <Loading />
         </div>
       </div>
