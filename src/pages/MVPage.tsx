@@ -39,7 +39,7 @@ const MVPage: React.FC = () => {
     )()
   }, [currentCount, currentPage])
 
-  useInfinityScroll('.main-wrapper', '#mv-list', fetchMoreMV)
+  useInfinityScroll('.main-wrapper', '#mv-list', fetchMoreMV, mvList.length)
 
   return (
     <MainLayout>

@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-const useInfinityScroll = ( eleScroll: string, eleTracking: string, handler: Function ) => {
-  const [timeScroll, setTimeScroll] = useState<number>(0)
+const useInfinityScroll = ( eleScroll: string, eleTracking: string, handler: Function, dataLength: number ) => {
 
   const isBottom = (ele: HTMLElement) => {
     return ele.getBoundingClientRect().bottom <= window.innerHeight
@@ -13,7 +12,6 @@ const useInfinityScroll = ( eleScroll: string, eleTracking: string, handler: Fun
     if (isBottom(tracking)) {
       handler()
       ele.removeEventListener('scroll', trackingScrolling)
-      setTimeScroll(timeScroll => timeScroll + 1)
     }
   }
 
@@ -23,7 +21,7 @@ const useInfinityScroll = ( eleScroll: string, eleTracking: string, handler: Fun
     return () => {
       ele.removeEventListener('scroll', trackingScrolling)
     }
-  }, [timeScroll])
+  }, [dataLength])
 
   return 
 }
