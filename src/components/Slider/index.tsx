@@ -1,16 +1,17 @@
-import React from 'react'
-import Loading from '../Loading'
+import React, { useEffect, useState } from 'react'
 import { ReactComponent as ArrowIcon } from '../../static/icons/slider-arrow.svg'
-
 interface SliderProps {
-  data: Array<object>,
-  cols: number
+  data: object[],
+  cols: number,
+  timer?: number
 }
 
-const Slider: React.FC<SliderProps> = ({ data, cols }) => {
+const Slider: React.FC<SliderProps> = ({ data, cols, timer = 5000 }) => {
 
   let box = document.querySelector('.slider-container') as HTMLElement
   let slideItem = document.querySelector('.slider-item') as HTMLElement
+  let interval: any = null
+  const [sliderContent, setSliderContent] = useState<object[]>([...data, ...data])
 
   const previousSlide = () => {
     box!.scrollLeft = box?.scrollLeft - slideItem.clientWidth 
@@ -20,20 +21,34 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
     box!.scrollLeft = box?.scrollLeft + slideItem.clientWidth
   }
 
+  const autoSlide = () => {
+    if (box && slideItem) {
+      const [firstSlide, ...slides] = sliderContent
+      setSliderContent([...slides, firstSlide])
+      nextSlide()
+      console.log('Current ', sliderContent)
+    }
+  }
+
+  useEffect(() => {
+    interval = setInterval(autoSlide, timer)
+    return () => {
+      clearInterval(interval)
+    }
+  })
+
   return (     
-    <section className='slider w-full h-60 relative group'>
-      <div className="slider-container w-full h-full flex justify-between items-center overflow-hidden rounded-2xl">
+    <section className='slider w-full h-full group'>
+      <div className="slider-container w-full h-full flex justify-between items-center overflow-hidden">
         {
-          data?.length > 0 ? 
-          data.map((slide: any, index: number) => (
+          sliderContent.map((slide: any, index: number) => (
             <a 
-            key={index} 
-            href='#'
-            className={`slider-item h-full bg-slate-200 rounded-3xl flex-shrink-0 scale-95`} 
-            style={{width: `calc(100%/${cols})`, background: `url(${slide.banner})`, backgroundSize: 'cover'}}>
+              key={index} 
+              href='#'
+              className={`slider-item h-full bg-slate-200 rounded-3xl flex-shrink-0 scale-95`} 
+              style={{width: `calc(100%/${cols})`, backgroundImage: `url(${slide.banner})`, backgroundSize: 'cover'}}>
             </a>
           ))
-          : <Loading />
         }
       </div>
       <div 

@@ -21,7 +21,11 @@ const HomePage: React.FC = () => {
   return (
     <MainLayout>
       <div className="px-8 py-5">
-        <Slider data={sliderList} cols={3} />
+        <div className="w-full h-60 rounded-2xl overflow-hidden relative">
+          {
+            sliderList.length > 0 ? <Slider data={sliderList} cols={3} /> : <Loading />
+          }
+        </div>
         <div className="playlist-wrapper mt-12 relative rounded-2xl min-h-[300px]">
           {
             playList.length > 0 ?
