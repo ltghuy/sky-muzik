@@ -26,7 +26,6 @@ const Slider: React.FC<SliderProps> = ({ data, cols, timer = 5000 }) => {
       const [firstSlide, ...slides] = sliderContent
       setSliderContent([...slides, firstSlide])
       nextSlide()
-      console.log('Current ', sliderContent)
     }
   }
 

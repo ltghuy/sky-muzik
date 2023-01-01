@@ -46,6 +46,7 @@ export interface AudioState {
     artists: Array<object>,
     artistsNames: string,
     hasLyric?: boolean,
+    mvlink?: string
   },
   srcAudio: string,
   currentTime: number,

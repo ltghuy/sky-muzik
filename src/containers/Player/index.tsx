@@ -6,6 +6,7 @@ import PlayerLeft from './PlayerLeft'
 import PlayerCenter from './PlayerCenter'
 import PlayerRight from './PlayerRight'
 import LyricPanel from './LyricPanel'
+import { info } from 'console'
 
 export const AudioContext = createContext<HTMLAudioElement | null | undefined>(null)
 
@@ -71,6 +72,7 @@ const Player: React.FC = () => {
                 artistsNames: infoSong.artistsNames,
                 artists: infoSong.artists,
                 hasLyric: infoSong.hasLyric,
+                mvlink: infoSong.mvlink,
               }
             ))
           }

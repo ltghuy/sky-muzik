@@ -2,10 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { AudioState } from '../../types/common'
 
-export interface CounterState {
-  value: number
-}
-
 const initialState: AudioState = {
   songID: localStorage.getItem("songId") || "",
   isPlay: false,
@@ -22,7 +18,8 @@ const initialState: AudioState = {
     thumbnailM: "",
     artists: [],
     artistsNames: "",
-    hasLyric: false
+    hasLyric: false,
+    mvlink: ""
   },
   srcAudio: "",
   currentTime: 0,
