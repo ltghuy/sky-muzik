@@ -24,7 +24,7 @@ const ArtistPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="banner-wrapper w-full h-[410px] -mt-[var(--header-height)] relative">
+      <div className="banner-wrapper w-full h-[410px] relative">
         {
           dataDetailArtist !== undefined ? (
             <div
@@ -47,7 +47,7 @@ const ArtistPage: React.FC = () => {
             dataDetailArtist.sections.filter((section: any) => section.sectionType === 'song')
             .map((e: any) => (
               <div key={e.title}>
-                <h3 className="heading text-xl text-[color:var(--black)] font-bold">
+                <h3 className="heading text-xl text-black dark:text-white font-bold">
                   {e.title}
                 </h3>
                 <div className="best-song-list h-max w-full">
@@ -95,7 +95,7 @@ const ArtistPage: React.FC = () => {
         <section className="artist-biography w-full mt-5">
           {
             dataDetailArtist?.name &&
-            <h3 className="heading text-xl text-[color:var(--black)] font-bold">
+            <h3 className="heading text-xl text-black dark:text-white font-bold">
               {`Về ${dataDetailArtist?.name}`}
             </h3>
           }
@@ -117,14 +117,14 @@ const ArtistPage: React.FC = () => {
                   (
                     <>
                       <div
-                        className='text-[color:var(--body-text)] text-sm pr-5 ten-line'
+                        className='text-[color:var(--body-text)] dark:text-neutral-500 text-sm pr-5 max-h-[200px] overflow-y-scroll'
                         dangerouslySetInnerHTML={{ __html: dataDetailArtist?.biography }} />
                       <div className="sub-bio flex pt-5">
                         <div className="following font-inter">
                           <h4 className='font-bold text-xl text-[color:var(--primary)] pb-1'>
                             {`${new Intl.NumberFormat().format(dataDetailArtist?.totalFollow)}`}
                           </h4>
-                          <p className='text-[color:var(--black)] opacity-30 text-sm font-bold'>Người quan tâm</p>
+                          <p className='text-black dark:text-white opacity-30 text-sm font-bold'>Người quan tâm</p>
                         </div>
                         {
                           dataDetailArtist.awards !== undefined && (
@@ -132,7 +132,7 @@ const ArtistPage: React.FC = () => {
                               <h4 className='font-bold text-xl text-[color:var(--primary)] pb-1'>
                                 {dataDetailArtist?.awards.length}
                               </h4>
-                              <p className='text-[color:var(--black)] opacity-30 text-sm font-bold'>Giải thưởng</p>
+                              <p className='text-black dark:text-white opacity-30 text-sm font-bold'>Giải thưởng</p>
                             </div>
                           )
                         }

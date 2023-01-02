@@ -28,7 +28,7 @@ const SearchPage: React.FC = () => {
           {
             dataSearch.artists !== undefined ? (
               <>
-                <h3 className='title font-inter text-xl leading-8 font-bold text-[color:var(--black)] py-5'>
+                <h3 className='title font-inter text-xl leading-8 font-bold text-black dark:text-white py-5'>
                   Nghệ sĩ/OA
                 </h3>
                 <div className="search-list h-max w-full">
@@ -47,12 +47,12 @@ const SearchPage: React.FC = () => {
                           </div>
                           <div className="bottom font-inter text-center pt-5">
                             <Link to={`/artist/${item.alias}`}>
-                              <span className='font-medium text-[color:var(--black)] hover:text-[color:var(--primary)] transition'>
+                              <span className='font-medium text-black dark:text-white hover:text-[color:var(--primary)] transition'>
                                 {item.name}
                                 { item.spotlight && <span>&#128970;</span>}
                               </span>
                             </Link>
-                            <p className="totalFollow text-xs font-bold text-[color:var(--black)] opacity-50">
+                            <p className="totalFollow text-xs font-bold text-black dark:text-white opacity-50">
                               {formatFollowing(item.totalFollow)} quan tâm
                             </p>
                           </div>
@@ -70,7 +70,7 @@ const SearchPage: React.FC = () => {
           {
             dataSearch.songs !== undefined ? (
               <>
-                <h3 className='title font-inter text-xl leading-8 font-bold text-[color:var(--black)] py-5'>
+                <h3 className='title font-inter text-xl leading-8 font-bold text-black dark:text-white py-5'>
                   Bài hát
                 </h3>
                 <div className="search-list h-max w-full">
@@ -104,7 +104,7 @@ const SearchPage: React.FC = () => {
           {
             dataSearch.playlists !== undefined ? (
               <>
-                <h3 className='title font-inter text-xl leading-8 font-bold text-[color:var(--black)] py-5'>
+                <h3 className='title font-inter text-xl leading-8 font-bold text-black dark:text-white py-5'>
                   Playlist/Album
                 </h3>
                 <div className="search-list h-max w-full">
@@ -134,7 +134,7 @@ const SearchPage: React.FC = () => {
           {
             dataSearch.videos !== undefined ? (
               <>
-                <h3 className='title font-inter text-xl leading-8 font-bold text-[color:var(--black)] py-5'>
+                <h3 className='title font-inter text-xl leading-8 font-bold text-black dark:text-white py-5'>
                   MV
                 </h3>
                 <div className="search-list h-max w-full">
@@ -142,15 +142,16 @@ const SearchPage: React.FC = () => {
                     {
                       // Only get max 3 songs
                       dataSearch.videos.slice(0, 3)
-                      .map((item: any) => (
-                        <MVItem 
-                          key={item.title}
-                          artist={item.artist}
-                          artistsNames={item.artistsNames}
-                          encodeId={item.encodeId}
-                          thumbnailM={item.thumbnailM}
-                          title={item.title}
-                        />
+                      .map((item: any, index: number) => (
+                        <div className="h-72" key={index}>
+                          <MVItem 
+                            artist={item.artist}
+                            artistsNames={item.artistsNames}
+                            encodeId={item.encodeId}
+                            thumbnailM={item.thumbnailM}
+                            title={item.title}
+                          />
+                        </div>
                       ))
                     }
                   </div>
