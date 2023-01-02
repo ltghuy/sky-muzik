@@ -20,8 +20,8 @@ const SearchBox: React.FC = () => {
       <form 
         method='GET'
         onSubmit={handleSubmit}
-        className='search-form w-full h-full flex px-3 border border-slate-300 rounded-bl-2xl rounded-tr-2xl focus-within:border-[color:var(--primary)] bg-white bg-opacity-10'>
-        <div className="search-icon text-[color:var(--primary)] w-5 flex-shrink-0 flex justify-center items-center mr-2">
+        className='search-form w-full h-full flex px-3 border border-slate-300 dark:border-gray-500 rounded-bl-2xl rounded-tr-2xl focus-within:border-[color:var(--primary)] bg-transparent'>
+        <div className="search-icon text-[color:var(--primary)] dark:text-white w-5 flex-shrink-0 flex justify-center items-center mr-2">
           <SearchIcon className='w-[14px]' />
         </div>
         <input 
@@ -29,7 +29,7 @@ const SearchBox: React.FC = () => {
         value={keyword}
         onChange={handleChange}
         placeholder='Tìm kiếm bài hát, nghệ sĩ...' 
-        className='flex-1 h-full border-0 outline-none bg-transparent text-sm text-[color:var(--primary)] placeholder-gray-800 focus-within:placeholder-[color:var(--primary)]' />
+        className='flex-1 h-full border-0 outline-none bg-transparent text-sm text-[color:var(--primary)] dark:text-white placeholder-gray-800 dark:placeholder-white focus-within:placeholder-[color:var(--primary)]' />
       </form>
     </div>
   )

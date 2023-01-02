@@ -43,11 +43,11 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
         </div>
         <div className="mv-description font-inter ml-2">
           <button className="mv-name" onClick={() => playMV(encodeId)}>
-            <span className='text-sm leading-4 font-medium text-[color:var(--black)] hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
+            <span className='text-sm leading-4 font-medium text-black dark:text-white hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
               {title}
             </span>
           </button>
-          <div className="mv-artists text-xs font-medium text-[color:var(--black)] opacity-50">
+          <div className="mv-artists text-xs font-medium text-black dark:text-white opacity-50">
             {artistsNames}
           </div>
         </div>

@@ -36,7 +36,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
           </button>
         </div>
       </div>
-      <div className="playlist-description font-inter mt-5 flex flex-col items-center text-[color:var(--black)] text-center">
+      <div className="playlist-description font-inter mt-5 flex flex-col items-center text-black dark:text-white text-center">
         <h4 className="playlist-title font-bold text-xl">
           {title}
         </h4>

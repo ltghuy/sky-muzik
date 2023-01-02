@@ -23,6 +23,13 @@ const App: React.FC = () => {
     )()
   }, [currentAlbum])
 
+  useEffect(() => {
+    const themeMode = localStorage.getItem('themeMode')
+    if (themeMode) {
+      document.body.classList.add(themeMode)
+    }
+  }, [])
+
   return (
     <Provider store={ store }>
       <Navbar />

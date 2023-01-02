@@ -16,7 +16,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCur
 
   return (
     <div className='playlist-track font-inter'>
-      <div className="playlist-title text-sm text-[color:var(--black)] font-medium">
+      <div className="playlist-title text-sm text-black dark:text-white font-medium">
         <span className='opacity-50'>Lời tựa: </span><br/>
         <span>{description}</span>
       </div>

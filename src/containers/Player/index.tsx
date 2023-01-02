@@ -84,7 +84,7 @@ const Player: React.FC = () => {
   }, [songId, dispatch])
 
   return (
-    <section className='player fixed left-0 bottom-0 w-full h-[var(--player-height)] z-50 bg-[color:var(--primary-dark)]'>
+    <section className='player fixed left-0 bottom-0 w-full h-[var(--player-height)] z-50 bg-[color:var(--primary-darker)]'>
       <AudioContext.Provider value={audioRef.current}>
         <main className="player-wrapper h-full px-5 flex justify-center items-center">
           <PlayerLeft />

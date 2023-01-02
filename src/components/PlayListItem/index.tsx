@@ -46,13 +46,13 @@ const PlayListItem: React.FC<ItemProps> = ({ encodeId, title, description, thumb
           </div>
         </Link>
       </div>
-      <div className="item-bottom font-inter ">
+      <div className="item-bottom font-inter">
         <Link to={`/playlist/${encodeId}`}>
-          <h3 className='text-sm font-bold one-line pt-3 text-[color:var(--black)] hover:text-[color:var(--primary)] transition' title={title}>
+          <h3 className='text-sm font-bold one-line pt-3 text-black dark:text-white hover:text-[color:var(--primary)] transition' title={title}>
             {title}
           </h3>
         </Link>
-        <p className='description two-line font-normal text-sm'>
+        <p className='description dark:text-white two-line font-normal text-sm opacity-75'>
           { artistsNames || description}
         </p>
       </div>

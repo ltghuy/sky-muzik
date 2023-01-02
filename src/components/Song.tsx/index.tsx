@@ -37,7 +37,7 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
   }
 
   return (
-    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && currentAlbum === params.playlistID  ? 'bg-[color:var(--primary-lighter)]' : 'hover:bg-gray-100'}`}>
+    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && currentAlbum === params.playlistID  ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary)]' : 'hover:bg-gray-100 dark:hover:bg-gray-600'}`}>
       <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
         <div className="song-info w-1/2 flex-shrink-0 pr-5 flex items-center">
           <div className={`song-thumbnail w-10 h-10 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 
@@ -47,12 +47,12 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
               <PlayIcon />
             </div>
           </div>
-          <div className='song-desc ml-2 flex flex-col text-[color:var(--black)]'>
+          <div className='song-desc ml-2 flex flex-col text-black dark:text-white'>
             <h3 className='song-name text-sm leading-4 font-medium flex items-center' title={title}>
               <span className='one-line '>{title}</span>
               { streamingStatus === SONG_VIP && <span className='ml-1'><VipIcon /></span> }
             </h3>
-            <div className='song-artist font-medium'>
+            <div className='song-artist font-medium one-line'>
               {
                 artists ? 
                 artists.map((item: any, index: number) => (
@@ -78,14 +78,14 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
             album !== undefined ? (
               <Link 
               to={`/playlist/${album.encodeId}`}
-              className='text-xs font-medium hover:text-[color:var(--primary)] hover:underline transition'>
+              className='text-xs font-medium dark:text-white hover:text-[color:var(--primary)] hover:underline transition'>
                 <span className='one-line' title={album.title}>{album.title}</span>
               </Link>
             ) : ''
           }
         </div>
         <div className="song-duration flex-shrink-0 basis-auto ml-2">
-          <span className='text-xs font-medium'>{songDuration}</span>
+          <span className='text-xs font-medium dark:text-white'>{songDuration}</span>
         </div>
       </div>
     </div>
