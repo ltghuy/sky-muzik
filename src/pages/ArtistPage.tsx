@@ -28,8 +28,8 @@ const ArtistPage: React.FC = () => {
         {
           dataDetailArtist !== undefined ? (
             <div
-              className="banner w-full h-full relative"
-              style={{ background: `url('${dataDetailArtist?.cover}')`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+              className="banner w-full h-full bg-cover bg-center relative"
+              style={{ backgroundImage: `url('${dataDetailArtist?.cover}')` }}>
               <div className="banner-content absolute bg-black bg-opacity-30 w-full h-full px-16 py-8 font-inter flex flex-col justify-end">
                 <h2 className='artist-name text-white text-6xl font-bold'>{dataDetailArtist?.name}</h2>
                 <p className='text-base font-medium text-white mt-8 opacity-75'>

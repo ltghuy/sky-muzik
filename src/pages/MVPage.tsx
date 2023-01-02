@@ -39,12 +39,12 @@ const MVPage: React.FC = () => {
     )()
   }, [currentCount, currentPage])
 
-  useInfinityScroll('.main-wrapper', '#mv-list', fetchMoreMV, mvList.length)
+  useInfinityScroll('.main-content', '#mv-list', fetchMoreMV, mvList.length)
 
   return (
     <MainLayout>
       <div className="px-8 py-5">
-        <div className="mv-wrapper space-y-10 min-h-[500px] mb-5 relative rounded-2xl">
+        <div className="mv-wrapper space-y-10 min-h-[500px] pb-[var(--player-height)] relative rounded-2xl">
           {
             mvList.length > 0 ?
             <div className="mv-list grid grid-cols-3 gap-x-5 gap-y-10" id='mv-list'>
