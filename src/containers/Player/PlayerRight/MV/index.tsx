@@ -1,17 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../../../utils/customRedux'
 import { changePlayIcon } from '../../../../redux/features/audioSlice'
+import { setMVID, setShowMV } from '../../../../redux/features/mvSlice'
 import { ReactComponent as MVIcon } from '../../../../static/icons/video-icon.svg'
 
 const MVControl: React.FC = () => {
   const songInfo = useAppSelector((state) => state.audio.infoSong)
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const handleShowMV = (mvLink: string) => {   
     const mvID = mvLink.substring(mvLink.lastIndexOf("/") + 1, mvLink.lastIndexOf(".html"))
-    navigate(`/mv/${mvID}`)
+    dispatch(setMVID(mvID))
+    dispatch(setShowMV(true))
     dispatch(changePlayIcon(false))
     document.querySelector('audio')?.pause()
   }
