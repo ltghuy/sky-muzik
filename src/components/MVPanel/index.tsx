@@ -39,7 +39,7 @@ const MVPanel: React.FC = () => {
 
   return (
     <main 
-    className={`mv-panel w-full h-screen fixed top-0 left-0 z-[60] ${isShowMV ? 'show-panel' : 'close-panel'} duration-1000 ease-in-out overflow-hidden`}
+    className={`mv-panel w-full h-screen fixed top-0 left-0 z-[60] ${isShowMV ? 'show-panel' : 'close-panel'} duration-1000 ease-in-out overflow-hidden relative`}
     style={{background: `url(${dataMV?.thumbnailM}) no-repeat center/cover`}}>
       {
         dataMV ? (
@@ -86,7 +86,7 @@ const MVPanel: React.FC = () => {
             </div>
           </div>
         ) :
-        <Loading />
+        <Loading darkModeBG='--primary-darker'/>
       }
     </main>
   )
