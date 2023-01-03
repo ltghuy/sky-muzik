@@ -11,6 +11,7 @@ import MVPanel from "./components/MVPanel"
 
 const App: React.FC = () => {
   const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
+  const isShowMV = useAppSelector((state) => state.mv.isShowMV)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const App: React.FC = () => {
       <Navbar />
       <RouterPage />
       <Player />
-      <MVPanel />
+      {isShowMV && <MVPanel />}
     </Provider>
   )
 }
