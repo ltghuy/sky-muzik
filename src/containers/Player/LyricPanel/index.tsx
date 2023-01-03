@@ -36,7 +36,7 @@ const LyricPanel: React.FC = () => {
 
   return (
     <main 
-    className={`lyric-panel w-full h-screen fixed top-0 left-0 ${isShowLyric ? 'show-lyric' : 'close-lyric'} duration-1000 ease-in-out overflow-hidden`}>
+    className={`lyric-panel w-full h-screen fixed top-0 left-0 ${isShowLyric ? 'show-panel' : 'close-panel'} duration-1000 ease-in-out overflow-hidden`}>
       <div className="lyric-wrapper flex flex-col w-full h-full bg-[color:var(--primary-dark)]">
         <div className="lyric-top w-full h-[10vh] flex-shrink-0 flex justify-end items-center p-10">
           <button 

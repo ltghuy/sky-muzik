@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
-import SearchBox from './SearchBox'
 import { useNavigate } from 'react-router-dom'
+import SearchBox from './SearchBox'
 import { ReactComponent as ArrowIcon } from '../../static/icons/arrow-icon.svg'
 import { ReactComponent as MessageIcon } from '../../static/icons/message-icon.svg'
 import { ReactComponent as NotificationIcon } from '../../static/icons/notification-icon.svg'
@@ -27,12 +27,11 @@ const Header: React.FC = () => {
   }
 
   useEffect(() => {
-    const wrapper = document.querySelector('.main-wrapper') as HTMLElement
+    const wrapper = document.querySelector('.main-content') as HTMLElement
 
     const isSticky = (e: any) => {
       if (headerRef.current) {
-        const headerHeight = headerRef.current.clientHeight
-        wrapper.scrollTop >= headerHeight ? setStickyClass('bg-white') : setStickyClass('bg-none')
+        wrapper.scrollTop >= 1 ? setStickyClass('bg-white dark:bg-[color:var(--primary-darker)]') : setStickyClass('bg-none')
       }
     }    
 
@@ -43,7 +42,7 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] dark:bg-[color:var(--primary-darker)] transition z-10 ${stickyClass}`} ref={headerRef}>
+    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] transition z-10 ${stickyClass}`} ref={headerRef}>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
           <button className='hover:text-[color:var(--primary)] dark:text-white transition' onClick={() => navigate(-1)}>

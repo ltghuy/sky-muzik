@@ -5,7 +5,7 @@ import MainLayout from '../containers/MainLayout'
 const ChartPage: React.FC = () => {
   return (
     <MainLayout>
-      <div className="px-8 py-5">
+      <div className="page-content">
         <h3 className='chart-wrapper min-h-[500px] mb-5 relative rounded-2xl'>
           <Loading />
         </h3>

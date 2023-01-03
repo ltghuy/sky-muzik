@@ -1,17 +1,18 @@
 import React from 'react'
 import { MVProps } from '../../types/common'
 import { useAppDispatch } from '../../utils/customRedux'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { changePlayIcon } from '../../redux/features/audioSlice'
+import { setMVID, setShowMV } from '../../redux/features/mvSlice'
 import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
 
 
 const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames}) => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   const playMV = (id: string) => {
-    navigate(`/mv/${id}`)
+    dispatch(setMVID(id))
+    dispatch(setShowMV(true))
     dispatch(changePlayIcon(false))
     document.querySelector('audio')?.pause()
   }

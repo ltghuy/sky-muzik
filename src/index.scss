@@ -109,10 +109,13 @@ body {
   .button-shadow {
     @apply p-2 bg-gray-50 bg-opacity-30 rounded-full;
   }
-  .show-lyric {
+  .show-panel {
     @apply transform translate-y-0;
   }
-  .close-lyric {
+  .close-panel {
     @apply transform translate-y-full;
+  }
+  .page-content {
+    @apply px-8 py-5 mt-[var(--header-height)];
   }
 }

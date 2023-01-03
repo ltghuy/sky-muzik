@@ -7,6 +7,7 @@ import { Provider } from "react-redux"
 import RouterPage from "./routes"
 import Navbar from "./components/Navbar"
 import Player from "./containers/Player"
+import MVPanel from "./components/MVPanel"
 
 const App: React.FC = () => {
   const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
@@ -35,6 +36,7 @@ const App: React.FC = () => {
       <Navbar />
       <RouterPage />
       <Player />
+      <MVPanel />
     </Provider>
   )
 }

@@ -7,7 +7,6 @@ import PlaylistPage from '../pages/PlaylistPage'
 import SearchPage from '../pages/SearchPage'
 import ArtistPage from '../pages/ArtistPage'
 import MVPage from '../pages/MVPage'
-import MVDetail from '../pages/MVDetail'
 
 const RouterPage: React.FC = () => {
   return (
@@ -17,7 +16,6 @@ const RouterPage: React.FC = () => {
       <Route path='/top100' element={ <Top100 />} />
       <Route path='/chart' element={ <ChartPage />} />
       <Route path='/mv' element={ <MVPage />} />
-      <Route path='/mv/:mvID' element={ <MVDetail />} />
       <Route path='/playlist' element={ <PlaylistPage /> }>
         <Route path=':playlistID' element={ <PlaylistPage />} />
       </Route>

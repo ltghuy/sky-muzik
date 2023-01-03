@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { MVProps } from '../types/common'
-import { getMVDetail } from '../api/mv'
-import { useParams, useNavigate } from 'react-router-dom'
-import { ReactComponent as CloseIcon } from '../static/icons/close-icon.svg'
-import Loading from '../components/Loading'
-import MVHorizontalItem from '../components/MVItem/horizontal'
+import { MVProps } from '../../types/common'
+import { getMVDetail } from '../../api/mv'
+import { useAppSelector, useAppDispatch } from '../../utils/customRedux'
+import { setShowMV, setMVID } from '../../redux/features/mvSlice'
+import Loading from '../Loading'
+import MVHorizontalItem from '../MVItem/horizontal'
+import { ReactComponent as CloseIcon } from '../../static/icons/close-icon.svg'
 
 interface MvWithUrl extends MVProps {
   streaming: {
@@ -16,28 +17,30 @@ interface MvWithUrl extends MVProps {
   recommends: []
 }
 
-const MVDetail: React.FC = () => {
+const MVPanel: React.FC = () => {
   const [dataMV, setDataMV] = useState<MvWithUrl | null>(null)
-  const params = useParams<{ mvID: string }>()
-  const navigate = useNavigate()
+  const isShowMV = useAppSelector((state) => state.mv.isShowMV)
+  const mvID = useAppSelector((state) => state.mv.mvID)
+  const dispatch = useAppDispatch()
 
   const closeMV = () => {
-    navigate('/mv')
+    dispatch(setShowMV(false))
+    dispatch(setMVID(''))
   }
 
   useEffect(() => {
     (
       async () => {
-        const data: MvWithUrl = await getMVDetail(`${params.mvID}`)
+        const data: MvWithUrl = await getMVDetail(`${mvID}`)
         setDataMV(data)
       }
     )()
-  }, [params])
+  }, [mvID])
 
   return (
     <main 
-      className='mv-panel w-full h-screen fixed top-0 left-0 z-[60]'
-      style={{background: `url(${dataMV?.thumbnailM}) no-repeat center/cover`}}>
+    className={`mv-panel w-full h-screen fixed top-0 left-0 z-[60] ${isShowMV ? 'show-panel' : 'close-panel'} duration-1000 ease-in-out overflow-hidden`}
+    style={{background: `url(${dataMV?.thumbnailM}) no-repeat center/cover`}}>
       {
         dataMV ? (
           <div className="mv-wrapper w-full h-full flex flex-col bg-black bg-opacity-25 backdrop-blur-3xl relative">
@@ -89,4 +92,4 @@ const MVDetail: React.FC = () => {
   )
 }
 
-export default MVDetail
+export default MVPanel

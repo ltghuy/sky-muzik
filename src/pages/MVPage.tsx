@@ -43,7 +43,7 @@ const MVPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className="px-8 py-5">
+      <div className="page-content">
         <div className="mv-wrapper space-y-10 min-h-[500px] pb-[var(--player-height)] relative rounded-2xl">
           {
             mvList.length > 0 ?

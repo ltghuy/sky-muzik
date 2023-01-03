@@ -32,7 +32,7 @@ const PlaylistPage: React.FC = () => {
 
   return (
     <MainLayout>
-      <div className='playlist grid grid-cols-8 pt-10 pb-5 px-8'>
+      <div className='playlist grid grid-cols-8 pt-10 page-content'>
         <section className='col-span-3 relative min-h-[200px] rounded-3xl'>
           {
             dataDetailPlaylist ? 
