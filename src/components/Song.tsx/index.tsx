@@ -8,7 +8,11 @@ import { changePlayIcon, setCurrentIndexPlaylist, setCurrentAlbum, setSongId, se
 import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
 import { ReactComponent as VipIcon} from '../../static/icons/vip-icon.svg'
 
-const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, playAllList }) => {
+interface songInterface extends SongProps {
+  isShortened?: boolean; 
+}
+
+const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, playAllList, isShortened }) => {
   const SONG_VIP = 2
   const SONG_NORMAL = 1
   const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
@@ -37,10 +41,10 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
   }
 
   return (
-    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && currentAlbum === params.playlistID  ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary)]' : 'hover:bg-gray-100 dark:hover:bg-gray-600'}`}>
+    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && currentAlbum === params.playlistID  ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
       <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
-        <div className="song-info w-1/2 flex-shrink-0 pr-5 flex items-center">
-          <div className={`song-thumbnail w-10 h-10 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 
+        <div className={`song-info flex-shrink-0 pr-5 flex items-center ${isShortened ? 'w-full' : 'w-1/2'}`}>
+          <div className={`song-thumbnail w-10 h-10 flex-shrink-0 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 
             onClick={() => handleChangeSong(encodeId, streamingStatus, index)}>
             <img src={thumbnail} alt={title} className='rounded-md' />
             <div className='absolute w-full h-full inset-0 hidden group-hover:flex justify-center items-center bg-black bg-opacity-30 text-white cursor-pointer'>
@@ -59,21 +63,21 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
                   <span key={index} className='group'>
                     { (index > 0) ? (<span className='opacity-50'>, </span>) : ("") }
                     <Link
-                      className='text-xs hover:text-[color:var(--primary)] opacity-50 group-hover:opacity-100'
+                      className='text-xs hover:text-[color:var(--primary-light)] opacity-50 group-hover:opacity-100'
                       to={`/artist/${item.alias}`}
                     >
                       <span title={item.name}>{item.name}</span>
                     </Link>
                   </span>
                 )) : 
-                <span className='text-xs hover:text-[color:var(--primary)] opacity-50 group-hover:opacity-100'>
+                <span className='text-xs hover:text-[color:var(--primary-light)] opacity-50 group-hover:opacity-100'>
                   <span title={artistsNames}>{ artistsNames }</span>
                 </span>
               }
             </div>
           </div>
         </div>
-        <div className="song-album flex-1 basis-auto">
+        <div className={`song-album flex-1 basis-auto ${isShortened && 'hidden'}`}>
           { 
             album !== undefined ? (
               <Link 
@@ -84,7 +88,7 @@ const Song:React.FC<SongProps> = ({ index, thumbnail, title, encodeId, streaming
             ) : ''
           }
         </div>
-        <div className="song-duration flex-shrink-0 basis-auto ml-2">
+        <div className={`song-duration flex-shrink-0 basis-auto ml-2 ${isShortened && 'hidden'}`}>
           <span className='text-xs font-medium dark:text-white'>{songDuration}</span>
         </div>
       </div>
