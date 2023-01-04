@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import { SongProps } from '../../types/common'
 import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
 import { formatDuration } from '../../utils/formatTime'
@@ -12,36 +11,32 @@ interface songInterface extends SongProps {
   isShortened?: boolean; 
 }
 
-const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, playAllList, isShortened }) => {
+const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, isShortened }) => {
   const SONG_VIP = 2
   const SONG_NORMAL = 1
   const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
   const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
+  const songID = useAppSelector((state) => state.audio.songID)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const params = useParams<{playlistID: string}>()
   const songDuration =  duration && formatDuration(duration)
 
   const handleChangeSong = (encodeId: string, streamingStatus: number, index: number) => {
-    if (playAllList) {
-      navigate(`/playlist/${album.encodeId}`)
-      return
-    }
-    if (streamingStatus === SONG_NORMAL && params.playlistID) {
+    if (streamingStatus === SONG_NORMAL && (params.playlistID || currentAlbum)) {
       dispatch(changePlayIcon(true))
       dispatch(setCurrentIndexPlaylist(index))
-      dispatch(setCurrentAlbum(params.playlistID))
+      dispatch(setCurrentAlbum(params.playlistID || currentAlbum))
       dispatch(setSongId(encodeId))
       dispatch(setAutoplay(true))
       
       localStorage.setItem('songId', encodeId)
-      localStorage.setItem('currentAlbum', params.playlistID)
+      localStorage.setItem('currentAlbum', params.playlistID || currentAlbum)
       localStorage.setItem('currentIndex', index.toString())
     }
   }
 
   return (
-    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && currentAlbum === params.playlistID  ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
+    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && songID === encodeId ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary-light)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
       <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
         <div className={`song-info flex-shrink-0 pr-5 flex items-center ${isShortened ? 'w-full' : 'w-1/2'}`}>
           <div className={`song-thumbnail w-10 h-10 flex-shrink-0 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`} 
@@ -63,14 +58,14 @@ const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, strea
                   <span key={index} className='group'>
                     { (index > 0) ? (<span className='opacity-50'>, </span>) : ("") }
                     <Link
-                      className='text-xs hover:text-[color:var(--primary-light)] opacity-50 group-hover:opacity-100'
+                      className='text-xs hover:text-[color:var(--primary-darker)] opacity-50 group-hover:opacity-100'
                       to={`/artist/${item.alias}`}
                     >
                       <span title={item.name}>{item.name}</span>
                     </Link>
                   </span>
                 )) : 
-                <span className='text-xs hover:text-[color:var(--primary-light)] opacity-50 group-hover:opacity-100'>
+                <span className='text-xs hover:text-[color:var(--primary-darker)] opacity-50 group-hover:opacity-100'>
                   <span title={artistsNames}>{ artistsNames }</span>
                 </span>
               }

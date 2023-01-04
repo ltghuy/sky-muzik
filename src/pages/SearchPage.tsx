@@ -89,7 +89,6 @@ const SearchPage: React.FC = () => {
                           artists={item?.artists}
                           artistsNames={item?.artistsNames}
                           album={item?.album}
-                          playAllList={true}
                         />
                       ))
                     }

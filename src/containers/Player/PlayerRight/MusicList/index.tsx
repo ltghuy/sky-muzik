@@ -23,12 +23,12 @@ const MusicList: React.FC = () => {
       {
         playlistSong.length > 0 &&
         <div 
-          className={`side-playlist fixed top-4 right-4 w-80 bottom-[calc(var(--player-height)+1rem)] rounded-3xl shadow shadow-white bg-white dark:bg-[color:var(--primary)] px-2 pt-5 transform duration-1000 ease-in-out ${isShowList ? 'translate-x-0' : 'translate-x-[120%]'} overflow-hidden`} 
+          className={`side-playlist fixed top-4 right-4 w-80 bottom-[calc(var(--player-height)+1rem)] rounded-3xl shadow shadow-white bg-white dark:bg-[color:var(--primary)] px-2 py-4 transform duration-1000 ease-in-out ${isShowList ? 'translate-x-0' : 'translate-x-[120%]'} overflow-hidden`} 
           >
           <div className="playlist-wrapper w-full h-full overflow-y-scroll hidden-scrollbar">
             {
-              playlistSong && playlistSong.filter((song: any) => song.streamingStatus === 1)
-              .map((item: any, index: number) => (
+              playlistSong && 
+              playlistSong.map((item: any, index: number) => (
                 <Song 
                   key={index}
                   index={index}
