@@ -2,11 +2,11 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Top100 from '../pages/Top100Page'
 import HomePage from '../pages/HomePage'
-import ChartPage from '../pages/ChartPage'
 import PlaylistPage from '../pages/PlaylistPage'
 import SearchPage from '../pages/SearchPage'
 import ArtistPage from '../pages/ArtistPage'
 import MVPage from '../pages/MVPage'
+import MyMusicPage from '../pages/MyMusicPage'
 
 const RouterPage: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const RouterPage: React.FC = () => {
       <Route index element={<HomePage />} />
       <Route path='/' element={<HomePage />} />
       <Route path='/top100' element={ <Top100 />} />
-      <Route path='/chart' element={ <ChartPage />} />
+      <Route path='/mymusic' element={ <MyMusicPage />} />
       <Route path='/mv' element={ <MVPage />} />
       <Route path='/playlist' element={ <PlaylistPage /> }>
         <Route path=':playlistID' element={ <PlaylistPage />} />

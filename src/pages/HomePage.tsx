@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
   return (
     <MainLayout>
       <div className="page-content">
-        <div className="w-full h-60 rounded-2xl overflow-hidden relative">
+        <div className="home-slider w-full h-60 rounded-2xl overflow-hidden relative">
           {
             sliderList.length > 0 ? <Slider data={sliderList} cols={3} /> : <Loading />
           }

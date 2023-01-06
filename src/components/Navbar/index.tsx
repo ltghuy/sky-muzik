@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ReactComponent as MenuIcon } from '../../static/icons/menu-icon.svg'
 import { ReactComponent as HomeIcon } from '../../static/icons/home-icon.svg'
-import { ReactComponent as ChartIcon } from '../../static/icons/chart-icon.svg'
+import { ReactComponent as MusicIcon } from '../../static/icons/music-icon.svg'
 import { ReactComponent as Top100 } from '../../static/icons/top-100-icon.svg'
 import { ReactComponent as MVIcon } from '../../static/icons/mv-icon.svg'
 import logo from '../../static/images/sky.gif'
@@ -56,11 +56,11 @@ const Navbar: React.FC = () => {
           </li>
           <li className='navbar-item mb-8'>
             <NavLink 
-              to='/chart' 
+              to='/mymusic' 
               className='flex items-center hover:text-[color:var(--primary)] py-2 transition-all'
               style={({ isActive }) => isActive ? {color:"var(--primary)", borderRight: "3px solid currentColor"} : {borderRight: "3px solid transparent"} }>
-              <ChartIcon className='w-[20px] h-[20px] fill-current' />
-              <span className='item-toggle pl-3'>#chart</span>
+              <MusicIcon className='w-[20px] h-[20px] fill-current' />
+              <span className='item-toggle pl-3'>Cá nhân</span>
             </NavLink>
           </li>
           <li className='navbar-item mb-8'>

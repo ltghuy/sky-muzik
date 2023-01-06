@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate()
   const headerRef = useRef<HTMLElement>(null)
   const [stickyClass, setStickyClass] = useState<string>('bg-none')
-  const [isDarkmode, setIsDarkmode] = useState<string>(localStorage.getItem('themeMode') || 'light')
+  const [isDarkmode, setIsDarkmode] = useState<string>(localStorage.getItem('themeMode') || 'dark')
 
   const toggleDarkMode = () => {
     if (isDarkmode === 'dark') {
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
           <li>
             <button>
               <img 
-              src="https://styles.redditmedia.com/t5_3fvv4/styles/communityIcon_79r1xyut11q51.jpg" 
+              src="https://api-private.atlassian.com/users/4a5ab89b0c741d737cf666ba8f198042/avatar" 
               alt="user avatar"
               className='rounded-full w-10 h-10 object-cover' />
             </button>

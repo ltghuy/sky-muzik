@@ -31,7 +31,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
         alt={title} 
         className={`w-full object-cover ${isCurrentPlaylist && isPlay ? 'rounded-full animate-rotate' : 'rounded-2xl'}`} />
         <div className="absolute w-full h-full inset-0 flex justify-center items-center">
-          <button className='text-white p-3 border border-white rounded-full'>
+          <button className='text-white p-3 border border-white rounded-full' onClick={onPlaylistPlay}>
             <PlayIcon />
           </button>
         </div>
