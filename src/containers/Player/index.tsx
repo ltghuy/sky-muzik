@@ -6,16 +6,16 @@ import PlayerLeft from './PlayerLeft'
 import PlayerCenter from './PlayerCenter'
 import PlayerRight from './PlayerRight'
 import LyricPanel from './LyricPanel'
-import { info } from 'console'
 
 export const AudioContext = createContext<HTMLAudioElement | null | undefined>(null)
 
 const Player: React.FC = () => {
-  const audioRef = useRef<any>(null)
+  const audioRef = useRef<HTMLAudioElement>(null)
   const songId = useAppSelector((state) => state.audio.songID)
   const srcAudio = useAppSelector((state) => state.audio.srcAudio)
   const isLoop = useAppSelector((state) => state.audio.isLoop)
   const volume = useAppSelector((state) => state.audio.volume)
+  const autoplay = useAppSelector((state) => state.audio.autoPlay)
   const playlistSong: any = useAppSelector((state) => state.audio.playListSong)
   const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
   const dispatch = useAppDispatch()
@@ -97,7 +97,7 @@ const Player: React.FC = () => {
           src={srcAudio}
           className="hidden"
           loop={isLoop}
-          autoPlay={true}
+          autoPlay={autoplay}
           hidden
           onTimeUpdate={handleAudioUpdate}
           onLoadedData={handleAudioLoaded}

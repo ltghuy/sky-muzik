@@ -19,7 +19,6 @@ interface MvWithUrl extends MVProps {
 
 const MVPanel: React.FC = () => {
   const [dataMV, setDataMV] = useState<MvWithUrl | null>(null)
-  const isShowMV = useAppSelector((state) => state.mv.isShowMV)
   const mvID = useAppSelector((state) => state.mv.mvID)
   const dispatch = useAppDispatch()
 

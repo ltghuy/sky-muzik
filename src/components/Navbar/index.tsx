@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   const navbarRef = useRef<any>(null)
 
   const handleSidebar = () => {
-    setToggleSidebar(!toggleSidebar)
+    setToggleSidebar((toggleSidebar) => !toggleSidebar)
   }
 
   const checkNavbarToggle = () => {

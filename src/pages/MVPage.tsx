@@ -9,7 +9,7 @@ import MainLayout from '../containers/MainLayout'
 import MVItem from '../components/MVItem'
 
 const MVPage: React.FC = () => {
-  const [mvList, setMVList] = useState<any>([])
+  const [mvList, setMVList] = useState<MVProps[]>([])
   const [loadMore, setLoadMore] = useState<boolean>(false)
   const currentPage = useAppSelector((state) => state.mv.currentPage)
   const currentCount = useAppSelector((state) => state.mv.currentCount)
