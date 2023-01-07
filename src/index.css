@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Poppins:wght@400;500;600&display=swap');
 
 :root {
   --white: #fff;
@@ -97,6 +97,22 @@ body {
 
 .drag-bar:hover {
   opacity: 1;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1.5px var(--primary);
+}
+
+.text-stroke-top1 {
+  -webkit-text-stroke: 1.5px #4a90e2;
+}
+
+.text-stroke-top2 {
+  -webkit-text-stroke: 1.5px #50e3c2;
+}
+
+.text-stroke-top3 {
+  -webkit-text-stroke: 1.5px #e35050;
 }
 
 @layer components {

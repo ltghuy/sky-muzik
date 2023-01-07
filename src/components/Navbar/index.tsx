@@ -56,11 +56,11 @@ const Navbar: React.FC = () => {
           </li>
           <li className='navbar-item mb-8'>
             <NavLink 
-              to='/mymusic' 
+              to='/charts' 
               className='flex items-center hover:text-[color:var(--primary)] py-2 transition-all'
               style={({ isActive }) => isActive ? {color:"var(--primary)", borderRight: "3px solid currentColor"} : {borderRight: "3px solid transparent"} }>
               <MusicIcon className='w-[20px] h-[20px] fill-current' />
-              <span className='item-toggle pl-3'>Cá nhân</span>
+              <span className='item-toggle pl-3'>Bảng xếp hạng</span>
             </NavLink>
           </li>
           <li className='navbar-item mb-8'>

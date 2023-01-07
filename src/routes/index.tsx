@@ -6,7 +6,7 @@ import PlaylistPage from '../pages/PlaylistPage'
 import SearchPage from '../pages/SearchPage'
 import ArtistPage from '../pages/ArtistPage'
 import MVPage from '../pages/MVPage'
-import MyMusicPage from '../pages/MyMusicPage'
+import Chartspage from '../pages/ChartsPage'
 
 const RouterPage: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const RouterPage: React.FC = () => {
       <Route index element={<HomePage />} />
       <Route path='/' element={<HomePage />} />
       <Route path='/top100' element={ <Top100 />} />
-      <Route path='/mymusic' element={ <MyMusicPage />} />
+      <Route path='/charts' element={ <Chartspage />} />
       <Route path='/mv' element={ <MVPage />} />
       <Route path='/playlist' element={ <PlaylistPage /> }>
         <Route path=':playlistID' element={ <PlaylistPage />} />
