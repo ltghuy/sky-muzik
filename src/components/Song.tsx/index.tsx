@@ -23,16 +23,18 @@ const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, strea
   const songDuration =  duration && formatDuration(duration)
 
   const handleChangeSong = (encodeId: string, streamingStatus: number, index: number) => {
+    dispatch(setAutoplay(true))
+    dispatch(changePlayIcon(true))
+    
     if (handleClick) {
       handleClick()
       return
     }
+
     if (streamingStatus === SONG_NORMAL && (params.playlistID || currentAlbum)) {
-      dispatch(changePlayIcon(true))
       dispatch(setCurrentIndexPlaylist(index))
       dispatch(setCurrentAlbum(params.playlistID || currentAlbum))
       dispatch(setSongId(encodeId))
-      dispatch(setAutoplay(true))
       
       localStorage.setItem('songId', encodeId)
       localStorage.setItem('currentAlbum', params.playlistID || currentAlbum)
