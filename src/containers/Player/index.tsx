@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, createContext } from 'react'
 import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
 import { getSong, getSongInfo } from '../../api/song'
-import { setCurrentTime, setDuration, setCurrentIndexPlaylist, setSongId, setSrcAudio, setInfoSong, changePlayIcon } from '../../redux/features/audioSlice'
+import { setCurrentTime, setDuration, setAutoplay, setCurrentIndexPlaylist, setSongId, setSrcAudio, setInfoSong, changePlayIcon } from '../../redux/features/audioSlice'
 import PlayerLeft from './PlayerLeft'
 import PlayerCenter from './PlayerCenter'
 import PlayerRight from './PlayerRight'
@@ -33,6 +33,7 @@ const Player: React.FC = () => {
         dispatch(setCurrentIndexPlaylist(currentIndex))
         dispatch(setSongId(playlistSong[currentIndex].encodeId))
         dispatch(changePlayIcon(true))
+        dispatch(setAutoplay(true))
       }
     } else {
       dispatch(setCurrentTime(0))
