@@ -50,7 +50,7 @@ const SearchBox: React.FC = () => {
     <div className='search-box w-[400px] h-10 relative'>
       <div 
         ref={searchboxRef}
-        className={`search-wrapper flex flex-col items-start ${isInputFocus ? 'h-52 bg-[color:var(--primary-light)] rounded-2xl' : 'h-full'}`}
+        className={`search-wrapper flex flex-col items-start ${isInputFocus ? 'h-56 bg-[color:var(--primary-light)] rounded-2xl' : 'h-full'}`}
         >
         <form
           method='GET'

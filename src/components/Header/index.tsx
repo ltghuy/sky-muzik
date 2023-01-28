@@ -42,7 +42,7 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] transition z-10 ${stickyClass}`} ref={headerRef}>
+    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] z-10 ${stickyClass}`} ref={headerRef}>
       <div className="header-container px-8 h-full flex items-center justify-between">
         <div className="header-left flex items-center">
           <button className='hover:text-[color:var(--primary)] dark:text-white transition' onClick={() => navigate(-1)}>
