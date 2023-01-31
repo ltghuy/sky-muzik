@@ -6,9 +6,7 @@ import { ReactComponent as SearchIcon } from '../../../static/icons/search-icon.
 import { ReactComponent as MicroIcon } from '../../../static/icons/micro-icon.svg'
 
 interface ChartsProps {
-  RTChart : {
-    promotes: []
-  }
+  newRelease: []
 }
 
 const SearchBox: React.FC = () => {
@@ -72,7 +70,7 @@ const SearchBox: React.FC = () => {
           <h3 className='recomment-title font-inter font-bold text-sm text-white pl-2 pb-2'>Đề xuất cho bạn</h3>
           <ul className='space-y-1 text-xs text-white opacity-80'>
             {
-              recommendData?.RTChart.promotes.map((item: any, index: number) => 
+              recommendData?.newRelease.slice(0, 4).map((item: any, index: number) => 
               <li 
                 className='w-full text-white hover:bg-violet-300 rounded py-2 pl-5 flex cursor-pointer' key={index}
                 onClick={() => handleSearch(item.title)}
