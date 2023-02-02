@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent as ArrowIcon } from '../../static/icons/slider-arrow.svg'
 interface SliderProps {
-  data: object[],
+  data: object[] | any,
   cols: number,
 }
 
