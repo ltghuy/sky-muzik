@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { getTop100 } from '../api/top100'
+import { useQuery } from 'react-query'
 import Loading from '../components/Loading'
 import MainLayout from '../containers/MainLayout'
 import Playlist from '../containers/PlayList'
 
 const Top100: React.FC = () => {
-  const [dataTop100, setDataTop100] = useState<Array<Object>>()
-  
-  useEffect(() => {
-    (
-      async () => {
-        setDataTop100(await getTop100())
-      }
-    )()
-  }, [])
+
+  const top100Query = useQuery('top100', getTop100, { staleTime: 60000 })
 
   return (
     <MainLayout>
       <div className="page-content">
         <div className="top100 rounded-2xl relative min-h-[500px]">
-          {
-            dataTop100 ?
-            dataTop100.map((item: any, index: number) =>
+          { top100Query.isLoading && <Loading /> }
+          { top100Query.isSuccess && 
+            top100Query.data.map((item: any, index: number) =>
               <Playlist
                 key={index}
                 title={item.title}
@@ -29,7 +23,7 @@ const Top100: React.FC = () => {
                 link={item.link}
                 playList={item.items}
               />
-            ) : <Loading />
+            )
           }
         </div>
       </div>
