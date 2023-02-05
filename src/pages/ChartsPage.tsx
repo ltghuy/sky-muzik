@@ -36,7 +36,7 @@ const Chartspage: React.FC = () => {
     }
   }
 
-  const chartsQuery = useQuery('charts', getCharts, { staleTime: 60000 })
+  const chartsQuery = useQuery('charts', getCharts, { staleTime: 60000, refetchInterval: 300000 }) // refetch data every 5 mins
 
   return (
     <MainLayout>

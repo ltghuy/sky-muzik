@@ -7,7 +7,7 @@ import MainLayout from '../containers/MainLayout'
 import Playlist from '../containers/PlayList'
 
 const HomePage: React.FC = () => {
-  const bannerQuery = useQuery('banner', getHomeBanner, { staleTime: 60000 })
+  const bannerQuery = useQuery('banner', getHomeBanner)
   const playListsQuery = useQuery('playlists', getHomePlaylist, { staleTime: 60000 })
   
   return (

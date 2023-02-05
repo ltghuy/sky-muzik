@@ -9,7 +9,7 @@ import logo from '../../static/images/sky.gif'
 import './navbar.scss'
 
 const Navbar: React.FC = () => {
-  const [toggleSidebar, setToggleSidebar] = useState<boolean>(true)
+  const [toggleSidebar, setToggleSidebar] = useState<boolean>(false)
   const navbarRef = useRef<any>(null)
 
   const handleSidebar = () => {

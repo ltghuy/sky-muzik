@@ -9,7 +9,7 @@ const useInfinityScroll = ( eleScroll: string, eleTracking: string, handler: Fun
   const trackingScrolling = () => {
     const tracking = document.querySelector(eleTracking) as HTMLElement
     const ele = document.querySelector(eleScroll) as HTMLElement
-    if (isBottom(tracking)) {
+    if (tracking && isBottom(tracking)) {
       handler()
       ele.removeEventListener('scroll', trackingScrolling)
     }
