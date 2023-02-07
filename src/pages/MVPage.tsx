@@ -41,7 +41,7 @@ const MVPage: React.FC = () => {
   return (
     <MainLayout>
       <div className="page-content">
-        <div className="mv-wrapper space-y-10 min-h-[500px] pb-[var(--player-height)] relative rounded-2xl">
+        <div className="mv-wrapper space-y-10 min-h-[300px] pb-[var(--player-height)] relative rounded-2xl">
           { mvQuery.isLoading && <Loading /> }
           { mvQuery.isSuccess &&
             <div className="mv-list grid grid-cols-3 gap-x-5 gap-y-10" id='mv-list'>
