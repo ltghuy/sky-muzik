@@ -33,7 +33,7 @@ const MVPage: React.FC = () => {
   const mvQuery = useQuery(["mvList", currentPage, currentCount], async () => {
     const result = await getMVList("IWZ9Z08I", currentPage, currentCount)
     return result
-  }, { staleTime: 60000 })
+  }, { staleTime: 60000, keepPreviousData: true })
 
   let mvlistLength = mvQuery.data?.items?.length
   useInfinityScroll('.main-content', '#mv-list', fetchMoreMV, mvlistLength)
@@ -41,7 +41,7 @@ const MVPage: React.FC = () => {
   return (
     <MainLayout>
       <div className="page-content">
-        <div className="mv-wrapper space-y-10 min-h-[300px] pb-[var(--player-height)] relative rounded-2xl">
+        <div className="mv-wrapper space-y-10 min-h-[500px] pb-[var(--player-height)] relative rounded-2xl">
           { mvQuery.isLoading && <Loading /> }
           { mvQuery.isSuccess &&
             <div className="mv-list grid grid-cols-3 gap-x-5 gap-y-10" id='mv-list'>
@@ -61,7 +61,7 @@ const MVPage: React.FC = () => {
             </div>
           }
         </div>
-        <div className={`load-more ${loadMore ? 'block' : 'hidden'} relative rounded-2xl min-h-[200px] mt-5`}>
+        <div className={`load-more ${loadMore ? 'block' : 'hidden'} relative rounded-2xl min-h-[200px]`}>
           <Loading />
         </div>
       </div>

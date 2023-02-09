@@ -24,7 +24,7 @@ const PlaylistPage: React.FC = () => {
       setIsCurrentPlaylist(true)
     }
     else setIsCurrentPlaylist(false)
-  }, [currentAlbum])
+  }, [currentAlbum, playlistID])
 
   return (
     <MainLayout>

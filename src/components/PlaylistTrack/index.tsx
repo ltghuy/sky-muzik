@@ -12,7 +12,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCur
       const currentSongItem = document.querySelector(`#playlist-item-${currentIndex}`) as HTMLLIElement
       currentSongItem.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
-  }, [currentIndex])
+  }, [isCurrentPlaylist])
 
   return (
     <div className='playlist-track font-inter'>
