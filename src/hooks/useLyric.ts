@@ -10,7 +10,7 @@ const useLyric = ( songId: string | null): any => {
         if (songId !== null && songId !== "") {
           const dataLyric: any = await getLyric(songId)
 
-          let customLyr:{ startTime: number, endTime: number,data: string }[] = []
+          let customLyr:{ startTime: number, endTime: number, data: string }[] = []
 
           dataLyric.sentences &&
           dataLyric.sentences.forEach((e: {words: []}, i: number) => {

@@ -10,11 +10,11 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
   let slideItem = document.querySelector('.slider-item') as HTMLElement
 
   const previousSlide = () => {
-    box!.scrollLeft = box?.scrollLeft - slideItem.clientWidth 
+    box!.scrollLeft = box?.scrollLeft - slideItem.clientWidth - 20
   }
 
   const nextSlide = () => {
-    box!.scrollLeft = box?.scrollLeft + slideItem.clientWidth
+    box!.scrollLeft = box?.scrollLeft + slideItem.clientWidth + 20
   }
 
   const handleClick = () => {
@@ -23,12 +23,12 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
 
   return (     
     <section className='slider w-full h-full group'>
-      <div className="slider-container w-full h-full flex justify-between items-center overflow-hidden">
+      <div className="slider-container w-full h-full flex justify-between items-center gap-x-[20px] overflow-hidden">
         {
           data.map((slide: any, index: number) => (
             <div 
               key={index} 
-              className={`slider-item h-full bg-slate-200 rounded-3xl flex-shrink-0 scale-95 cursor-pointer`} 
+              className={`slider-item h-full bg-slate-200 rounded-3xl flex-shrink-0 cursor-pointer`} 
               onClick={handleClick}
               style={{width: `calc(100%/${cols})`, backgroundImage: `url(${slide.banner})`, backgroundSize: 'cover'}}>
             </div>

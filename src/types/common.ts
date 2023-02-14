@@ -75,3 +75,9 @@ export interface MVProps {
   },
   artistsNames: string
 }
+
+export type KaraLineType = {
+  data: string;
+  startTime: number;
+  endTime: number;
+};
