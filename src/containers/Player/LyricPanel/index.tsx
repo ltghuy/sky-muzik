@@ -108,7 +108,7 @@ const LyricPanel: React.FC = () => {
           }
           {
             lyric && lyricOptions === 'karaoke' &&
-            <section className='karaoke text-white text-5xl space-y-10 font-inter flex flex-col justify-center items-center w-full h-full'>
+            <section className='karaoke text-white text-5xl font-inter flex flex-col justify-center items-center w-full h-full'>
               <Karaoke lyric={lyric} />
             </section>
           }

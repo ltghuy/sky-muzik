@@ -15,10 +15,15 @@ module.exports = {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
       },
       animation: {
         ltr: 'ltr 0.75s infinite',
         rotate: 'rotate 10s infinite linear',
+        fadeIn: 'fadeIn 1.25s linear',
       },
     },
     fontFamily: {
