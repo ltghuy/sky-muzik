@@ -23,7 +23,7 @@ module.exports = {
       animation: {
         ltr: 'ltr 0.75s infinite',
         rotate: 'rotate 10s infinite linear',
-        fadeIn: 'fadeIn 1.25s linear',
+        fadeIn: 'fadeIn 2s linear',
       },
     },
     fontFamily: {
