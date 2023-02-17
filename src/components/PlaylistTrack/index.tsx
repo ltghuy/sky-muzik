@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { useAppSelector } from '../../utils/customRedux'
 import { PlaylistDetailProps } from '../../types/common'
+import { useAudioStore } from '../../store/useAudioStore'
 import Song from '../Song.tsx'
 
 const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCurrentPlaylist }) => {
-  const currentIndex = useAppSelector((state) => state.audio.currentIndexPlaylist)
+  const { currentIndexPlaylist } = useAudioStore()
   const totalDuration =  song?.totalDuration && (new Date(song?.totalDuration * 1000).toISOString().slice(11, 19))
 
   useEffect(() => {
     if (isCurrentPlaylist && document) {
-      const currentSongItem = document.querySelector(`#playlist-item-${currentIndex}`) as HTMLLIElement
+      const currentSongItem = document.querySelector(`#playlist-item-${currentIndexPlaylist}`) as HTMLLIElement
       currentSongItem.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }, [isCurrentPlaylist])

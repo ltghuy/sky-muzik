@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../utils/customRedux'
-import { setCurrentCount, setCurrentPage } from '../redux/features/mvSlice'
+import { useMVStore } from '../store/useMVStore'
 import { useQuery } from 'react-query'
 import { getMVList } from '../api/mv'
 import { MVProps } from '../types/common'
@@ -11,9 +10,7 @@ import MVItem from '../components/MVItem'
 
 const MVPage: React.FC = () => {
   const [loadMore, setLoadMore] = useState<boolean>(false)
-  const currentPage = useAppSelector((state) => state.mv.currentPage)
-  const currentCount = useAppSelector((state) => state.mv.currentCount)
-  const dispatch = useAppDispatch()
+  const { currentCount, currentPage, setCurrentCount, setCurrentPage } = useMVStore()
 
   const fetchMoreMV = () => {
     setLoadMore(true)
@@ -22,11 +19,11 @@ const MVPage: React.FC = () => {
       return
     }
     if (currentCount >= 200) {
-      dispatch(setCurrentPage(currentPage + 1))
-      dispatch(setCurrentCount(21))
+      setCurrentPage(currentPage + 1)
+      setCurrentCount(21)
     } 
     else {
-      dispatch(setCurrentCount(currentCount + 21))
+      setCurrentCount(currentCount + 21)
     }
   }
 

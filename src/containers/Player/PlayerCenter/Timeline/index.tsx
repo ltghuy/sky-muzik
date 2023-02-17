@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
 import { AudioContext } from '../..'
-import { useAppSelector } from '../../../../utils/customRedux'
+import { useAudioStore } from '../../../../store/useAudioStore'
 import { formatDuration } from '../../../../utils/formatTime'
 import DragBar from '../../DragBar'
 
 
 const Timeline: React.FC = () => {
-  const duration = useAppSelector((state) => state.audio.duration)
-  const currentTime = useAppSelector((state) => state.audio.currentTime)
+  const { duration, currentTime} = useAudioStore()
   const audioRef = useContext(AudioContext)
     
   const updateCurrentVolume = (value: number) => {

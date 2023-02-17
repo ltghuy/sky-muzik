@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { useMVStore } from '../../store/useMVStore'
 import { MVProps } from '../../types/common'
 import { getMVDetail } from '../../api/mv'
-import { useAppSelector, useAppDispatch } from '../../utils/customRedux'
-import { setShowMV, setMVID } from '../../redux/features/mvSlice'
 import Loading from '../Loading'
 import MVHorizontalItem from '../MVItem/horizontal'
 import { ReactComponent as CloseIcon } from '../../static/icons/close-icon.svg'
@@ -19,12 +18,11 @@ interface MvWithUrl extends MVProps {
 
 const MVPanel: React.FC = () => {
   const [dataMV, setDataMV] = useState<MvWithUrl | null>(null)
-  const mvID = useAppSelector((state) => state.mv.mvID)
-  const dispatch = useAppDispatch()
+  const { mvID, setMVID, setShowMV } = useMVStore()
 
   const closeMV = () => {
-    dispatch(setShowMV(false))
-    dispatch(setMVID(''))
+    setShowMV(false)
+    setMVID('')
   }
 
   useEffect(() => {

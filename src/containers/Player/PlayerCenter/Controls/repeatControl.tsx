@@ -1,15 +1,13 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../utils/customRedux'
-import { setLoop } from '../../../../redux/features/audioSlice'
+import { useAudioStore } from '../../../../store/useAudioStore'
 import { ReactComponent as RepeatIcon } from '../../../../static/icons/repeat-icon.svg'
 
 const RepeatControl: React.FC = () => {
-  const isLoop = useAppSelector((state) => state.audio.isLoop)
-  const dispatch = useAppDispatch()
+  const { isLoop, setLoop } = useAudioStore()
 
   const handleRepeat = () => {
-    if (isLoop) dispatch(setLoop(false))
-    else dispatch(setLoop(true))
+    if (isLoop) setLoop(false)
+    else setLoop(true)
   }
 
   return (

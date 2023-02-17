@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
-import { getDetailPlaylist } from '../api/detailPlaylist'
 import { useParams } from 'react-router-dom'
-import { useAppSelector } from '../utils/customRedux'
+import { useAudioStore } from '../store/useAudioStore'
+import { getDetailPlaylist } from '../api/detailPlaylist'
 import Loading from '../components/Loading'
 import MainLayout from '../containers/MainLayout'
 import PlayListInfo from '../components/PlayListInfo'
 import PlaylistTrack from '../components/PlaylistTrack'
 
 const PlaylistPage: React.FC = () => {
-  const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
-  const [isCurrentPlaylist, setIsCurrentPlaylist] = useState<boolean>(false)
+  const { currentAlbum} = useAudioStore()
   const { playlistID } = useParams<{playlistID: string}>()
+  const [isCurrentPlaylist, setIsCurrentPlaylist] = useState<boolean>(false)
 
   const playListQuery = useQuery(["playListDetail", playlistID], async () => {
     if (playlistID) {

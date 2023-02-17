@@ -57,6 +57,7 @@ const ArtistPage: React.FC = () => {
                       e.items.slice(0, 6)
                       .map((item: any, index: number) => (
                         <Song 
+                          key={index}
                           index={index}
                           thumbnail={item?.thumbnail}
                           title={item?.title}

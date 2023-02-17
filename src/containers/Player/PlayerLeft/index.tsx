@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../../utils/customRedux'
+import { useAudioStore } from '../../../store/useAudioStore'
 import { ReactComponent as HeartIcon } from '../../../static/icons/heart-icon.svg'
 import { ReactComponent as DotstIcon } from '../../../static/icons/triple-dots.svg'
 
 const PlayerLeft:React.FC = () => {
-  const songInfo = useAppSelector((state) => state.audio.infoSong)
-  const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
+  const { infoSong, currentAlbum} = useAudioStore()
 
   return (
     <section className='player-left w-[30%] flex items-center justify-start flex-shrink-0 basis-auto'>
@@ -15,18 +14,18 @@ const PlayerLeft:React.FC = () => {
           <Link to={`/playlist/${currentAlbum}`} className='block w-full h-full'>
             <img 
               className='object-cover'
-              src={songInfo.thumbnail} 
-              alt={songInfo.title} />
+              src={infoSong.thumbnail} 
+              alt={infoSong.title} />
           </Link>
         </div>
       </div>
       <div className="media-info ml-3 font-inter">
-        <div className='media-name text-[color:var(--white)] text-sm font-medium one-line' title={songInfo.title}>
-          <Link to={`/playlist/${currentAlbum}`}>{songInfo.title}</Link>
+        <div className='media-name text-[color:var(--white)] text-sm font-medium one-line' title={infoSong.title}>
+          <Link to={`/playlist/${currentAlbum}`}>{infoSong.title}</Link>
         </div>
         <div className='media-artist flex one-line'>
           {
-            songInfo.artists.map((artist: any, index: number) => (
+            infoSong.artists.map((artist: any, index: number) => (
               <Link 
                 key={index}
                 to={`/artist/${artist.alias}`} 

@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { SongProps } from '../../types/common'
-import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
 import { formatDuration } from '../../utils/formatTime'
-import { changePlayIcon, setCurrentIndexPlaylist, setCurrentAlbum, setSongId, setAutoplay } from '../../redux/features/audioSlice'
+import { useAudioStore } from '../../store/useAudioStore'
 import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
 import { ReactComponent as VipIcon} from '../../static/icons/vip-icon.svg'
 
@@ -15,16 +14,21 @@ interface songInterface extends SongProps {
 const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, isShortened, handleClick }) => {
   const SONG_VIP = 2
   const SONG_NORMAL = 1
-  const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
-  const currentAlbum = useAppSelector((state) => state.audio.currentAlbum)
-  const songID = useAppSelector((state) => state.audio.songID)
-  const dispatch = useAppDispatch()
+  const { 
+    currentIndexPlaylist, 
+    songID, 
+    currentAlbum, 
+    changePlayIcon, 
+    setCurrentIndexPlaylist, 
+    setCurrentAlbum, 
+    setSongId, 
+    setAutoplay} = useAudioStore()
   const params = useParams<{playlistID: string}>()
   const songDuration =  duration && formatDuration(duration)
 
   const handleChangeSong = (encodeId: string, streamingStatus: number, index: number) => {
-    dispatch(setAutoplay(true))
-    dispatch(changePlayIcon(true))
+    setAutoplay(true)
+    changePlayIcon(true)
     
     if (handleClick) {
       handleClick()
@@ -32,9 +36,9 @@ const Song:React.FC<songInterface> = ({ index, thumbnail, title, encodeId, strea
     }
 
     if (streamingStatus === SONG_NORMAL && (params.playlistID || currentAlbum)) {
-      dispatch(setCurrentIndexPlaylist(index))
-      dispatch(setCurrentAlbum(params.playlistID || currentAlbum))
-      dispatch(setSongId(encodeId))
+      setCurrentIndexPlaylist(index)
+      setCurrentAlbum(params.playlistID || currentAlbum)
+      setSongId(encodeId)
       
       localStorage.setItem('songId', encodeId)
       localStorage.setItem('currentAlbum', params.playlistID || currentAlbum)

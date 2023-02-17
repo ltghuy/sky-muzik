@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useEffect, useState } from 'react'
 import { AudioContext } from '..'
-import { useAppSelector, useAppDispatch } from '../../../utils/customRedux'
-import { setOpenLyric, changePlayIcon } from '../../../redux/features/audioSlice'
+import { useAudioStore } from '../../../store/useAudioStore'
 import { KaraLineType } from '../../../types/common'
 import useLyric from '../../../hooks/useLyric'
 import PlayControl from '../PlayerCenter/Controls/playControl'
@@ -12,18 +11,14 @@ import { ReactComponent as ArrowIcon } from '../../../static/icons/arrow-right-i
 
 const LyricPanel: React.FC = () => {
   const [lyricOptions, setLyricOptions] = useState<'lyric' | 'karaoke'>('lyric')
-  const isShowLyric = useAppSelector((state) => state.audio.isLyric)
-  const songId = useAppSelector((state) => state.audio.songID)
-  const songInfo = useAppSelector((state) => state.audio.infoSong)
-  const currentTime = useAppSelector((state) => state.audio.currentTime)
-  const dispatch = useAppDispatch()
+  const { isLyric, songID, infoSong, currentTime, setOpenLyric, changePlayIcon } = useAudioStore()
 
   const audioRef = useContext(AudioContext)
   const lyricRef = useRef<HTMLDivElement>(null)
-  const lyric = useLyric(songId)
+  const lyric = useLyric(songID)
 
   const closeLyric = () => {
-    dispatch(setOpenLyric(false))
+    setOpenLyric(false)
   }
 
   const inTimeLine = (e: KaraLineType) => {
@@ -35,11 +30,11 @@ const LyricPanel: React.FC = () => {
     lyricRef?.current?.scroll({
       top: 0
     })
-  }, [songId, songInfo])
+  }, [songID, infoSong])
 
   return (
     <main 
-    className={`lyric-panel w-full h-screen fixed top-0 left-0 ${isShowLyric ? 'show-panel' : 'close-panel'} duration-1000 ease-in-out overflow-hidden`}>
+    className={`lyric-panel w-full h-screen fixed top-0 left-0 ${isLyric ? 'show-panel' : 'close-panel'} duration-1000 ease-in-out overflow-hidden`}>
       <div className="lyric-wrapper flex flex-col w-full h-full bg-[color:var(--primary-dark)]">
         <div className="lyric-top w-full h-[10vh] flex-shrink-0 flex justify-center items-center p-10 relative">
           <button 
@@ -67,8 +62,8 @@ const LyricPanel: React.FC = () => {
               <div className="lyric-thumbnail w-[22rem] h-[22rem] flex-shrink-0 p-5 rounded-2xl relative group">
                 <img 
                   className='absolute w-full object-cover inset-0 shadow-xl rounded-[inherit] shadow-[color:var(--primary)]'
-                  src={songInfo.thumbnailM} 
-                  alt={songInfo.title} />
+                  src={infoSong.thumbnailM} 
+                  alt={infoSong.title} />
                 <div className="lyric-controls absolute w-full h-full inset-0 rounded-[inherit] bg-black bg-opacity-30 transition hidden group-hover:flex justify-center items-center gap-x-4">
                   <PreviousControl />
                   <PlayControl />
@@ -78,7 +73,7 @@ const LyricPanel: React.FC = () => {
               <div className="lyric-timeline flex-1 h-full ml-20 space-y-10 overflow-y-scroll hidden-scrollbar" ref={lyricRef}>
                 {
                   lyric.map((e: KaraLineType, index: number) => {
-                    if (inTimeLine(e) && isShowLyric) {
+                    if (inTimeLine(e) && isLyric) {
                       document.getElementById(`line-${index}`)?.scrollIntoView({ behavior: "smooth", block: "center" })
                     }
                     return (
@@ -90,7 +85,7 @@ const LyricPanel: React.FC = () => {
                           if (audioRef) {
                             audioRef.currentTime = e.startTime / 1000
                             audioRef.play()
-                            dispatch(changePlayIcon(true))
+                            changePlayIcon(true)
                           }
                         }}
                         >
