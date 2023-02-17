@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../utils/customRedux'
-import { setPlaylistSong, setSongId, setCurrentIndexPlaylist } from '../redux/features/audioSlice'
+import { useAudioStore } from '../store/useAudioStore'
 import { useQuery } from 'react-query'
 import { getCharts } from '../api/charts'
 import Button from '../components/Button'
@@ -11,8 +10,7 @@ import MainLayout from '../containers/MainLayout'
 const Chartspage: React.FC = () => {
   const [hasLoadmore, setHasLoadmore] = useState<boolean>(true)
   const [count, setCount] = useState<number>(10)
-  const playlistSong: any = useAppSelector((state) => state.audio.playListSong)
-  const dispatch = useAppDispatch()
+  const { playListSong, setSongId, setCurrentIndexPlaylist, setPlaylistSong} = useAudioStore()
 
   const loadMoreList = () => {
     setCount(100)
@@ -30,9 +28,9 @@ const Chartspage: React.FC = () => {
 
   const playCharts = (index: number) => {
     if (chartsQuery.data) {
-      dispatch(setPlaylistSong(chartsQuery.data.RTChart.items))
-      dispatch(setSongId(playlistSong[index].encodeId))
-      dispatch(setCurrentIndexPlaylist(index))
+      setCurrentIndexPlaylist(index)
+      setSongId(playListSong[index].encodeId)
+      setPlaylistSong(chartsQuery.data.RTChart.items)
     }
   }
 

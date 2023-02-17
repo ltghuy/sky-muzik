@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { KaraLineType } from '../../types/common'
-import { useAppSelector } from '../../utils/customRedux'
+import { useAudioStore } from '../../store/useAudioStore'
 
 interface KaraokeProps {
   lyric: KaraLineType[]
 }
 
 const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
-  const currentTime = useAppSelector((state) => state.audio.currentTime)
+  const { currentTime } = useAudioStore()
   const [index, setIndex] = useState<number>(0)
   const [line1Data, setLine1Data] = useState<KaraLineType>(lyric[index])
   const [line2Data, setLine2Data] = useState<KaraLineType>(lyric[index + 1])

@@ -1,18 +1,18 @@
 import React from 'react'
 import { MVProps } from '../../types/common'
-import { useAppDispatch } from '../../utils/customRedux'
-import { setMVID, setShowMV } from '../../redux/features/mvSlice'
-import { changePlayIcon } from '../../redux/features/audioSlice'
+import { useMVStore } from '../../store/useMVStore'
+import { useAudioStore } from '../../store/useAudioStore'
 import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
 
 
 const MVHorizontalItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames}) => {
-  const dispatch = useAppDispatch()
+  const { setMVID, setShowMV } = useMVStore()
+  const { changePlayIcon } = useAudioStore()
 
   const playMV = (id: string) => {
-    dispatch(setMVID(id))
-    dispatch(setShowMV(true))
-    dispatch(changePlayIcon(false))
+    setMVID(id)
+    setShowMV(true)
+    changePlayIcon(false)
     document.querySelector('audio')?.pause()
   }
 

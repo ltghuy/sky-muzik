@@ -1,26 +1,31 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../utils/customRedux'
+import { useAudioStore } from '../../../../store/useAudioStore'
 import { ReactComponent as Nexticon } from '../../../../static/icons/next-icon.svg'
-import { changePlayIcon, setCurrentIndexPlaylist, setSongId } from '../../../../redux/features/audioSlice'
 
 const NextControl: React.FC = () => {
-  const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
-  const playlistSong: any = useAppSelector((state) => state.audio.playListSong)
-  const dispatch = useAppDispatch()
+  const {
+    currentIndexPlaylist,
+    playListSong,
+    changePlayIcon,
+    setCurrentIndexPlaylist, 
+    setSongId,
+    setAutoplay
+  } = useAudioStore()
   
   const handleNextSong = () => {
-    if (playlistSong !== undefined && playlistSong.length > 0) {
+    if (playListSong !== undefined && playListSong.length > 0) {
       let currentIndex
-      if (currentIndexPlaylist === playlistSong.length - 1) {
+      if (currentIndexPlaylist === playListSong.length - 1) {
         currentIndex = 0
       } else {
         currentIndex = currentIndexPlaylist + 1
       }
 
-      dispatch(setCurrentIndexPlaylist(currentIndex))
-      dispatch(setSongId(playlistSong[currentIndex].encodeId))
-      dispatch(changePlayIcon(true))
-      localStorage.setItem('songId', playlistSong[currentIndex].encodeId)
+      setCurrentIndexPlaylist(currentIndex)
+      setSongId(playListSong[currentIndex].encodeId)
+      changePlayIcon(true)
+      setAutoplay(true)
+      localStorage.setItem('songId', playListSong[currentIndex].encodeId)
     }
   }
 

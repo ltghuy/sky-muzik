@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { store } from './redux/store';
-import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from "react-query";
+// import { ReactQueryDevtools } from "react-query/devtools";
 import App from './App';
 import './index.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const queryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
         <App />
-      </Provider>
+        {/* <ReactQueryDevtools initialIsOpen={true} position='top-right' /> */}
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

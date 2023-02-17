@@ -1,15 +1,13 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../utils/customRedux'
-import { setShuffle } from '../../../../redux/features/audioSlice'
+import { useAudioStore } from '../../../../store/useAudioStore'
 import { ReactComponent as ShuffleIcon } from '../../../../static/icons/shuffle-icon.svg'
 
 const ShuffleControl: React.FC = () => {
-  const isShuffle = useAppSelector((state) => state.audio.isShuffle)
-  const dispatch = useAppDispatch()
+  const { isShuffle, setShuffle } = useAudioStore()
 
   const handleShuffleSong = () => {
-    if (isShuffle) dispatch(setShuffle(false))
-    else dispatch(setShuffle(true))
+    if (isShuffle) setShuffle(false)
+    else setShuffle(true)
   }
 
   return (

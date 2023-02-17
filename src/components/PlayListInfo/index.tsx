@@ -1,24 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
-import { changePlayIcon } from '../../redux/features/audioSlice'
+import { useAudioStore } from '../../store/useAudioStore'
 import { PlaylistDetailProps } from '../../types/common'
 import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
 import { ReactComponent as LikedIcon } from '../../static/icons/heart-icon.svg'
 import Button from '../Button'
 
 const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like, isCurrentPlaylist }) => {
-  const isPlay = useAppSelector((state) => state.audio.isPlay)
-  const dispatch = useAppDispatch()
+  const { isPlay, changePlayIcon } = useAudioStore()
   const playlistLastUpdate =  contentLastUpdate && (new Date(contentLastUpdate * 1000)).toLocaleDateString("vi-VN")
 
   const onPlaylistPlay = () => {
     const audio = document.querySelector('audio')
     if (isPlay) {
-      dispatch(changePlayIcon(false))
+      changePlayIcon(false)
       audio?.pause()
     } else {
-      dispatch(changePlayIcon(true))
+      changePlayIcon(true)
       audio?.play()
     }
   }

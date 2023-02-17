@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, createContext } from 'react'
-import { useAppDispatch, useAppSelector } from '../../utils/customRedux'
+import { useAudioStore } from '../../store/useAudioStore'
 import { getSong, getSongInfo } from '../../api/song'
-import { setCurrentTime, setDuration, setAutoplay, setCurrentIndexPlaylist, setSongId, setSrcAudio, setInfoSong, changePlayIcon } from '../../redux/features/audioSlice'
 import PlayerLeft from './PlayerLeft'
 import PlayerCenter from './PlayerCenter'
 import PlayerRight from './PlayerRight'
@@ -11,46 +10,48 @@ export const AudioContext = createContext<HTMLAudioElement | null | undefined>(n
 
 const Player: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
-  const songId = useAppSelector((state) => state.audio.songID)
-  const srcAudio = useAppSelector((state) => state.audio.srcAudio)
-  const isLoop = useAppSelector((state) => state.audio.isLoop)
-  const volume = useAppSelector((state) => state.audio.volume)
-  const autoplay = useAppSelector((state) => state.audio.autoPlay)
-  const playlistSong: any = useAppSelector((state) => state.audio.playListSong)
-  const currentIndexPlaylist = useAppSelector((state) => state.audio.currentIndexPlaylist)
-  const dispatch = useAppDispatch()
+  const { songID, srcAudio, isLoop, volume, autoPlay, playListSong, currentIndexPlaylist} = useAudioStore()
+  const { 
+    setCurrentTime, 
+    setDuration, 
+    setAutoplay, 
+    setCurrentIndexPlaylist, 
+    setSongId, 
+    setSrcAudio, 
+    setInfoSong, 
+    changePlayIcon} = useAudioStore()
 
   const handleAudioEnd = () => {
     if (!isLoop) {
-      if (playlistSong !== undefined && playlistSong.length > 0) {
+      if (playListSong !== undefined && playListSong.length > 0) {
         let currentIndex
-        if (currentIndexPlaylist === playlistSong.length - 1) {
+        if (currentIndexPlaylist === playListSong.length - 1) {
           currentIndex = 0
         } else {
           currentIndex = currentIndexPlaylist + 1
         }
         
-        dispatch(setCurrentIndexPlaylist(currentIndex))
-        dispatch(setSongId(playlistSong[currentIndex].encodeId))
-        dispatch(changePlayIcon(true))
-        dispatch(setAutoplay(true))
+        setCurrentIndexPlaylist(currentIndex)
+        setSongId(playListSong[currentIndex].encodeId)
+        changePlayIcon(true)
+        setAutoplay(true)
       }
     } else {
-      dispatch(setCurrentTime(0))
-      dispatch(changePlayIcon(false))
+      setCurrentTime(0)
+      changePlayIcon(false)
     }
   }
 
   const handleAudioLoaded = () => {
     if (audioRef.current) {
-      dispatch(setDuration((audioRef.current.duration)))
+      setDuration((audioRef.current.duration))
       audioRef.current.volume = volume
     }
   }
 
   const handleAudioUpdate = () => {
     if (audioRef.current) {
-      dispatch(setCurrentTime((audioRef.current.currentTime)))
+      setCurrentTime((audioRef.current.currentTime))
     }
   }
 
@@ -58,14 +59,14 @@ const Player: React.FC = () => {
     (
       async () => {
         try {
-          if(songId === "") {
+          if(songID === "") {
             console.log("Song ID not found")
           } else {
-            const linkSong = await getSong(songId)
-            linkSong[128] ? dispatch(setSrcAudio( linkSong[128] )) : dispatch(setSrcAudio(""))
+            const linkSong = await getSong(songID)
+            linkSong[128] ? setSrcAudio(linkSong[128]) : setSrcAudio("")
 
-            const infoSong = await getSongInfo(songId)
-            dispatch(setInfoSong(
+            const infoSong = await getSongInfo(songID)
+            setInfoSong(
               {
                 title: infoSong.title,
                 thumbnail: infoSong.thumbnail,
@@ -75,14 +76,14 @@ const Player: React.FC = () => {
                 hasLyric: infoSong.hasLyric,
                 mvlink: infoSong.mvlink,
               }
-            ))
+            )
           }
         } catch(err) {
           console.log(err)
         }
       }
     )()
-  }, [songId, dispatch])
+  }, [songID])
 
   return (
     <section className='player fixed left-0 bottom-0 w-full h-[var(--player-height)] z-50 bg-[color:var(--primary-darker)]'>
@@ -98,7 +99,7 @@ const Player: React.FC = () => {
           src={srcAudio}
           className="hidden"
           loop={isLoop}
-          autoPlay={autoplay}
+          autoPlay={autoPlay}
           hidden
           onTimeUpdate={handleAudioUpdate}
           onLoadedData={handleAudioLoaded}
