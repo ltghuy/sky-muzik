@@ -44,7 +44,7 @@ const LyricPanel: React.FC = () => {
           </button>
           <div className="lyric-options h-9 font-inter bg-[color:var(--primary-light)] flex rounded-3xl">
             <button 
-              className={`text-white font-semibold text-base w-40 rounded-3xl transition ${lyricOptions === 'karaoke' && 'bg-[color:var(--primary)]'}`}
+              className={`text-white font-semibold text-base w-40 rounded-3xl transition ${lyricOptions === 'karaoke' && 'bg-[color:var(--primary)]'} ${lyric && lyric.length === 0 && 'select-none pointer-events-none'}`}
               onClick={() => setLyricOptions('karaoke')}>
               Karaoke
             </button>

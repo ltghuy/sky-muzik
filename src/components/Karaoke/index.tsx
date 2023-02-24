@@ -63,11 +63,11 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
         {
           line1Data.words?.map((word: wordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
-              <div className='h-full'>{word.data}</div>
+              <div className={`h-full ${loaded(word) && 'text-amber-400'}`}>{word.data}</div>
               {
                 inTimeLine(line1Data) &&
                 <div 
-                  className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all'
+                  className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all ease-linear'
                   style={{width: `${getPercentageDuration(word)}%`}}>
                   {word.data}
                 </div>
@@ -82,11 +82,11 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
         {
           line2Data.words?.map((word2: wordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
-              <div className='h-full'>{word2.data}</div>
+              <div className={`h-full ${loaded(word2) && 'text-amber-400'}`}>{word2.data}</div>
               {
                 inTimeLine(line2Data) &&
                 <div 
-                  className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all'
+                  className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all ease-linear'
                   style={{width: `${getPercentageDuration(word2)}%`}}>
                   {word2.data}
                 </div>
