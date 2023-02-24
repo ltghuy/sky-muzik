@@ -76,8 +76,12 @@ export interface MVProps {
   artistsNames: string
 }
 
-export type KaraLineType = {
-  data: string;
-  startTime: number;
-  endTime: number;
-};
+export interface wordType  {
+  startTime: number, 
+  endTime: number, 
+  data: string
+}
+
+export interface KaraLineType extends wordType {
+  words?: wordType[]
+}

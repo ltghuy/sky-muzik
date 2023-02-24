@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { KaraLineType } from '../../types/common'
+import { KaraLineType, wordType } from '../../types/common'
 import { useAudioStore } from '../../store/useAudioStore'
 
 interface KaraokeProps {
@@ -17,8 +17,16 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
     return false
   }
 
-  const getPercentageDuration = (e: KaraLineType) => {
+  const loaded = (e: wordType) => {
+    if (currentTime * 1000 > e.endTime) return true
+    return false
+  }
+
+  const getPercentageDuration = (e: wordType) => {
     const duration = e.endTime - e.startTime
+    if (loaded(e) || (duration === 0 && inTimeLine(e))) {
+      return 100
+    }
     const currentDuration = currentTime * 1000 - e.startTime
     return currentDuration / duration * 100
   }
@@ -49,30 +57,42 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
 
   return (
     <section className='flex flex-col items-center font-bold space-y-5 select-none'>
-      <div className='relative w-max'>
-        <div id='kara-line1' className='h-[5rem]'>{line1Data.data}</div>
+      <div 
+        id="kara-line1" 
+        className='h-[5rem] flex flex-nowrap gap-x-2 transition'>
         {
-          inTimeLine(line1Data) &&
-          <div className='kara-runner absolute h-full top-0 left-0 text-amber-400'>
-            <div 
-              className='w-0 h-full overflow-hidden whitespace-nowrap transition-all' 
-              style={{width: `${getPercentageDuration(line1Data)}%`}}>
-              {line1Data.data}
+          line1Data.words?.map((word: wordType, index: number) => (
+            <div key={index} className='relative w-max h-full whitespace-nowrap'>
+              <div className='h-full'>{word.data}</div>
+              {
+                inTimeLine(line1Data) &&
+                <div 
+                  className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all'
+                  style={{width: `${getPercentageDuration(word)}%`}}>
+                  {word.data}
+                </div>
+              }
             </div>
-          </div>
+          ))
         }
       </div>
-      <div className='relative w-max'>
-        <div id='kara-line2' className='h-[5rem]'>{line2Data.data}</div>
+      <div 
+        id="kara-line2" 
+        className='h-[5rem] flex flex-nowrap gap-x-2 transition'>
         {
-          inTimeLine(line2Data) &&
-          <div className='kara-runner absolute h-full top-0 left-0 text-amber-400'>
-            <div 
-              className='w-0 h-full overflow-hidden whitespace-nowrap transition-all' 
-              style={{width: `${getPercentageDuration(line2Data)}%`}}>
-              {line2Data.data}
+          line2Data.words?.map((word2: wordType, index: number) => (
+            <div key={index} className='relative w-max h-full whitespace-nowrap'>
+              <div className='h-full'>{word2.data}</div>
+              {
+                inTimeLine(line2Data) &&
+                <div 
+                  className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all'
+                  style={{width: `${getPercentageDuration(word2)}%`}}>
+                  {word2.data}
+                </div>
+              }
             </div>
-          </div>
+          ))
         }
       </div>
     </section>

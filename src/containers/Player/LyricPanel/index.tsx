@@ -55,7 +55,7 @@ const LyricPanel: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="lyric-main w-full flex-1 max-h-[90vh] flex items-end px-16 py-10 overflow-y-hidden">
+        <div className="lyric-main w-full flex-1 max-h-[90vh] flex items-end px-16 py-10 overflow-hidden">
           {
             lyric && lyricOptions === 'lyric' &&
             <>
