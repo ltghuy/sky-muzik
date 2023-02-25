@@ -59,18 +59,18 @@ const LyricPanel: React.FC = () => {
           {
             lyric && lyricOptions === 'lyric' &&
             <>
-              <div className="lyric-thumbnail w-[22rem] h-[22rem] flex-shrink-0 p-5 rounded-2xl relative group">
+              <div className="lyric-thumbnail w-40 h-40 lg:w-[22rem] lg:h-[22rem] flex-shrink-0 p-5 rounded-2xl relative group">
                 <img 
                   className='absolute w-full object-cover inset-0 shadow-xl rounded-[inherit] shadow-[color:var(--primary)]'
                   src={infoSong.thumbnailM} 
                   alt={infoSong.title} />
-                <div className="lyric-controls absolute w-full h-full inset-0 rounded-[inherit] bg-black bg-opacity-30 transition hidden group-hover:flex justify-center items-center gap-x-4">
+                <div className="lyric-controls absolute w-full h-full inset-0 rounded-[inherit] bg-black bg-opacity-30 transition hidden group-hover:flex justify-center items-center space-x-4">
                   <PreviousControl />
                   <PlayControl />
                   <NextControl />
                 </div>
               </div>
-              <div className="lyric-timeline flex-1 h-full ml-20 space-y-10 overflow-y-scroll hidden-scrollbar" ref={lyricRef}>
+              <div className="lyric-timeline flex-1 h-full ml-16 lg:ml-20 space-y-6 lg:space-y-10 overflow-y-scroll hidden-scrollbar" ref={lyricRef}>
                 {
                   lyric.map((e: KaraLineType, index: number) => {
                     if (inTimeLine(e) && isLyric) {
@@ -103,7 +103,7 @@ const LyricPanel: React.FC = () => {
           }
           {
             lyric && lyricOptions === 'karaoke' &&
-            <section className='karaoke text-white text-5xl font-inter flex flex-col justify-center items-center w-full h-full'>
+            <section className='karaoke text-white text-lg md:text-3xl lg:text-5xl font-inter flex flex-col justify-center items-center w-full h-full'>
               <Karaoke lyric={lyric} />
             </section>
           }

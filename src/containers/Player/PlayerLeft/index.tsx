@@ -8,7 +8,7 @@ const PlayerLeft:React.FC = () => {
   const { infoSong, currentAlbum} = useAudioStore()
 
   return (
-    <section className='player-left w-[30%] flex items-center justify-start flex-shrink-0 basis-auto'>
+    <section className='player-left w-[20%] lg:w-[30%] flex items-center justify-start flex-shrink-0 basis-auto'>
       <div className="media-thumnail">
         <div className="w-16 h-16 bg-white rounded-lg overflow-hidden">
           <Link to={`/playlist/${currentAlbum}`} className='block w-full h-full'>
@@ -39,7 +39,7 @@ const PlayerLeft:React.FC = () => {
           }
         </div>
       </div>
-      <div className="media-controls ml-5">
+      <div className="media-controls ml-5 hidden lg:block">
         <button className='text-[color:var(--white)] button-hover transition'>
           <HeartIcon />
         </button>

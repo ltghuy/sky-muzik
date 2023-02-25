@@ -41,10 +41,10 @@ const MVPage: React.FC = () => {
         <div className="mv-wrapper space-y-10 min-h-[500px] pb-[var(--player-height)] relative rounded-2xl">
           { mvQuery.isLoading && <Loading /> }
           { mvQuery.isSuccess &&
-            <div className="mv-list grid grid-cols-3 gap-x-5 gap-y-10" id='mv-list'>
+            <div className="mv-list grid grid-cols-2 lg:grid-cols-3 -mx-5" id='mv-list'>
               {
                 mvQuery.data.items.map((e: MVProps, index: number) => (
-                  <div className="h-72" key={index}>
+                  <div className="h-72 mb-10 mx-5" key={index}>
                     <MVItem 
                       artist={e.artist}
                       artistsNames={e.artistsNames}

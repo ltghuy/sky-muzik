@@ -24,7 +24,7 @@ const SearchPage: React.FC = () => {
   return (
     <MainLayout>
       <main className="search-page page-content">
-        <section className="search-artists relative min-h-[30vh]">
+        <section className="search-artists relative lg:min-h-[30vh]">
           {
             dataSearch.artists !== undefined ? (
               <>
@@ -32,11 +32,11 @@ const SearchPage: React.FC = () => {
                   Nghệ sĩ/OA
                 </h3>
                 <div className="search-list h-max w-full">
-                  <div className="search-wrapper h-full grid grid-cols-5 gap-x-8 gap-y-10 overflow-hidden">
+                  <div className="search-wrapper h-full grid grid-cols-5 -mx-4 overflow-hidden">
                     {
                       dataSearch.artists.slice(0, 5)
                       .map((item: any, index: number) => (
-                        <div className="search-item h-full" key={index}>
+                        <div className="search-item h-full mx-4" key={index}>
                           <div className="top rounded-full overflow-hidden" title={item.name}>
                             <Link to={`/artist/${item.alias}`}>
                               <img 
@@ -74,22 +74,24 @@ const SearchPage: React.FC = () => {
                   Bài hát
                 </h3>
                 <div className="search-list h-max w-full">
-                  <div className="search-wrapper h-full grid grid-cols-2 gap-x-24 gap-y-4">
+                  <div className="search-wrapper h-full grid grid-cols-1 lg:grid-cols-2 -mx-4">
                     {
                       // Only get max 6 songs
                       dataSearch.songs.slice(0, 6)
                       .map((item: any, index: number) => (
-                        <Song 
-                          index={index}
-                          thumbnail={item?.thumbnail}
-                          title={item?.title}
-                          encodeId={item?.encodeId}
-                          duration={item?.duration}
-                          streamingStatus={item?.streamingStatus}
-                          artists={item?.artists}
-                          artistsNames={item?.artistsNames}
-                          album={item?.album}
-                        />
+                        <div key={index} className='mb-4 mx-4'>
+                          <Song 
+                            index={index}
+                            thumbnail={item?.thumbnail}
+                            title={item?.title}
+                            encodeId={item?.encodeId}
+                            duration={item?.duration}
+                            streamingStatus={item?.streamingStatus}
+                            artists={item?.artists}
+                            artistsNames={item?.artistsNames}
+                            album={item?.album}
+                          />
+                        </div>
                       ))
                     }
                   </div>
@@ -99,7 +101,7 @@ const SearchPage: React.FC = () => {
             <Loading />
           }
         </section>
-        <section className="search-playlists relative min-h-[30vh] mt-5">
+        <section className="search-playlists relative lg:min-h-[30vh] mt-5">
           {
             dataSearch.playlists !== undefined ? (
               <>
@@ -107,7 +109,7 @@ const SearchPage: React.FC = () => {
                   Playlist/Album
                 </h3>
                 <div className="search-list h-max w-full">
-                  <div className="search-wrapper h-full grid grid-cols-5 gap-x-8 gap-y-10 overflow-hidden">
+                  <div className="search-wrapper h-full grid grid-cols-5 overflow-hidden -mx-2">
                     {
                       // Only get max 5 songs
                       dataSearch.playlists.slice(0, 5)
@@ -129,7 +131,7 @@ const SearchPage: React.FC = () => {
             <Loading />
           }
         </section>
-        <section className="search-mv relative min-h-[30vh] mt-5">
+        <section className="search-mv relative lg:min-h-[30vh] mt-5">
           {
             dataSearch.videos !== undefined ? (
               <>
@@ -137,12 +139,12 @@ const SearchPage: React.FC = () => {
                   MV
                 </h3>
                 <div className="search-list h-max w-full">
-                  <div className="search-wrapper h-full grid grid-cols-3 gap-x-8 gap-y-10 overflow-hidden">
+                  <div className="search-wrapper h-full grid grid-cols-3 -mx-4 overflow-hidden">
                     {
                       // Only get max 3 songs
                       dataSearch.videos.slice(0, 3)
                       .map((item: any, index: number) => (
-                        <div className="h-72" key={index}>
+                        <div className="h-72 mx-4" key={index}>
                           <MVItem 
                             artist={item.artist}
                             artistsNames={item.artistsNames}

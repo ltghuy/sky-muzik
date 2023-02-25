@@ -29,7 +29,7 @@ const openOption = (e: any) => {
 
 const PlayListItem: React.FC<ItemProps> = ({ encodeId, title, description, thumbnail, artistsNames }) => {
   return (
-    <div className="playlist-item col-span-1">
+    <div className="playlist-item col-span-1 mx-2 my-4">
       <div className="item-top cursor-pointer overflow-hidden rounded-bl-3xl rounded-tr-3xl group relative">
         <img src={thumbnail} alt={description} className='group-hover:scale-110 transform duration-300' />
         <Link to={`/playlist/${encodeId}`} title={title}>
@@ -52,7 +52,7 @@ const PlayListItem: React.FC<ItemProps> = ({ encodeId, title, description, thumb
             {title}
           </h3>
         </Link>
-        <p className='description dark:text-white two-line font-normal text-sm opacity-75'>
+        <p className='description dark:text-white one-line font-normal text-sm opacity-75'>
           { artistsNames || description}
         </p>
       </div>

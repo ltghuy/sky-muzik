@@ -85,21 +85,22 @@ const Chartspage: React.FC = () => {
                 <h2 className='title text-3xl text-black dark:text-white font-inter font-bold mb-5'>
                   Mới phát hành
                 </h2>
-                <div className="new-release__list grid grid-cols-2 gap-x-5">
+                <div className="new-release__list grid grid-cols-1 lg:grid-cols-2 -mx-2">
                   {
                     chartsQuery.data.newRelease.map((item: any, index: number) => (
-                      <Song
-                        key={index}
-                        index={index}
-                        thumbnail={item?.thumbnail}
-                        title={item?.title}
-                        encodeId={item?.encodeId}
-                        duration={item?.duration}
-                        streamingStatus={item?.streamingStatus}
-                        artists={item?.artists}
-                        artistsNames={item?.artistsNames}
-                        album={item?.album}
-                      />
+                      <div key={index} className='mb-2 mx-2'>
+                        <Song
+                          index={index}
+                          thumbnail={item?.thumbnail}
+                          title={item?.title}
+                          encodeId={item?.encodeId}
+                          duration={item?.duration}
+                          streamingStatus={item?.streamingStatus}
+                          artists={item?.artists}
+                          artistsNames={item?.artistsNames}
+                          album={item?.album}
+                        />
+                      </div>
                     ))
                   }
                 </div>

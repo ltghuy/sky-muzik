@@ -34,7 +34,7 @@ const SearchBox: React.FC = () => {
   const recommendQuery: any = useQuery('recommendSong', getCharts, { staleTime: 60000 })
 
   return (
-    <div className='search-box w-[400px] h-10 relative'>
+    <div className='search-box h-10 relative flex-1'>
       <div 
         ref={searchboxRef}
         className={`search-wrapper flex flex-col items-start ${isInputFocus ? 'h-56 bg-[color:var(--primary-light)] rounded-2xl' : 'h-full'}`}

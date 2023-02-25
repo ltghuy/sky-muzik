@@ -44,7 +44,7 @@ const Header: React.FC = () => {
   return (
     <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] z-10 ${stickyClass}`} ref={headerRef}>
       <div className="header-container px-8 h-full flex items-center justify-between">
-        <div className="header-left flex items-center">
+        <div className="header-left flex items-center max-w-[60%] lg:max-w-[450px] flex-1">
           <button className='hover:text-[color:var(--primary)] dark:text-white transition' onClick={() => navigate(-1)}>
             <ArrowIcon className='w-[20px] -rotate-90' />
           </button>
@@ -53,10 +53,10 @@ const Header: React.FC = () => {
           </button>
           <SearchBox />
         </div>
-        <ul className="header-right flex items-center gap-4">
+        <ul className="header-right flex items-center space-x-3 ml-3 flex-shrink-0">
           <li>
             <button 
-              className={'w-20 h-8 rounded-2xl ml-3 border-slate-300 dark:border-gray-500 border shadow-sm py-1 px-2 flex justify-center items-center relative ' + (isDarkmode === 'dark' ? 'bg-transparent' : 'bg-white')}
+              className={'w-20 h-8 rounded-2xl border-slate-300 dark:border-gray-500 border shadow-sm py-1 px-2 flex justify-center items-center relative ' + (isDarkmode === 'dark' ? 'bg-transparent' : 'bg-white')}
               onClick={toggleDarkMode}>
               <span className={"sun text-amber-500 flex-1 " + (isDarkmode === 'dark' ? 'hidden' : 'block')}>
                 <SunIcon className='w-6' />

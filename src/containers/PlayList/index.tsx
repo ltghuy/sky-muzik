@@ -12,7 +12,7 @@ interface PlayListProps {
 
 const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList}) => {
   return (
-    <section className='play-list mb-12 shadow shadow-zinc-50 rounded-2xl'>
+    <section className='play-list mb- lg:mb-12 shadow shadow-zinc-50 rounded-2xl'>
       <div className="heading flex justify-between items-center p-5 pb-5 border-b border-gray-200">
         <h3 className='playlist-title uppercase text-lg font-inter font-bold text-[color:var(--black)] dark:text-white'>
           {title || sectionId.slice(1)}
@@ -25,7 +25,7 @@ const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList}) 
           </Link>
         }
       </div>
-      <div className="content py-10 px-8 grid grid-cols-5 gap-5">
+      <div className="content py-10 px-4 grid grid-cols-5 -mx-2">
         {
           playList.map((item: any, index: number) => 
             <PlayListItem 

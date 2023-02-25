@@ -53,8 +53,8 @@ const MVPanel: React.FC = () => {
                 <CloseIcon className='w-5 h-5' />
               </button>
             </div>
-            <div className="mv-bottom w-full flex-1 px-10 pb-10 flex items-stretch justify-between overflow-hidden">
-              <div className="mv-player h-full w-[75%] flex-shrink-0">
+            <div className="mv-bottom w-full flex-1 p-10 pb-10 flex flex-col lg:flex-row items-stretch justify-between overflow-hidden">
+              <div className="mv-player h-[40%] lg:h-full w-full lg:w-[70%] flex-shrink-0">
                 <iframe 
                   className='w-full h-full rounded'
                   allowFullScreen 
@@ -62,12 +62,14 @@ const MVPanel: React.FC = () => {
                 >
                 </iframe>
               </div>
-              <div className="mv-recommends flex-1 flex flex-col ml-10 bg-white bg-opacity-10 rounded">
+              <div className="mv-recommends h-[60%] lg:h-full flex-1 flex flex-col lg:ml-10 bg-white bg-opacity-10 rounded">
                 <h4 className="text-white text-lg leading-7 font-bold font-inter px-4 pt-4">Danh Sách Phát</h4>
                 <div className="mv-list mt-4 overflow-y-scroll hidden-scrollbar">
                   {
                     dataMV.recommends.map((mv: MVProps, index: number) => (
-                      <div className="mv-item w-full h-20 hover:bg-white hover:bg-opacity-30 transition py-2 px-4" key={index}>
+                      <div 
+                        className="mv-item-wrapper w-full h-32 lg:h-20 hover:bg-white hover:bg-opacity-30 transition py-2 px-4 mb-4 lg:mb-0" 
+                        key={index}>
                         <MVHorizontalItem 
                           artist={mv.artist}
                           artistsNames={mv.artistsNames}

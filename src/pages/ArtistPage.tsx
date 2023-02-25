@@ -41,7 +41,7 @@ const ArtistPage: React.FC = () => {
         }
       </div>
       <main className='px-8 py-5 font-inter'>
-        <section className="best-song mt-5 min-h-[30vh] rounded-2xl relative">
+        <section className="best-song mt-5 lg:min-h-[30vh] rounded-2xl relative">
           {
             dataDetailArtist?.sections ?
             dataDetailArtist.sections.filter((section: any) => section.sectionType === 'song')
@@ -51,13 +51,13 @@ const ArtistPage: React.FC = () => {
                   {e.title}
                 </h3>
                 <div className="best-song-list h-max w-full">
-                  <div className="search-wrapper h-full  grid grid-cols-2 gap-x-16 gap-y-4">
+                  <div className="search-wrapper h-full grid grid-cols-1 lg:grid-cols-2 -mx-4">
                     {
                       // Only get max 6 songs
                       e.items.slice(0, 6)
                       .map((item: any, index: number) => (
-                        <Song 
-                          key={index}
+                        <div key={index} className='mb-2 mx-4'>
+                          <Song 
                           index={index}
                           thumbnail={item?.thumbnail}
                           title={item?.title}
@@ -68,6 +68,7 @@ const ArtistPage: React.FC = () => {
                           artistsNames={item?.artistsNames}
                           album={item?.album}
                         />
+                        </div>
                       ))
                     }
                   </div>
@@ -77,7 +78,7 @@ const ArtistPage: React.FC = () => {
             : <Loading />
           }
         </section>
-        <section className="artist-playlist mt-5 min-h-[30vh] rounded-2xl relative">
+        <section className="artist-playlist mt-5 lg:min-h-[30vh] rounded-2xl relative">
         {
             dataDetailArtist?.sections ?
             dataDetailArtist.sections.filter((section: any) => section.sectionType === 'playlist')
@@ -100,7 +101,7 @@ const ArtistPage: React.FC = () => {
               {`Về ${dataDetailArtist?.name}`}
             </h3>
           }
-          <div className="flex justify-between items-start gap-10 pt-5">
+          <div className="flex justify-between items-start pt-5">
             <div className="artist-thumbnail w-[40%] flex-shrink-0 min-h-[350px] h-[350px] rounded-2xl relative">
               {
                 dataDetailArtist?.thumbnailM !== undefined ?
@@ -112,7 +113,7 @@ const ArtistPage: React.FC = () => {
                   ) : <Loading />
               }
             </div>
-            <div className="artist-bio pr-60 flex-1 min-h-[350px] h-[350px] rounded-2xl relative">
+            <div className="artist-bio pr-10 lg:pr-60 flex-1 min-h-[350px] h-[350px] ml-10 rounded-2xl relative">
               {
                 dataDetailArtist?.biography !== undefined ?
                   (

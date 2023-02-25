@@ -19,7 +19,7 @@ const MusicList: React.FC = () => {
   }, [isShowList])
 
   return (
-    <div className='pl-3 border-l border-l-gray-600'>
+    <div className='pl-3 border-l border-l-gray-600 hidden lg:block'>
       <button
         className={`mv-button text-[color:var(--white)] button-hover transition ${isShowList && 'button-shadow'}`}
         onClick={handleShow}

@@ -7,7 +7,7 @@ import ShuffleControl from './shuffleControl'
 
 const PlayerControls: React.FC = ({}) => {
   return (
-    <div className='player-controls text-white flex justify-center items-center gap-5'>
+    <div className='player-controls text-white flex justify-center items-center space-x-5'>
       <ShuffleControl />
       <PreviousControl />
       <PlayControl />

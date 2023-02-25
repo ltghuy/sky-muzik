@@ -34,11 +34,11 @@ const MVHorizontalItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artis
       </div>
       <div className="mv-right flex-1 font-inter my-auto ml-3">
         <button className="mv-name text-left" onClick={() => playMV(encodeId)}>
-          <span className='text-sm leading-4 font-medium text-white hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
+          <span className='text-xl lg:text-sm leading-4 font-medium text-white hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
             {title}
           </span>
         </button>
-        <div className="mv-artists text-xs font-medium text-[color:var(--black)] opacity-50 one-line">
+        <div className="mv-artists text-base lg:text-xs font-medium text-[color:var(--black)] opacity-50 one-line">
           {artistsNames}
         </div>
       </div>
