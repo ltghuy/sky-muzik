@@ -36,7 +36,7 @@ const MVPanel: React.FC = () => {
 
   return (
     <main 
-    className={`mv-panel w-full h-screen fixed top-0 left-0 z-[60] overflow-hidden`}
+    className={`mv-panel w-full h-full fixed top-0 left-0 z-[60] overflow-hidden`}
     style={{background: `url(${dataMV?.thumbnailM}) no-repeat center/cover`}}>
       {
         dataMV ? (
