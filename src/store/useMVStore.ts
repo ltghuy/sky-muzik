@@ -13,7 +13,7 @@ interface MVState {
 
 export const useMVStore = create<MVState>((set) => ({
   currentPage: 1,
-  currentCount: 21,
+  currentCount: 30,
   isShowMV: false,
   mvID: '',
   setCurrentCount: (payload: number) => set((state) => ({ currentCount: state.currentCount = payload })),

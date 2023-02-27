@@ -59,7 +59,7 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
     <section className='flex flex-col items-center font-bold space-y-5 select-none'>
       <div 
         id="kara-line1" 
-        className='h-10 md:h-[5rem] flex flex-nowrap space-x-2 transition'>
+        className='h-12 lg:h-20 flex flex-nowrap space-x-2 transition'>
         {
           line1Data.words?.map((word: wordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
@@ -78,7 +78,7 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
       </div>
       <div 
         id="kara-line2" 
-        className='h-10 md:h-[5rem] flex flex-nowrap space-x-2 transition'>
+        className='h-12 lg:h-20 flex flex-nowrap space-x-2 transition'>
         {
           line2Data.words?.map((word2: wordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>

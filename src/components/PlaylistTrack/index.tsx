@@ -16,11 +16,11 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCur
 
   return (
     <div className='playlist-track font-inter'>
-      <div className="playlist-title text-sm text-black dark:text-white font-medium">
+      <div className="playlist-title text-sm text-black dark:text-white font-medium max-lg:text-center">
         <span className='opacity-50'>Lời tựa: </span><br/>
         <span>{description}</span>
       </div>
-      <h6 className="playlist-count flex items-center pl-5 mt-2 text-[color:var(--primary)] text-base">
+      <h6 className="playlist-count flex items-center justify-center lg:justify-start lg:pl-5 mt-2 text-[color:var(--primary)] text-base">
         <span className="total-song">{`${song?.items.length} bài hát`}</span>
         <span className='px-2'>&bull;</span>
         <span className="total-time">{totalDuration}</span>

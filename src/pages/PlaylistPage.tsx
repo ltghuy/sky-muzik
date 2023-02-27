@@ -29,7 +29,7 @@ const PlaylistPage: React.FC = () => {
   return (
     <MainLayout>
       <div className='playlist grid grid-cols-8 pt-10 page-content'>
-        <section className='col-span-3 relative min-h-[200px] rounded-3xl'>
+        <section className='col-span-8 lg:col-span-3 relative min-h-[200px] rounded-3xl'>
           { playListQuery.isLoading && <Loading /> }
           {
             playListQuery.data && 
@@ -43,7 +43,7 @@ const PlaylistPage: React.FC = () => {
             />
           }
         </section>
-        <section className="col-span-5 relative min-h-[500px] rounded-3xl ml-5">
+        <section className="col-span-8 lg:col-span-5 relative min-h-[500px] rounded-3xl ml-5">
           { playListQuery.isLoading && <Loading /> }
           {
             playListQuery.data && 

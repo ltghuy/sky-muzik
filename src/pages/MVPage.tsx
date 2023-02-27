@@ -20,10 +20,10 @@ const MVPage: React.FC = () => {
     }
     if (currentCount >= 200) {
       setCurrentPage(currentPage + 1)
-      setCurrentCount(21)
+      setCurrentCount(30)
     } 
     else {
-      setCurrentCount(currentCount + 21)
+      setCurrentCount(currentCount + 30)
     }
   }
 

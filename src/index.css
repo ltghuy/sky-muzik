@@ -120,7 +120,7 @@ body {
     @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white bg-opacity-30 cursor-pointer justify-center items-center;
   }
   .button-hover {
-    @apply p-2 hover:bg-gray-50 hover:bg-opacity-30 rounded-full;
+    @apply p-2 xl:hover:bg-gray-50 xl:hover:bg-opacity-30 rounded-full;
   }
   .button-shadow {
     @apply p-2 bg-gray-50 bg-opacity-30 rounded-full;

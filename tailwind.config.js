@@ -16,7 +16,7 @@ module.exports = {
           '100%': { transform: 'rotate(360deg)' },
         },
         fadeIn: {
-          '0%': { opacity: 0 },
+          '0%': { opacity: 0.3 },
           '100%': { opacity: 1 },
         },
       },
@@ -24,6 +24,7 @@ module.exports = {
         ltr: 'ltr 0.75s infinite',
         rotate: 'rotate 10s infinite linear',
         fadeIn: 'fadeIn 2s linear',
+        fadeInInfinite: 'fadeIn 3s ease-out infinite alternate',
       },
     },
     fontFamily: {
