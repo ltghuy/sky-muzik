@@ -58,6 +58,7 @@ const LyricPanel: React.FC = () => {
         <div className="lyric-main w-full flex-1 h-[90%] flex flex-col-reverse lg:flex-row items-start lg:items-end px-16 py-10 overflow-hidden">
           {
             lyric && lyricOptions === 'lyric' &&
+            lyric.length > 0 ?
             <>
               <div className="lyric-thumbnail w-40 h-40 lg:w-[22rem] lg:h-[22rem] flex-shrink-0 p-5 rounded-2xl relative mt-16 lg:mt-0 group">
                 <img 
@@ -100,6 +101,7 @@ const LyricPanel: React.FC = () => {
                 }
               </div>
             </>
+            : <div className='text-white text-center text-2xl font-inter font-bold w-full'>Lời bài hát đang cập nhật</div>
           }
           {
             lyric && lyricOptions === 'karaoke' &&

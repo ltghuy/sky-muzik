@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
   return (
     <MainLayout>
       <div className="page-content">
-        <div className="home-slider w-full h-60 rounded-2xl overflow-hidden relative">
+        <div className={`home-slider w-full h-60 overflow-hidden relative ${bannerQuery.isLoading && 'rounded-2xl'}`}>
           { bannerQuery.isLoading && <Loading />}
           { bannerQuery.isSuccess && <Slider data={bannerQuery.data} cols={3}/>}
         </div>
