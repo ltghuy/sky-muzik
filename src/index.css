@@ -115,6 +115,10 @@ body {
   -webkit-text-stroke: 1.5px #e35050;
 }
 
+.lyric-timeline {
+  -webkit-mask-image: linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.8) 10%,#fff 25%,#fff 75%,hsla(0,0%,100%,.8) 90%,hsla(0,0%,100%,0));
+}
+
 @layer components {
   .slider-arrow {
     @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white bg-opacity-30 cursor-pointer justify-center items-center;

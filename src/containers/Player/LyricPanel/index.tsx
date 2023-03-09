@@ -26,6 +26,11 @@ const LyricPanel: React.FC = () => {
     return false
   }
 
+  const loaded = (e: KaraLineType) => {
+    if (currentTime * 1000 > e.endTime) return true
+    return false
+  }
+
   useEffect(() => {
     lyricRef?.current?.scroll({
       top: 0
@@ -57,8 +62,11 @@ const LyricPanel: React.FC = () => {
         </div>
         <div className="lyric-main w-full flex-1 h-[90%] flex flex-col-reverse lg:flex-row items-start lg:items-end px-16 py-10 overflow-hidden">
           {
+            lyric && lyric.length <= 0 && 
+            <div className='text-white text-center text-2xl font-inter font-bold w-full'>Lời bài hát đang cập nhật</div>
+          }
+          {
             lyric && lyricOptions === 'lyric' &&
-            lyric.length > 0 ?
             <>
               <div className="lyric-thumbnail w-40 h-40 lg:w-[22rem] lg:h-[22rem] flex-shrink-0 p-5 rounded-2xl relative mt-16 lg:mt-0 group">
                 <img 
@@ -71,7 +79,7 @@ const LyricPanel: React.FC = () => {
                   <NextControl />
                 </div>
               </div>
-              <div className="lyric-timeline flex-1 h-full lg:ml-20 space-y-6 lg:space-y-10 overflow-y-scroll hidden-scrollbar" ref={lyricRef}>
+              <div className={`${loaded(lyric[1]) && 'lyric-timeline'} flex-1 h-full lg:ml-20 space-y-6 lg:space-y-10 overflow-y-scroll hidden-scrollbar`} ref={lyricRef}>
                 {
                   lyric.map((e: KaraLineType, index: number) => {
                     if (inTimeLine(e) && isLyric) {
@@ -81,7 +89,7 @@ const LyricPanel: React.FC = () => {
                       <div
                         id={`line-${index}`}
                         key={index}
-                        className={`transition-all duration-500 box-border origin-[center_left] ${inTimeLine(e) ? "scale-105" : "scale-95"}`}
+                        className={`transition-all duration-500 box-border origin-[center_left]`}
                         onDoubleClick={() => {
                           if (audioRef) {
                             audioRef.currentTime = e.startTime / 1000
@@ -91,7 +99,9 @@ const LyricPanel: React.FC = () => {
                         }}
                         >
                         <span
-                          className={`text-[42px] leading-[50px] font-inter cursor-pointer select-none inline-block ${inTimeLine(e) ? "text-amber-400" : "text-[color:var(--white)] opacity-70"}`}
+                          className={`text-[42px] leading-[50px] font-inter font-bold cursor-pointer select-none inline-block 
+                          ${inTimeLine(e) ? 'text-amber-400' : 'text-white'}
+                          ${loaded(e) ? 'opacity-30' : 'opacity-100'}`}
                         >
                           { e.data } 
                         </span>
@@ -101,7 +111,6 @@ const LyricPanel: React.FC = () => {
                 }
               </div>
             </>
-            : <div className='text-white text-center text-2xl font-inter font-bold w-full'>Lời bài hát đang cập nhật</div>
           }
           {
             lyric && lyricOptions === 'karaoke' &&
