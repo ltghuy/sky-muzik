@@ -66,7 +66,7 @@ const LyricPanel: React.FC = () => {
             <div className='text-white text-center text-2xl font-inter font-bold w-full'>Lời bài hát đang cập nhật</div>
           }
           {
-            lyric && lyricOptions === 'lyric' &&
+            lyric && lyric.length > 0 && lyricOptions === 'lyric' &&
             <>
               <div className="lyric-thumbnail w-40 h-40 lg:w-[22rem] lg:h-[22rem] flex-shrink-0 p-5 rounded-2xl relative mt-16 lg:mt-0 group">
                 <img 
@@ -113,7 +113,7 @@ const LyricPanel: React.FC = () => {
             </>
           }
           {
-            lyric && lyricOptions === 'karaoke' &&
+            lyric && lyric.length > 0 && lyricOptions === 'karaoke' &&
             <section className='karaoke text-white text-lg md:text-3xl lg:text-5xl font-inter flex flex-col justify-center items-center w-full h-full'>
               <Karaoke lyric={lyric} />
             </section>
