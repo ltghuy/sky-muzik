@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { useMVStore } from '../stores/useMVStore'
+import { useMVStore } from '@stores/useMVStore'
 import { useQuery } from 'react-query'
-import { getMVList } from '../apis/mv'
-import { MVProps } from '../models/common'
-import useInfinityScroll from '../hooks/useInfinityScroll'
-import Loading from '../components/Loading'
-import MainLayout from '../containers/MainLayout'
-import MVItem from '../components/MVItem'
+import { getMVList } from '@apis/mv'
+import { MVProps } from '@models/common'
+import useInfinityScroll from '@hooks/useInfinityScroll'
+import Loading from '@components/Loading'
+import MainLayout from '@containers/MainLayout'
+import MVItem from '@components/MVItem'
 
 const MVPage: React.FC = () => {
   const [loadMore, setLoadMore] = useState<boolean>(false)

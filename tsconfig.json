@@ -29,7 +29,7 @@
       "@hooks/*": ["./hooks/*"],
       "@models/*": ["./models/*"],
       "@pages/*": ["./pages/*"],
-      "@routes/*": ["./routes/*"],
+      "@route/*": ["./route/*"],
       "@stores/*": ["./stores/*"],
       "@static/*": ["./static/*"],
       "@utils/*": ["./utils/*"]

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
-import { useAudioStore } from '../stores/useAudioStore'
-import { getDetailPlaylist } from '../apis/detailPlaylist'
-import Loading from '../components/Loading'
-import MainLayout from '../containers/MainLayout'
-import PlayListInfo from '../components/PlayListInfo'
-import PlaylistTrack from '../components/PlaylistTrack'
+import { useAudioStore } from '@stores/useAudioStore'
+import { getDetailPlaylist } from '@apis/detailPlaylist'
+import Loading from '@components/Loading'
+import MainLayout from '@containers/MainLayout'
+import PlayListInfo from '@components/PlayListInfo'
+import PlaylistTrack from '@components/PlaylistTrack'
 
 const PlaylistPage: React.FC = () => {
   const { currentAlbum } = useAudioStore()

@@ -10,7 +10,7 @@ module.exports = {
       "@hooks": path.resolve(__dirname, "src/hooks"),
       "@models": path.resolve(__dirname, "src/models"),
       "@pages": path.resolve(__dirname, "src/pages"),
-      "@routes": path.resolve(__dirname, "src/routes"),
+      "@route": path.resolve(__dirname, "src/route"),
       "@stores": path.resolve(__dirname, "src/stores"),
       "@static": path.resolve(__dirname, "src/static"),
       "@utils": path.resolve(__dirname, "src/utils"),

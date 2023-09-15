@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { getLyric } from "../apis/lyric"
-import { KaraLineType, WordType } from "../models/common"
+import { KaraLineType, WordType } from "@models/common"
+import { getLyric } from "@apis/lyric"
 
 const useLyric = ( songId: string | null): any => {
   const [lyric, setLyric] = useState<Array<{ data: string }>>()

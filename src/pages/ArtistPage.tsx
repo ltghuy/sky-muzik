@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { getDetailArtist } from '../apis/artist'
-import { ArtistProps } from '../models/common'
-import MainLayout from '../containers/MainLayout'
-import Playlist from '../containers/PlayList'
-import Loading from '../components/Loading'
-import Song from '../components/Song.tsx'
+import { getDetailArtist } from '@apis/artist'
+import { ArtistProps } from '@models/common'
+import MainLayout from '@containers/MainLayout'
+import Playlist from '@containers/PlayList'
+import Loading from '@components/Loading'
+import Song from '@components/Song.tsx'
 
 const ArtistPage: React.FC = () => {
   const params = useParams<{ artistID: string }>()

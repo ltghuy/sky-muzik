@@ -1,11 +1,11 @@
 import React, { useEffect } from "react"
-import { useMVStore } from "./stores/useMVStore"
-import { useAudioStore } from "./stores/useAudioStore"
-import { getDetailPlaylist } from "./apis/detailPlaylist"
-import RouterPage from "./routes"
-import Navbar from "./components/Navbar"
-import Player from "./containers/Player"
-import MVPanel from "./components/MVPanel"
+import { useMVStore } from "@stores/useMVStore"
+import { useAudioStore } from "@stores/useAudioStore"
+import { getDetailPlaylist } from "@apis/detailPlaylist"
+import Navbar from "@components/Navbar"
+import Player from "@containers/Player"
+import MVPanel from "@components/MVPanel"
+import RouterPage from "./route"
 
 const App: React.FC = () => {
   const { currentAlbum, setPlaylistSong } = useAudioStore()
