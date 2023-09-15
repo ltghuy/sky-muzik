@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { getLyric } from "../api/lyric"
-import { KaraLineType, wordType } from "../types/common"
+import { getLyric } from "../apis/lyric"
+import { KaraLineType, WordType } from "../models/common"
 
 const useLyric = ( songId: string | null): any => {
   const [lyric, setLyric] = useState<Array<{ data: string }>>()
@@ -14,13 +14,13 @@ const useLyric = ( songId: string | null): any => {
           let customLyr: KaraLineType[] = []
 
           dataLyric.sentences &&
-          dataLyric.sentences.forEach((e: {words: wordType[]}, i: number) => {
+          dataLyric.sentences.forEach((e: {words: WordType[]}, i: number) => {
             let lineLyric:string = ""
             let sTime: number = 0
             let eTime: number = 0
-            let words: wordType[] = []
+            let words: WordType[] = []
 
-            e.words.forEach((element: wordType, index: number) => {
+            e.words.forEach((element: WordType, index: number) => {
               words.push(element)
               if (index === 0) {
                 sTime = element.startTime

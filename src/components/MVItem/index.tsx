@@ -1,12 +1,12 @@
 import React from 'react'
-import { MVProps } from '../../types/common'
-import { useMVStore } from '../../store/useMVStore'
-import { useAudioStore } from '../../store/useAudioStore'
+import { MVProps } from '@models/common'
+import { useMVStore } from '@stores/useMVStore'
+import { useAudioStore } from '@stores/useAudioStore'
 import { Link } from 'react-router-dom'
-import { ReactComponent as PlayIcon } from '../../static/icons/play-icon.svg'
+import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 
 
-const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames}) => {
+const MVItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames }) => {
   const { setMVID, setShowMV } = useMVStore()
   const { changePlayIcon } = useAudioStore()
 
@@ -20,13 +20,13 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
   return (
     <div className="mv-item h-full flex flex-col">
       <div className="mv-top w-full flex-1 overflow-hidden group rounded-2xl cursor-pointer relative">
-        <img 
-          src={thumbnailM} 
-          alt={title} 
-          className="absolute w-full h-full object-cover group-hover:scale-110 transition-all" 
+        <img
+          src={thumbnailM}
+          alt={title}
+          className="absolute w-full h-full object-cover group-hover:scale-110 transition-all"
         />
         <div className="absolute w-full h-full inset-0 bg-black bg-opacity-50 hidden group-hover:flex items-center justify-center">
-          <button 
+          <button
             onClick={() => playMV(encodeId)}
             className='text-white p-3 border border-white rounded-full'>
             <PlayIcon />
@@ -36,9 +36,9 @@ const MVItem:React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artists
       <div className="mv-bottom h-14 flex-shrink-0 flex items-center">
         <div className="artist-avatar w-10 h-10">
           <Link to={artist?.alias ? `/artist/${artist.alias}` : '#'}>
-            <img 
+            <img
               className='w-full h-full object-cover rounded-full'
-              src={artist?.thumbnail} 
+              src={artist?.thumbnail}
               alt={artist?.name} />
           </Link>
         </div>

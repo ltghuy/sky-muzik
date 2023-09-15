@@ -1,25 +1,25 @@
 import React, { useEffect, useRef, createContext } from 'react'
-import { useAudioStore } from '../../store/useAudioStore'
-import { getSong, getSongInfo } from '../../api/song'
+import { useAudioStore } from '@stores/useAudioStore'
 import PlayerLeft from './PlayerLeft'
 import PlayerCenter from './PlayerCenter'
 import PlayerRight from './PlayerRight'
 import LyricPanel from './LyricPanel'
+import { getSong, getSongInfo } from '@apis/song'
 
 export const AudioContext = createContext<HTMLAudioElement | null | undefined>(null)
 
 const Player: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
-  const { songID, srcAudio, isLoop, volume, autoPlay, playListSong, currentIndexPlaylist} = useAudioStore()
-  const { 
-    setCurrentTime, 
-    setDuration, 
-    setAutoplay, 
-    setCurrentIndexPlaylist, 
-    setSongId, 
-    setSrcAudio, 
-    setInfoSong, 
-    changePlayIcon} = useAudioStore()
+  const { songID, srcAudio, isLoop, volume, autoPlay, playListSong, currentIndexPlaylist } = useAudioStore()
+  const {
+    setCurrentTime,
+    setDuration,
+    setAutoplay,
+    setCurrentIndexPlaylist,
+    setSongId,
+    setSrcAudio,
+    setInfoSong,
+    changePlayIcon } = useAudioStore()
 
   const handleAudioEnd = () => {
     if (!isLoop) {
@@ -30,7 +30,7 @@ const Player: React.FC = () => {
         } else {
           currentIndex = currentIndexPlaylist + 1
         }
-        
+
         setCurrentIndexPlaylist(currentIndex)
         setSongId(playListSong[currentIndex].encodeId)
         changePlayIcon(true)
@@ -59,7 +59,7 @@ const Player: React.FC = () => {
     (
       async () => {
         try {
-          if(songID === "") {
+          if (songID === "") {
             console.log("Song ID not found")
           } else {
             const linkSong = await getSong(songID)
@@ -78,7 +78,7 @@ const Player: React.FC = () => {
               }
             )
           }
-        } catch(err) {
+        } catch (err) {
           console.log(err)
         }
       }

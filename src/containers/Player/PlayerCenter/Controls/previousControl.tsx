@@ -1,10 +1,10 @@
 import React from 'react'
-import { useAudioStore } from '../../../../store/useAudioStore'
-import { ReactComponent as PreviousIcon } from '../../../../static/icons/previous-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { ReactComponent as PreviousIcon } from '@static/icons/previous-icon.svg'
 
 const PreviousControl: React.FC = () => {
   const {
-    currentIndexPlaylist, 
+    currentIndexPlaylist,
     playListSong,
     setCurrentIndexPlaylist,
     setSongId,
@@ -30,7 +30,7 @@ const PreviousControl: React.FC = () => {
   }
 
   return (
-    <button 
+    <button
       className='text-[color:var(--white)] button-hover transition'
       onClick={handlePreviousSong} >
       <PreviousIcon className='w-5 h-5' />

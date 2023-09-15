@@ -1,17 +1,17 @@
 import React from 'react'
-import { useAudioStore } from '../../../../store/useAudioStore'
-import { ReactComponent as Nexticon } from '../../../../static/icons/next-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { ReactComponent as Nexticon } from '@static/icons/next-icon.svg'
 
 const NextControl: React.FC = () => {
   const {
     currentIndexPlaylist,
     playListSong,
     changePlayIcon,
-    setCurrentIndexPlaylist, 
+    setCurrentIndexPlaylist,
     setSongId,
     setAutoplay
   } = useAudioStore()
-  
+
   const handleNextSong = () => {
     if (playListSong !== undefined && playListSong.length > 0) {
       let currentIndex
@@ -30,7 +30,7 @@ const NextControl: React.FC = () => {
   }
 
   return (
-    <button 
+    <button
       className='text-[color:var(--white)] button-hover transition'
       onClick={handleNextSong} >
       <Nexticon className='w-5 h-5' />

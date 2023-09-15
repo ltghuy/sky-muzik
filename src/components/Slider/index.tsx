@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as ArrowIcon } from '../../static/icons/slider-arrow.svg'
+import { ReactComponent as ArrowIcon } from '@static/icons/slider-arrow.svg'
 interface SliderProps {
   data: object[] | any,
   cols: number,
@@ -35,33 +35,33 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
     alert('Tính năng hiện đang được cập nhật!')
   }
 
-  return (     
+  return (
     <section className='slider w-full h-full group'>
       <div className="slider-container w-full h-full relative flex overflow-hidden">
         {
           data.map((slide: any, index: number) => (
-            <div 
-              key={index} 
-              className={`slider-item h-full flex-shrink-0 cursor-pointer absolute top-0 left-0 px-4 transition-all ease-in-out duration-[1500ms]`} 
+            <div
+              key={index}
+              className={`slider-item h-full flex-shrink-0 cursor-pointer absolute top-0 left-0 px-4 transition-all ease-in-out duration-[1500ms]`}
               onClick={handleClick}
-              style={{width: `calc(100%/${cols})`, transform: `translateX(calc(100%*${index}))`}}>
-                <img 
-                  src={slide.banner} 
-                  alt='banner image' 
-                  className='w-full h-full object-cover rounded-3xl'/>
+              style={{ width: `calc(100%/${cols})`, transform: `translateX(calc(100%*${index}))` }}>
+              <img
+                src={slide.banner}
+                alt='banner image'
+                className='w-full h-full object-cover rounded-3xl' />
             </div>
           ))
         }
       </div>
-      <div 
-        className="slider-arrow previous-arrow left-0 hidden group-hover:flex" 
+      <div
+        className="slider-arrow previous-arrow left-0 hidden group-hover:flex"
         onClick={previousSlide}>
         <ArrowIcon className='w-4' />
       </div>
-      <div 
-        className="slider-arrow next-arrow right-0 scale-[-1] hidden group-hover:flex" 
+      <div
+        className="slider-arrow next-arrow right-0 scale-[-1] hidden group-hover:flex"
         onClick={nextSlide} >
-        <ArrowIcon className='w-4'/>
+        <ArrowIcon className='w-4' />
       </div>
     </section>
   )

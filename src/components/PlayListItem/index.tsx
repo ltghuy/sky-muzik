@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ReactComponent as HeartIcon} from '../../static/icons/heart-icon.svg'
-import { ReactComponent as PlayIcon} from '../../static/icons/play-icon.svg'
-import { ReactComponent as DotsIcon} from '../../static/icons/triple-dots.svg'
+import { ReactComponent as HeartIcon } from '@static/icons/heart-icon.svg'
+import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
+import { ReactComponent as DotsIcon } from '@static/icons/triple-dots.svg'
 
 interface ItemProps {
   encodeId: string,
@@ -53,7 +53,7 @@ const PlayListItem: React.FC<ItemProps> = ({ encodeId, title, description, thumb
           </h3>
         </Link>
         <p className='description dark:text-white one-line font-normal text-sm opacity-75'>
-          { artistsNames || description}
+          {artistsNames || description}
         </p>
       </div>
     </div>

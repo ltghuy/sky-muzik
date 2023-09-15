@@ -1,8 +1,9 @@
-import axios from '../utils/axios'
+import axios from '@utils/axios'
+import { API_ROUTES } from '@constants/apiRoutes'
 
 const getSong = async (id: string) => {
   try {
-    const data = await axios.get<any, any>("/song", {
+    const data = await axios.get<any, any>(API_ROUTES.SONG, {
       params: {
         id: id
       }
@@ -15,7 +16,7 @@ const getSong = async (id: string) => {
 
 const getSongInfo = async (id: string) => {
   try {
-    const data = await axios.get<any, any>("/infosong", {
+    const data = await axios.get<any, any>(API_ROUTES.INFOSONG, {
       params: {
         id: id
       }

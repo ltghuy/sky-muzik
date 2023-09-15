@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { AudioContext } from '../..'
-import { useAudioStore } from '../../../../store/useAudioStore'
-import { ReactComponent as VolumnOff } from '../../../../static/icons/volume-off.svg'
-import { ReactComponent as VolumnOn } from '../../../../static/icons/volume-on.svg'
-import DragBar from '../../DragBar'
+import { useAudioStore } from '@stores/useAudioStore'
+import { ReactComponent as VolumnOff } from '@static/icons/volume-off.svg'
+import { ReactComponent as VolumnOn } from '@static/icons/volume-on.svg'
+import DragBar from '@containers/Player/DragBar'
 
-const VolumnControl: React.FC = () => {
+const VolumeControl: React.FC = () => {
   const { isMute, volume, changeVolumeIcon, setVolume } = useAudioStore()
   const audioRef = useContext(AudioContext)
 
@@ -36,9 +36,9 @@ const VolumnControl: React.FC = () => {
       <button
         className='mv-button text-[color:var(--white)] button-hover mr-1 transition'
         onClick={handleTurnVolume}>
-        { isMute ? <VolumnOff className='w-5 h-5' /> : <VolumnOn className='w-5 h-5' /> }
+        {isMute ? <VolumnOff className='w-5 h-5' /> : <VolumnOn className='w-5 h-5' />}
       </button>
-      <DragBar 
+      <DragBar
         width='100px'
         height='3px'
         currentPercent={Number(volume) * 100}
@@ -48,4 +48,4 @@ const VolumnControl: React.FC = () => {
   )
 }
 
-export default VolumnControl
+export default VolumeControl

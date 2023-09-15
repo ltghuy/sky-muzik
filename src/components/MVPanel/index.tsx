@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useMVStore } from '../../store/useMVStore'
-import { MVProps } from '../../types/common'
-import { getMVDetail } from '../../api/mv'
-import Loading from '../Loading'
-import MVHorizontalItem from '../MVItem/horizontal'
-import { ReactComponent as CloseIcon } from '../../static/icons/close-icon.svg'
+import { useMVStore } from '@stores/useMVStore'
+import { MVProps } from '@models/common'
+import Loading from '@components/Loading'
+import MVHorizontalItem from '@components/MVItem/horizontal'
+import { ReactComponent as CloseIcon } from '@static/icons/close-icon.svg'
+import { getMVDetail } from '@apis/mv'
 
 interface MvWithUrl extends MVProps {
   streaming: {
@@ -12,7 +12,7 @@ interface MvWithUrl extends MVProps {
       '480p': string,
       '720p': string
     }
-  }, 
+  },
   recommends: []
 }
 
@@ -35,9 +35,9 @@ const MVPanel: React.FC = () => {
   }, [mvID])
 
   return (
-    <main 
-    className={`mv-panel w-full h-full fixed top-0 left-0 z-[60] overflow-hidden`}
-    style={{background: `url(${dataMV?.thumbnailM}) no-repeat center/cover`}}>
+    <main
+      className={`mv-panel w-full h-full fixed top-0 left-0 z-[60] overflow-hidden`}
+      style={{ background: `url(${dataMV?.thumbnailM}) no-repeat center/cover` }}>
       {
         dataMV ? (
           <div className="mv-wrapper w-full h-full flex flex-col bg-black bg-opacity-25 backdrop-blur-3xl relative">
@@ -55,9 +55,9 @@ const MVPanel: React.FC = () => {
             </div>
             <div className="mv-bottom w-full flex-1 p-10 pb-10 flex flex-col lg:flex-row items-stretch justify-between overflow-hidden">
               <div className="mv-player h-[40%] lg:h-full w-full lg:w-[70%] flex-shrink-0">
-                <iframe 
+                <iframe
                   className='w-full h-full rounded'
-                  allowFullScreen 
+                  allowFullScreen
                   src={dataMV?.streaming.mp4['720p'] || dataMV?.streaming.mp4['480p']}
                 >
                 </iframe>
@@ -67,10 +67,10 @@ const MVPanel: React.FC = () => {
                 <div className="mv-list mt-4 overflow-y-scroll hidden-scrollbar">
                   {
                     dataMV.recommends.map((mv: MVProps, index: number) => (
-                      <div 
-                        className="mv-item-wrapper w-full h-32 lg:h-20 hover:bg-white hover:bg-opacity-30 transition py-2 px-4 mb-4 lg:mb-0" 
+                      <div
+                        className="mv-item-wrapper w-full h-32 lg:h-20 hover:bg-white hover:bg-opacity-30 transition py-2 px-4 mb-4 lg:mb-0"
                         key={index}>
-                        <MVHorizontalItem 
+                        <MVHorizontalItem
                           artist={mv.artist}
                           artistsNames={mv.artistsNames}
                           encodeId={mv.encodeId}
@@ -85,7 +85,7 @@ const MVPanel: React.FC = () => {
             </div>
           </div>
         ) :
-        <Loading darkModeBG='--primary-darker'/>
+          <Loading darkModeBG='--primary-darker' />
       }
     </main>
   )

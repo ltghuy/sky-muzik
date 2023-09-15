@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../../components/Header'
+import Header from '@components/Header'
 
 interface MainLayoutProps {
   children: React.ReactNode
@@ -11,7 +11,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <div className='main-wrapper absolute h-full w-full pl-[var(--sidebar-width)] transition-all delay-300 ease-linear duration-300'>
         <Header />
         <div className='main-content h-full overflow-y-scroll'>
-          { children}
+          {children}
         </div>
       </div>
     </main>

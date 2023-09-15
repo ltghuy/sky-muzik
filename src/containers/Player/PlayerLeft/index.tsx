@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAudioStore } from '../../../store/useAudioStore'
-import { ReactComponent as HeartIcon } from '../../../static/icons/heart-icon.svg'
-import { ReactComponent as DotstIcon } from '../../../static/icons/triple-dots.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { ReactComponent as HeartIcon } from '@static/icons/heart-icon.svg'
+import { ReactComponent as DotstIcon } from '@static/icons/triple-dots.svg'
 
-const PlayerLeft:React.FC = () => {
-  const { infoSong, currentAlbum} = useAudioStore()
+const PlayerLeft: React.FC = () => {
+  const { infoSong, currentAlbum } = useAudioStore()
 
   return (
     <section className='player-left w-[20%] lg:w-[30%] flex items-center justify-start flex-shrink-0 basis-auto'>
       <div className="media-thumnail">
         <div className="w-16 h-16 bg-white rounded-lg overflow-hidden">
           <Link to={`/playlist/${currentAlbum}`} className='block w-full h-full'>
-            <img 
+            <img
               className='object-cover'
-              src={infoSong.thumbnail} 
+              src={infoSong.thumbnail}
               alt={infoSong.title} />
           </Link>
         </div>
@@ -26,9 +26,9 @@ const PlayerLeft:React.FC = () => {
         <div className='media-artist flex one-line'>
           {
             infoSong.artists.map((artist: any, index: number) => (
-              <Link 
+              <Link
                 key={index}
-                to={`/artist/${artist.alias}`} 
+                to={`/artist/${artist.alias}`}
                 className='text-[color:var(--grey-100)] text-xs leading-5 font-medium'>
                 <span>{index > 0 ? ', ' : ''}</span>
                 <span className='hover:text-[color:var(--primary-light)] hover:underline' title={artist.name}>
