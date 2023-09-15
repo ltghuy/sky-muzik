@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getDetailArtist } from '../api/artist'
-import { ArtistProps } from '../types/common'
+import { ArtistProps } from '../models/common'
 import MainLayout from '../containers/MainLayout'
 import Playlist from '../containers/PlayList'
 import Loading from '../components/Loading'
@@ -44,54 +44,54 @@ const ArtistPage: React.FC = () => {
         <section className="best-song mt-5 lg:min-h-[30vh] rounded-2xl relative">
           {
             dataDetailArtist?.sections ?
-            dataDetailArtist.sections.filter((section: any) => section.sectionType === 'song')
-            .map((e: any) => (
-              <div key={e.title}>
-                <h3 className="heading text-xl text-black dark:text-white font-bold">
-                  {e.title}
-                </h3>
-                <div className="best-song-list h-max w-full">
-                  <div className="search-wrapper h-full grid grid-cols-1 lg:grid-cols-2 -mx-4">
-                    {
-                      // Only get max 6 songs
-                      e.items.slice(0, 6)
-                      .map((item: any, index: number) => (
-                        <div key={index} className='mb-2 mx-4'>
-                          <Song 
-                          index={index}
-                          thumbnail={item?.thumbnail}
-                          title={item?.title}
-                          encodeId={item?.encodeId}
-                          duration={item?.duration}
-                          streamingStatus={item?.streamingStatus}
-                          artists={item?.artists}
-                          artistsNames={item?.artistsNames}
-                          album={item?.album}
-                        />
-                        </div>
-                      ))
-                    }
+              dataDetailArtist.sections.filter((section: any) => section.sectionType === 'song')
+                .map((e: any) => (
+                  <div key={e.title}>
+                    <h3 className="heading text-xl text-black dark:text-white font-bold">
+                      {e.title}
+                    </h3>
+                    <div className="best-song-list h-max w-full">
+                      <div className="search-wrapper h-full grid grid-cols-1 lg:grid-cols-2 -mx-4">
+                        {
+                          // Only get max 6 songs
+                          e.items.slice(0, 6)
+                            .map((item: any, index: number) => (
+                              <div key={index} className='mb-2 mx-4'>
+                                <Song
+                                  index={index}
+                                  thumbnail={item?.thumbnail}
+                                  title={item?.title}
+                                  encodeId={item?.encodeId}
+                                  duration={item?.duration}
+                                  streamingStatus={item?.streamingStatus}
+                                  artists={item?.artists}
+                                  artistsNames={item?.artistsNames}
+                                  album={item?.album}
+                                />
+                              </div>
+                            ))
+                        }
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            )) 
-            : <Loading />
+                ))
+              : <Loading />
           }
         </section>
         <section className="artist-playlist mt-5 lg:min-h-[30vh] rounded-2xl relative">
-        {
+          {
             dataDetailArtist?.sections ?
-            dataDetailArtist.sections.filter((section: any) => section.sectionType === 'playlist')
-            .map((e: any, index: number) => (
-              <Playlist
-                key={index}
-                title={e.title}
-                sectionId={e.sectionId}
-                link={e.link}
-                playList={e.items}
-              />
-            )) 
-            : <Loading />
+              dataDetailArtist.sections.filter((section: any) => section.sectionType === 'playlist')
+                .map((e: any, index: number) => (
+                  <Playlist
+                    key={index}
+                    title={e.title}
+                    sectionId={e.sectionId}
+                    link={e.link}
+                    playList={e.items}
+                  />
+                ))
+              : <Loading />
           }
         </section>
         <section className="artist-biography w-full mt-5">

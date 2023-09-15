@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useAudioStore } from '../store/useAudioStore'
+import { useAudioStore } from '../stores/useAudioStore'
 import { useQuery } from 'react-query'
 import { getCharts } from '../api/charts'
 import Button from '../components/Button'
@@ -10,14 +10,14 @@ import MainLayout from '../containers/MainLayout'
 const Chartspage: React.FC = () => {
   const [hasLoadmore, setHasLoadmore] = useState<boolean>(true)
   const [count, setCount] = useState<number>(10)
-  const { playListSong, setSongId, setCurrentIndexPlaylist, setPlaylistSong} = useAudioStore()
+  const { playListSong, setSongId, setCurrentIndexPlaylist, setPlaylistSong } = useAudioStore()
 
   const loadMoreList = () => {
     setCount(100)
     setHasLoadmore(false)
   }
 
-  const sortRankings =  (index: number) => {
+  const sortRankings = (index: number) => {
     switch (index) {
       case 1: return 'text-stroke-top1'
       case 2: return 'text-stroke-top2'
@@ -40,9 +40,9 @@ const Chartspage: React.FC = () => {
     <MainLayout>
       <div className="page-content">
         <div className='charts-wrapper min-h-[500px] mb-5 relative rounded-2xl'>
-          { chartsQuery.isLoading && <Loading /> }
+          {chartsQuery.isLoading && <Loading />}
           {
-            chartsQuery.data && 
+            chartsQuery.data &&
             <>
               <section className="charts-list">
                 <h2 className='title text-3xl text-black dark:text-white font-inter font-bold mb-5'>
@@ -50,28 +50,28 @@ const Chartspage: React.FC = () => {
                 </h2>
                 {
                   chartsQuery.data.RTChart.items.slice(0, count)
-                  .map((item: any, index: number) => (
-                    <div className='item flex justify-between items-center' key={index}>
-                      <div className="number w-16 flex-shrink-0 text-center font-black">
-                        <span className={`text-transparent text-4xl ${sortRankings(index + 1)}`}>
-                          {index + 1}
-                        </span>
+                    .map((item: any, index: number) => (
+                      <div className='item flex justify-between items-center' key={index}>
+                        <div className="number w-16 flex-shrink-0 text-center font-black">
+                          <span className={`text-transparent text-4xl ${sortRankings(index + 1)}`}>
+                            {index + 1}
+                          </span>
+                        </div>
+                        <div className="dash text-4xl text-gray-500 px-2 mr-4">-</div>
+                        <Song
+                          index={index}
+                          thumbnail={item?.thumbnail}
+                          title={item?.title}
+                          encodeId={item?.encodeId}
+                          duration={item?.duration}
+                          streamingStatus={item?.streamingStatus}
+                          artists={item?.artists}
+                          artistsNames={item?.artistsNames}
+                          album={item?.album}
+                          handleClick={() => playCharts(index)}
+                        />
                       </div>
-                      <div className="dash text-4xl text-gray-500 px-2 mr-4">-</div>
-                      <Song
-                        index={index}
-                        thumbnail={item?.thumbnail}
-                        title={item?.title}
-                        encodeId={item?.encodeId}
-                        duration={item?.duration}
-                        streamingStatus={item?.streamingStatus}
-                        artists={item?.artists}
-                        artistsNames={item?.artistsNames}
-                        album={item?.album}
-                        handleClick={() => playCharts(index)}
-                      />
-                    </div>
-                  ))
+                    ))
                 }
                 {
                   hasLoadmore && (

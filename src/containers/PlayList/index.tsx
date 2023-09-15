@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PlayListItem from '../../components/PlayListItem'
-import { ReactComponent as ArrowIcon } from '../../static/icons/arrow-right-icon.svg'
+import PlayListItem from '@components/PlayListItem'
+import { ReactComponent as ArrowIcon } from '@static/icons/arrow-right-icon.svg'
 
 interface PlayListProps {
   title: string,
@@ -10,7 +10,7 @@ interface PlayListProps {
   playList: Array<object>
 }
 
-const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList}) => {
+const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList }) => {
   return (
     <section className='play-list mb-8 lg:mb-12 shadow shadow-zinc-50 rounded-2xl'>
       <div className="heading flex justify-between items-center p-5 pb-5 border-b border-gray-200">
@@ -21,21 +21,21 @@ const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList}) 
           link &&
           <Link to={link} className='flex text-[color:var(--grey-100)] hover:text-[color:var(--primary)] transition duration-200 group'>
             <span className='text-sm font-medium uppercase'>Tất cả</span>
-            <ArrowIcon className='w-2 ml-2 fill-[color:var(--grey-100)] group-hover:fill-[color:var(--primary)]'/>
+            <ArrowIcon className='w-2 ml-2 fill-[color:var(--grey-100)] group-hover:fill-[color:var(--primary)]' />
           </Link>
         }
       </div>
       <div className="content py-10 px-4 grid grid-cols-5 -mx-2">
         {
-          playList.map((item: any, index: number) => 
-            <PlayListItem 
-              key={index} 
+          playList.map((item: any, index: number) =>
+            <PlayListItem
+              key={index}
               encodeId={item.encodeId}
               title={item.title}
               description={item.sortDescription}
               thumbnail={item.thumbnailM}
               artistsNames={item.artistsNames}
-              />
+            />
           )
         }
       </div>

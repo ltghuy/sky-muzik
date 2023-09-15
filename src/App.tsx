@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
-import { useMVStore } from "./store/useMVStore"
-import { useAudioStore } from "./store/useAudioStore"
+import { useMVStore } from "./stores/useMVStore"
+import { useAudioStore } from "./stores/useAudioStore"
 import { getDetailPlaylist } from "./api/detailPlaylist"
 import RouterPage from "./routes"
 import Navbar from "./components/Navbar"

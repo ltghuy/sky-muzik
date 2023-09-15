@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import SearchBox from './SearchBox'
-import { ReactComponent as ArrowIcon } from '../../static/icons/arrow-icon.svg'
-import { ReactComponent as MessageIcon } from '../../static/icons/message-icon.svg'
-import { ReactComponent as NotificationIcon } from '../../static/icons/notification-icon.svg'
-import { ReactComponent as SunIcon } from '../../static/icons/sun-icon.svg'
-import { ReactComponent as MoonIcon } from '../../static/icons/moon-icon.svg'
+import SearchBox from '@components/Header/SearchBox'
+import { ReactComponent as ArrowIcon } from '@static/icons/arrow-icon.svg'
+import { ReactComponent as MessageIcon } from '@static/icons/message-icon.svg'
+import { ReactComponent as NotificationIcon } from '@static/icons/notification-icon.svg'
+import { ReactComponent as SunIcon } from '@static/icons/sun-icon.svg'
+import { ReactComponent as MoonIcon } from '@static/icons/moon-icon.svg'
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
       if (headerRef.current) {
         wrapper.scrollTop >= 1 ? setStickyClass('bg-white dark:bg-[color:var(--primary-darker)]') : setStickyClass('bg-none')
       }
-    }    
+    }
 
     wrapper.addEventListener('scroll', isSticky)
     return () => {
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
         </div>
         <ul className="header-right flex items-center space-x-3 ml-3 flex-shrink-0">
           <li>
-            <button 
+            <button
               className={'w-20 h-8 rounded-2xl border-slate-300 dark:border-gray-500 border shadow-sm py-1 px-2 flex justify-center items-center relative ' + (isDarkmode === 'dark' ? 'bg-transparent' : 'bg-white')}
               onClick={toggleDarkMode}>
               <span className={"sun text-amber-500 flex-1 " + (isDarkmode === 'dark' ? 'hidden' : 'block')}>
@@ -79,10 +79,10 @@ const Header: React.FC = () => {
           </li>
           <li>
             <button>
-              <img 
-              src="https://api-private.atlassian.com/users/4a5ab89b0c741d737cf666ba8f198042/avatar" 
-              alt="user avatar"
-              className='rounded-full w-10 h-10 object-cover' />
+              <img
+                src="https://api-private.atlassian.com/users/4a5ab89b0c741d737cf666ba8f198042/avatar"
+                alt="user avatar"
+                className='rounded-full w-10 h-10 object-cover' />
             </button>
           </li>
         </ul>

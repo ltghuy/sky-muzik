@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { KaraLineType, wordType } from '../../types/common'
-import { useAudioStore } from '../../store/useAudioStore'
+import { KaraLineType, WordType } from '@models/common'
+import { useAudioStore } from '@stores/useAudioStore'
 
 interface KaraokeProps {
   lyric: KaraLineType[]
@@ -17,12 +17,12 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
     return false
   }
 
-  const loaded = (e: wordType) => {
+  const loaded = (e: WordType) => {
     if (currentTime * 1000 > e.endTime) return true
     return false
   }
 
-  const getPercentageDuration = (e: wordType) => {
+  const getPercentageDuration = (e: WordType) => {
     const duration = e.endTime - e.startTime
     if (loaded(e) || (duration === 0 && inTimeLine(e))) {
       return 100
@@ -35,7 +35,7 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
     lyric.map((e: KaraLineType, index: number) => {
       const line1 = document.querySelector('#kara-line1') as HTMLDivElement
       const line2 = document.querySelector('#kara-line2') as HTMLDivElement
-      
+
       if (index === lyric.length - 1) return
       if (inTimeLine(e) && index % 2 !== 0 && document) {
         setLine1Data(lyric[index + 1])
@@ -57,18 +57,18 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
 
   return (
     <section className='flex flex-col items-center font-bold space-y-5 select-none'>
-      <div 
-        id="kara-line1" 
+      <div
+        id="kara-line1"
         className='h-12 lg:h-20 flex flex-nowrap space-x-2 transition'>
         {
-          line1Data.words?.map((word: wordType, index: number) => (
+          line1Data.words?.map((word: WordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
               <div className={`h-full ${loaded(word) && 'text-amber-400'}`}>{word.data}</div>
               {
                 inTimeLine(line1Data) &&
-                <div 
+                <div
                   className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all ease-linear'
-                  style={{width: `${getPercentageDuration(word)}%`}}>
+                  style={{ width: `${getPercentageDuration(word)}%` }}>
                   {word.data}
                 </div>
               }
@@ -76,18 +76,18 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
           ))
         }
       </div>
-      <div 
-        id="kara-line2" 
+      <div
+        id="kara-line2"
         className='h-12 lg:h-20 flex flex-nowrap space-x-2 transition'>
         {
-          line2Data.words?.map((word2: wordType, index: number) => (
+          line2Data.words?.map((word2: WordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
               <div className={`h-full ${loaded(word2) && 'text-amber-400'}`}>{word2.data}</div>
               {
                 inTimeLine(line2Data) &&
-                <div 
+                <div
                   className='kara-runner absolute w-0 h-full top-0 left-0 text-amber-400 overflow-hidden transition-all ease-linear'
-                  style={{width: `${getPercentageDuration(word2)}%`}}>
+                  style={{ width: `${getPercentageDuration(word2)}%` }}>
                   {word2.data}
                 </div>
               }

@@ -13,8 +13,8 @@ const Top100: React.FC = () => {
     <MainLayout>
       <div className="page-content">
         <div className="top100 rounded-2xl relative min-h-[500px]">
-          { top100Query.isLoading && <Loading /> }
-          { top100Query.isSuccess && 
+          {top100Query.isLoading && <Loading />}
+          {top100Query.isSuccess &&
             top100Query.data.map((item: any, index: number) =>
               <Playlist
                 key={index}

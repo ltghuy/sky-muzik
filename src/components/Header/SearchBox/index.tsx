@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getCharts } from '../../../api/charts'
 import { useQuery } from 'react-query'
-import useOnClickOutside from '../../../hooks/useOnClickOutSide'
-import { ReactComponent as SearchIcon } from '../../../static/icons/search-icon.svg'
-import { ReactComponent as MicroIcon } from '../../../static/icons/micro-icon.svg'
+import useOnClickOutside from '@hooks/useOnClickOutSide'
+import { getCharts } from 'api/charts'
+import { ReactComponent as SearchIcon } from '@static/icons/search-icon.svg'
+import { ReactComponent as MicroIcon } from '@static/icons/micro-icon.svg'
 
 const SearchBox: React.FC = () => {
   const [keyword, setKeyword] = useState<string>('')
@@ -35,10 +35,10 @@ const SearchBox: React.FC = () => {
 
   return (
     <div className='search-box h-10 relative flex-1'>
-      <div 
+      <div
         ref={searchboxRef}
         className={`search-wrapper flex flex-col items-start ${isInputFocus ? 'h-56 bg-[color:var(--primary-light)] rounded-2xl' : 'h-full'}`}
-        >
+      >
         <form
           method='GET'
           onSubmit={handleSubmit}
@@ -60,17 +60,17 @@ const SearchBox: React.FC = () => {
           <ul className='space-y-1 text-xs text-white opacity-80'>
             {
               recommendQuery.data?.newRelease.slice(0, 4)
-              .map((item: any, index: number) => 
-              <li 
-                className='w-full text-white hover:bg-violet-300 rounded py-2 pl-5 flex cursor-pointer' key={index}
-                onClick={() => handleSearch(item.title)}
-              >
-                <span className='mr-2'>
-                  <MicroIcon className='w-4' />
-                </span>
-                <span>{item.title}</span>
-              </li>
-              )
+                .map((item: any, index: number) =>
+                  <li
+                    className='w-full text-white hover:bg-violet-300 rounded py-2 pl-5 flex cursor-pointer' key={index}
+                    onClick={() => handleSearch(item.title)}
+                  >
+                    <span className='mr-2'>
+                      <MicroIcon className='w-4' />
+                    </span>
+                    <span>{item.title}</span>
+                  </li>
+                )
             }
           </ul>
         </div>

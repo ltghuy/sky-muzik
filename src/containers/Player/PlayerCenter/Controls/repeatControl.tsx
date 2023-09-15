@@ -1,6 +1,6 @@
 import React from 'react'
-import { useAudioStore } from '../../../../store/useAudioStore'
-import { ReactComponent as RepeatIcon } from '../../../../static/icons/repeat-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { ReactComponent as RepeatIcon } from '@static/icons/repeat-icon.svg'
 
 const RepeatControl: React.FC = () => {
   const { isLoop, setLoop } = useAudioStore()
@@ -11,9 +11,9 @@ const RepeatControl: React.FC = () => {
   }
 
   return (
-    <button 
+    <button
       className={`${isLoop ? 'text-[color:var(--primary-light)]' : 'text-[color:var(--white)]'} button-hover transition`}
-      onClick={handleRepeat} 
+      onClick={handleRepeat}
       title='Lặp lại bài hát'>
       <RepeatIcon className='w-5 h-5' />
     </button>

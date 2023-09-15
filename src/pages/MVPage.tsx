@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useMVStore } from '../store/useMVStore'
+import { useMVStore } from '../stores/useMVStore'
 import { useQuery } from 'react-query'
 import { getMVList } from '../api/mv'
-import { MVProps } from '../types/common'
+import { MVProps } from '../models/common'
 import useInfinityScroll from '../hooks/useInfinityScroll'
 import Loading from '../components/Loading'
 import MainLayout from '../containers/MainLayout'
@@ -21,7 +21,7 @@ const MVPage: React.FC = () => {
     if (currentCount >= 200) {
       setCurrentPage(currentPage + 1)
       setCurrentCount(30)
-    } 
+    }
     else {
       setCurrentCount(currentCount + 30)
     }
@@ -39,13 +39,13 @@ const MVPage: React.FC = () => {
     <MainLayout>
       <div className="page-content">
         <div className="mv-wrapper space-y-10 min-h-[500px] relative rounded-2xl">
-          { mvQuery.isLoading && <Loading /> }
-          { mvQuery.isSuccess &&
+          {mvQuery.isLoading && <Loading />}
+          {mvQuery.isSuccess &&
             <div className="mv-list grid grid-cols-2 lg:grid-cols-3 -mx-5" id='mv-list'>
               {
                 mvQuery.data.items.map((e: MVProps, index: number) => (
                   <div className="h-72 mb-10 mx-5" key={index}>
-                    <MVItem 
+                    <MVItem
                       artist={e.artist}
                       artistsNames={e.artistsNames}
                       encodeId={e.encodeId}
@@ -54,7 +54,7 @@ const MVPage: React.FC = () => {
                     />
                   </div>
                 ))
-            }
+              }
             </div>
           }
         </div>
