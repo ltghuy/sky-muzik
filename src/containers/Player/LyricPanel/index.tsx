@@ -1,13 +1,13 @@
 import React, { useContext, useRef, useEffect, useState } from 'react'
-import { AudioContext } from '..'
-import { useAudioStore } from '@stores/useAudioStore'
-import { KaraLineType } from '@models/common'
-import useLyric from '@hooks/useLyric'
-import PlayControl from '../PlayerCenter/Controls/playControl'
-import PreviousControl from '../PlayerCenter/Controls/previousControl'
-import NextControl from '../PlayerCenter/Controls/nextControl'
+import { AudioContext } from '@containers/Player'
+import PlayControl from '@containers//Player/PlayerCenter/Controls/playControl'
+import PreviousControl from '@containers//Player/PlayerCenter/Controls/previousControl'
+import NextControl from '@containers//Player/PlayerCenter/Controls/nextControl'
 import Karaoke from '@components/Karaoke'
+import { KaraLineType } from '@models/common'
+import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as ArrowIcon } from '@static/icons/arrow-right-icon.svg'
+import useLyric from '@hooks/lyric'
 
 const LyricPanel: React.FC = () => {
   const [lyricOptions, setLyricOptions] = useState<'lyric' | 'karaoke'>('lyric')

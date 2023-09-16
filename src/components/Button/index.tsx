@@ -4,12 +4,12 @@ interface ButtonProps {
   classStyle?: string,
   icon?: React.ReactNode,
   text: string,
-  handleClick: Function,
+  handleClick: () => void,
 }
 
 const Button: React.FC<ButtonProps> = ({ classStyle, icon, text, handleClick }) => {
   return (
-    <div 
+    <div
       className={`button cursor-pointer inline-block rounded-3xl py-2 text-white px-6 bg-[color:var(--primary)] hover:contrast-125 ${classStyle}`}
       onClick={() => handleClick()}
     >

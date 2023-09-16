@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as PreviousIcon } from '@static/icons/previous-icon.svg'
+import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
 
 const PreviousControl: React.FC = () => {
   const {
@@ -25,7 +26,7 @@ const PreviousControl: React.FC = () => {
       setSongId(playListSong[currentIndex].encodeId)
       changePlayIcon(true)
       setAutoplay(true)
-      localStorage.setItem('songId', playListSong[currentIndex].encodeId)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.SONG_ID, playListSong[currentIndex].encodeId)
     }
   }
 

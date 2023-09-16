@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react"
 import { KaraLineType, WordType } from "@models/common"
-import { getLyric } from "@apis/lyric"
+import { lyricServices } from "@services/lyric"
 
 const useLyric = ( songId: string | null): any => {
   const [lyric, setLyric] = useState<Array<{ data: string }>>()
-
+ 
   useEffect(() => {
     (
       async () => {
         if (songId !== null && songId !== "") {
-          const dataLyric: any = await getLyric(songId)
+          const dataLyric: any = await lyricServices.getLyric(songId)
 
           let customLyr: KaraLineType[] = []
 

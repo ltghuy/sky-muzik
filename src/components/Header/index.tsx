@@ -1,28 +1,34 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SearchBox from '@components/Header/SearchBox'
+import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
 import { ReactComponent as ArrowIcon } from '@static/icons/arrow-icon.svg'
 import { ReactComponent as MessageIcon } from '@static/icons/message-icon.svg'
 import { ReactComponent as NotificationIcon } from '@static/icons/notification-icon.svg'
 import { ReactComponent as SunIcon } from '@static/icons/sun-icon.svg'
 import { ReactComponent as MoonIcon } from '@static/icons/moon-icon.svg'
 
+enum THEME_MODE {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+
 const Header: React.FC = () => {
   const navigate = useNavigate()
   const headerRef = useRef<HTMLElement>(null)
   const [stickyClass, setStickyClass] = useState<string>('bg-none')
-  const [isDarkmode, setIsDarkmode] = useState<string>(localStorage.getItem('themeMode') || 'dark')
+  const [isDarkMode, setIsDarkMode] = useState<string>(localStorage.getItem(LOCAL_STORAGE_KEYS.THEME_MODE) ?? THEME_MODE.LIGHT)
 
   const toggleDarkMode = () => {
-    if (isDarkmode === 'dark') {
-      setIsDarkmode('light')
-      document.body.classList.remove('dark')
-      localStorage.setItem('themeMode', 'light')
+    if (isDarkMode === THEME_MODE.DARK) {
+      setIsDarkMode(THEME_MODE.LIGHT)
+      document.body.classList.remove(THEME_MODE.DARK)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.THEME_MODE, THEME_MODE.LIGHT)
     }
     else {
-      setIsDarkmode('dark')
-      document.body.classList.add('dark')
-      localStorage.setItem('themeMode', 'dark')
+      setIsDarkMode(THEME_MODE.DARK)
+      document.body.classList.add(THEME_MODE.DARK)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.THEME_MODE, THEME_MODE.DARK)
     }
   }
 
@@ -56,13 +62,13 @@ const Header: React.FC = () => {
         <ul className="header-right flex items-center space-x-3 ml-3 flex-shrink-0">
           <li>
             <button
-              className={'w-20 h-8 rounded-2xl border-slate-300 dark:border-gray-500 border shadow-sm py-1 px-2 flex justify-center items-center relative ' + (isDarkmode === 'dark' ? 'bg-transparent' : 'bg-white')}
+              className={'w-20 h-8 rounded-2xl border-slate-300 dark:border-gray-500 border shadow-sm py-1 px-2 flex justify-center items-center relative ' + (isDarkMode === 'dark' ? 'bg-transparent' : 'bg-white')}
               onClick={toggleDarkMode}>
-              <span className={"sun text-amber-500 flex-1 " + (isDarkmode === 'dark' ? 'hidden' : 'block')}>
+              <span className={"sun text-amber-500 flex-1 " + (isDarkMode === 'dark' ? 'hidden' : 'block')}>
                 <SunIcon className='w-6' />
               </span>
-              <span className={'circle flex-shrink-0 w-5 h-5 border-[3px] rounded-full ' + (isDarkmode === 'dark' ? 'border-gray-500 bg-gray-200' : 'border-amber-500 bg-amber-100')} />
-              <span className={"moon text-slate-500 flex-1 " + (isDarkmode === 'dark' ? 'flex justify-end' : 'hidden')}>
+              <span className={'circle flex-shrink-0 w-5 h-5 border-[3px] rounded-full ' + (isDarkMode === 'dark' ? 'border-gray-500 bg-gray-200' : 'border-amber-500 bg-amber-100')} />
+              <span className={"moon text-slate-500 flex-1 " + (isDarkMode === 'dark' ? 'flex justify-end' : 'hidden')}>
                 <MoonIcon className='w-4' />
               </span>
             </button>

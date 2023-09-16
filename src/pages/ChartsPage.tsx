@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
-import { useAudioStore } from '../stores/useAudioStore'
-import { useQuery } from 'react-query'
-import { getCharts } from '../apis/charts'
-import Button from '../components/Button'
-import Loading from '../components/Loading'
-import Song from '../components/Song.tsx'
-import MainLayout from '../containers/MainLayout'
+import { useAudioStore } from '@stores/useAudioStore'
+import Button from '@components/Button'
+import Loading from '@components/Loading'
+import Song from '@components/Song'
+import MainLayout from '@containers/MainLayout'
+import { useCharts } from '@hooks/charts'
 
 const Chartspage: React.FC = () => {
-  const [hasLoadmore, setHasLoadmore] = useState<boolean>(true)
+  const [hasLoadMore, setHasLoadMore] = useState<boolean>(true)
   const [count, setCount] = useState<number>(10)
   const { playListSong, setSongId, setCurrentIndexPlaylist, setPlaylistSong } = useAudioStore()
+  const { data, isLoading } = useCharts()
 
   const loadMoreList = () => {
     setCount(100)
-    setHasLoadmore(false)
+    setHasLoadMore(false)
   }
 
   const sortRankings = (index: number) => {
@@ -27,29 +27,27 @@ const Chartspage: React.FC = () => {
   }
 
   const playCharts = (index: number) => {
-    if (chartsQuery.data) {
+    if (data) {
       setCurrentIndexPlaylist(index)
       setSongId(playListSong[index].encodeId)
-      setPlaylistSong(chartsQuery.data.RTChart.items)
+      setPlaylistSong(data.RTChart.items)
     }
   }
-
-  const chartsQuery = useQuery('charts', getCharts, { staleTime: 60000, refetchInterval: 300000 }) // refetch data every 5 mins
 
   return (
     <MainLayout>
       <div className="page-content">
         <div className='charts-wrapper min-h-[500px] mb-5 relative rounded-2xl'>
-          {chartsQuery.isLoading && <Loading />}
+          {isLoading && <Loading />}
           {
-            chartsQuery.data &&
+            data &&
             <>
               <section className="charts-list">
                 <h2 className='title text-3xl text-black dark:text-white font-inter font-bold mb-5'>
                   Bảng xếp hạng
                 </h2>
                 {
-                  chartsQuery.data.RTChart.items.slice(0, count)
+                  data.RTChart.items.slice(0, count)
                     .map((item: any, index: number) => (
                       <div className='item flex justify-between items-center' key={index}>
                         <div className="number w-16 flex-shrink-0 text-center font-black">
@@ -74,7 +72,7 @@ const Chartspage: React.FC = () => {
                     ))
                 }
                 {
-                  hasLoadmore && (
+                  hasLoadMore && (
                     <div className='flex justify-center mt-5'>
                       <Button text='Xem top 100' handleClick={loadMoreList} />
                     </div>
@@ -87,7 +85,7 @@ const Chartspage: React.FC = () => {
                 </h2>
                 <div className="new-release__list grid grid-cols-1 lg:grid-cols-2 -mx-2">
                   {
-                    chartsQuery.data.newRelease.map((item: any, index: number) => (
+                    data.newRelease.map((item: any, index: number) => (
                       <div key={index} className='mb-2 mx-2'>
                         <Song
                           index={index}

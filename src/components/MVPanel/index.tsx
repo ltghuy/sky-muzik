@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useMVStore } from '@stores/useMVStore'
-import { MVProps } from '@models/common'
+import React from 'react'
 import Loading from '@components/Loading'
 import MVHorizontalItem from '@components/MVItem/horizontal'
+import { MVProps } from '@models/common'
+import { useMVDetail } from '@hooks/mv'
+import { useMVStore } from '@stores/useMVStore'
 import { ReactComponent as CloseIcon } from '@static/icons/close-icon.svg'
-import { getMVDetail } from '@apis/mv'
-
-interface MvWithUrl extends MVProps {
-  streaming: {
-    mp4: {
-      '480p': string,
-      '720p': string
-    }
-  },
-  recommends: []
-}
 
 const MVPanel: React.FC = () => {
-  const [dataMV, setDataMV] = useState<MvWithUrl | null>(null)
   const { mvID, setMVID, setShowMV } = useMVStore()
 
   const closeMV = () => {
@@ -25,28 +14,21 @@ const MVPanel: React.FC = () => {
     setMVID('')
   }
 
-  useEffect(() => {
-    (
-      async () => {
-        const data: MvWithUrl = await getMVDetail(`${mvID}`)
-        setDataMV(data)
-      }
-    )()
-  }, [mvID])
+  const { data } = useMVDetail(mvID)
 
   return (
     <main
       className={`mv-panel w-full h-full fixed top-0 left-0 z-[60] overflow-hidden`}
-      style={{ background: `url(${dataMV?.thumbnailM}) no-repeat center/cover` }}>
+      style={{ background: `url(${data?.thumbnailM}) no-repeat center/cover` }}>
       {
-        dataMV ? (
+        data ? (
           <div className="mv-wrapper w-full h-full flex flex-col bg-black bg-opacity-25 backdrop-blur-3xl relative">
             <div className="mv-top w-full h-20 flex-shrink-0 px-10 flex items-center justify-between">
               <div className="mv-info flex items-center">
-                <img className='w-10 h-10 rounded-full object-cover' src={dataMV?.artist.thumbnail} alt={dataMV?.artist.name} />
+                <img className='w-10 h-10 rounded-full object-cover' src={data?.artist.thumbnail} alt={data?.artist.name} />
                 <div className="ml-4 font-inter text-white">
-                  <div className="mv-name capitalize font-bold text-lg">{dataMV?.title}</div>
-                  <div className="mv-artists text-sm leading-4 opacity-50">{dataMV?.artistsNames}</div>
+                  <div className="mv-name capitalize font-bold text-lg">{data?.title}</div>
+                  <div className="mv-artists text-sm leading-4 opacity-50">{data?.artistsNames}</div>
                 </div>
               </div>
               <button className="close-mv text-white button-shadow" onClick={closeMV}>
@@ -58,7 +40,7 @@ const MVPanel: React.FC = () => {
                 <iframe
                   className='w-full h-full rounded'
                   allowFullScreen
-                  src={dataMV?.streaming.mp4['720p'] || dataMV?.streaming.mp4['480p']}
+                  src={data?.streaming.mp4['720p'] ?? data?.streaming.mp4['480p']}
                 >
                 </iframe>
               </div>
@@ -66,10 +48,10 @@ const MVPanel: React.FC = () => {
                 <h4 className="text-white text-lg leading-7 font-bold font-inter px-4 pt-4">Danh Sách Phát</h4>
                 <div className="mv-list mt-4 overflow-y-scroll hidden-scrollbar">
                   {
-                    dataMV.recommends.map((mv: MVProps, index: number) => (
+                    data.recommends.map((mv: MVProps) => (
                       <div
-                        className="mv-item-wrapper w-full h-32 lg:h-20 hover:bg-white hover:bg-opacity-30 transition py-2 px-4 mb-4 lg:mb-0"
-                        key={index}>
+                        className="mv-item-wrapper w-full h-32 lg:h-28 hover:bg-white hover:bg-opacity-30 transition py-2 px-4 mb-4 lg:mb-0"
+                        key={mv.title}>
                         <MVHorizontalItem
                           artist={mv.artist}
                           artistsNames={mv.artistsNames}

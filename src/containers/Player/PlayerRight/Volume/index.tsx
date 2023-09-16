@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
-import { AudioContext } from '../..'
+import React, { useCallback, useContext, useMemo } from 'react'
+import { AudioContext } from '@containers/Player'
 import { useAudioStore } from '@stores/useAudioStore'
-import { ReactComponent as VolumnOff } from '@static/icons/volume-off.svg'
-import { ReactComponent as VolumnOn } from '@static/icons/volume-on.svg'
 import DragBar from '@containers/Player/DragBar'
+import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
+import { ReactComponent as VolumeOff } from '@static/icons/volume-off.svg'
+import { ReactComponent as VolumeOn } from '@static/icons/volume-on.svg'
 
 const VolumeControl: React.FC = () => {
   const { isMute, volume, changeVolumeIcon, setVolume } = useAudioStore()
@@ -12,9 +13,9 @@ const VolumeControl: React.FC = () => {
   const handleTurnVolume = () => {
     if (isMute) {
       changeVolumeIcon(false)
-      setVolume(Number(localStorage.getItem("volume")) || 0.5)
+      setVolume(Number(localStorage.getItem(LOCAL_STORAGE_KEYS.VOLUME)) || 0.5)
       if (audioRef) {
-        audioRef.volume = Number(localStorage.getItem("volume") || 0.5)
+        audioRef.volume = Number(localStorage.getItem(LOCAL_STORAGE_KEYS.VOLUME) || 0.5)
       }
     } else {
       changeVolumeIcon(true)
@@ -23,25 +24,29 @@ const VolumeControl: React.FC = () => {
     }
   }
 
-  const updateVolume = (value: number) => {
+  const updateVolume = useCallback((value: number) => {
     if (audioRef) {
-      localStorage.setItem("volume", String(value / 100))
+      localStorage.setItem(LOCAL_STORAGE_KEYS.VOLUME, String(value / 100))
       setVolume(value / 100)
       audioRef.volume = value / 100
     }
-  }
+  }, [audioRef])
+
+  const getCurrentPercent = useMemo(() => {
+    return Number(volume) * 100
+  }, [volume])
 
   return (
     <div className='flex items-center'>
       <button
         className='mv-button text-[color:var(--white)] button-hover mr-1 transition'
         onClick={handleTurnVolume}>
-        {isMute ? <VolumnOff className='w-5 h-5' /> : <VolumnOn className='w-5 h-5' />}
+        {isMute ? <VolumeOff className='w-5 h-5' /> : <VolumeOn className='w-5 h-5' />}
       </button>
       <DragBar
         width='100px'
         height='3px'
-        currentPercent={Number(volume) * 100}
+        currentPercent={getCurrentPercent}
         percentUpdate={updateVolume}
       />
     </div>

@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
-import { AudioContext } from '../..'
+
+import React, { useCallback, useContext, useMemo } from 'react'
+import { AudioContext } from '@containers/Player'
 import { useAudioStore } from '@stores/useAudioStore'
 import DragBar from '@containers/Player/DragBar'
 import { formatDuration } from '@utils/formatTime'
@@ -9,11 +10,15 @@ const Timeline: React.FC = () => {
   const { duration, currentTime } = useAudioStore()
   const audioRef = useContext(AudioContext)
 
-  const updateCurrentVolume = (value: number) => {
+  const updateCurrentVolume = useCallback((value: number) => {
     if (audioRef) {
       audioRef.currentTime = (value / 100) * audioRef.duration
     }
-  }
+  }, [audioRef])
+
+  const getCurrentPercent = useMemo(() => {
+    return (currentTime / duration) * 100
+  }, [currentTime, duration])
 
   return (
     <div className='player-timeline flex justify-between items-center text-[color:var(--white)] px-1'>
@@ -23,7 +28,7 @@ const Timeline: React.FC = () => {
       <DragBar
         width='100%'
         height='3px'
-        currentPercent={(currentTime / duration) * 100}
+        currentPercent={getCurrentPercent}
         percentUpdate={updateCurrentVolume}
       />
       <span className='time-end text-xs font-bold min-w-[45px] flex-shrink-0 opacity-50 text-left ml-4'>

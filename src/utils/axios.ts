@@ -1,7 +1,8 @@
-import axios from "axios"
+import axios, { AxiosInstance } from "axios"
 
-const instance = axios.create({
-  baseURL: `${process.env.REACT_APP_BASE_URL_API}${process.env.REACT_APP_PATH_API}`
+const instance: AxiosInstance = axios.create({
+  baseURL: `${process.env.REACT_APP_BASE_URL_API}${process.env.REACT_APP_PATH_API}`,
+  timeout: 0
 })
 
 // custom response

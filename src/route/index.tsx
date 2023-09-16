@@ -1,12 +1,12 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Top100 from '../pages/Top100Page'
-import HomePage from '../pages/HomePage'
-import PlaylistPage from '../pages/PlaylistPage'
-import SearchPage from '../pages/SearchPage'
-import ArtistPage from '../pages/ArtistPage'
-import MVPage from '../pages/MVPage'
-import Chartspage from '../pages/ChartsPage'
+import Top100 from '@pages/Top100Page'
+import HomePage from '@pages/HomePage'
+import PlaylistPage from '@pages/PlaylistPage'
+import SearchPage from '@pages/SearchPage'
+import ArtistPage from '@pages/ArtistPage'
+import MVPage from '@pages/MVPage'
+import Chartspage from '@pages/ChartsPage'
 
 const RouterPage: React.FC = () => {
   return (

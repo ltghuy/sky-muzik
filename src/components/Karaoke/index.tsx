@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { KaraLineType, WordType } from '@models/common'
 import { useAudioStore } from '@stores/useAudioStore'
 
@@ -12,24 +12,22 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
   const [line1Data, setLine1Data] = useState<KaraLineType>(lyric[index])
   const [line2Data, setLine2Data] = useState<KaraLineType>(lyric[index + 1])
 
-  const inTimeLine = (e: KaraLineType) => {
-    if (e.startTime <= currentTime * 1000 && currentTime * 1000 <= e.endTime) return true
-    return false
-  }
+  const inTimeLine = useCallback((line: KaraLineType) => {
+    return line.startTime <= currentTime * 1000 && currentTime * 1000 <= line.endTime
+  }, [currentTime])
 
-  const loaded = (e: WordType) => {
-    if (currentTime * 1000 > e.endTime) return true
-    return false
-  }
+  const isLoaded = useCallback((endTime: number) => {
+    return currentTime * 1000 > endTime
+  }, [currentTime])
 
-  const getPercentageDuration = (e: WordType) => {
+  const getPercentageDuration = useCallback((e: WordType) => {
     const duration = e.endTime - e.startTime
-    if (loaded(e) || (duration === 0 && inTimeLine(e))) {
+    if (isLoaded(e.endTime) || (duration === 0 && inTimeLine(e))) {
       return 100
     }
     const currentDuration = currentTime * 1000 - e.startTime
     return currentDuration / duration * 100
-  }
+  }, [currentTime])
 
   const handleChangeLine = () => {
     lyric.map((e: KaraLineType, index: number) => {
@@ -63,7 +61,7 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
         {
           line1Data.words?.map((word: WordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
-              <div className={`h-full ${loaded(word) && 'text-amber-400'}`}>{word.data}</div>
+              <div className={`h-full ${isLoaded(word.endTime) && 'text-amber-400'}`}>{word.data}</div>
               {
                 inTimeLine(line1Data) &&
                 <div
@@ -82,7 +80,7 @@ const Karaoke: React.FC<KaraokeProps> = ({ lyric }) => {
         {
           line2Data.words?.map((word2: WordType, index: number) => (
             <div key={index} className='relative w-max h-full whitespace-nowrap'>
-              <div className={`h-full ${loaded(word2) && 'text-amber-400'}`}>{word2.data}</div>
+              <div className={`h-full ${isLoaded(word2.endTime) && 'text-amber-400'}`}>{word2.data}</div>
               {
                 inTimeLine(line2Data) &&
                 <div

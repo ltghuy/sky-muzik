@@ -8,8 +8,8 @@ interface DragBarProps {
 
 const DragBar: React.FC<DragBarProps> = ({ width, height, currentPercent, percentUpdate }) => {
 
-  const handleChange = (event: any) => {
-    percentUpdate(event.target.value)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    percentUpdate(Number(event.target.value))
   }
 
   return (
@@ -20,7 +20,7 @@ const DragBar: React.FC<DragBarProps> = ({ width, height, currentPercent, percen
       step={0.01}
       value={currentPercent || 0}
       className='drag-bar hover:py-[3px] cursor-pointer opacity-70 outline-none'
-      style={{ width: `${width}`, height: `${height}`}}
+      style={{ width: `${width}`, height: `${height}` }}
       onChange={handleChange} />
   )
 }

@@ -5,7 +5,7 @@ import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 
 
-const MVHorizontalItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames }) => {
+const MVHorizontalItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, artistsNames }) => {
   const { setMVID, setShowMV } = useMVStore()
   const { changePlayIcon } = useAudioStore()
 

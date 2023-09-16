@@ -1,11 +1,13 @@
 import React from 'react'
 import { ReactComponent as ArrowIcon } from '@static/icons/slider-arrow.svg'
+import { useNavigate } from 'react-router-dom'
 interface SliderProps {
   data: object[] | any,
   cols: number,
 }
 
 const Slider: React.FC<SliderProps> = ({ data, cols }) => {
+  const navigate = useNavigate()
 
   const slideEls = document.querySelectorAll('.slider-item') as any
   let curSlide = 0
@@ -31,8 +33,9 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
     goToSlide(curSlide)
   }
 
-  const handleClick = () => {
-    alert('Tính năng hiện đang được cập nhật!')
+  const handleClick = (encodeID: string) => {
+    if (!encodeID) return
+    navigate(`/playlist/${encodeID}`)
   }
 
   return (
@@ -43,7 +46,7 @@ const Slider: React.FC<SliderProps> = ({ data, cols }) => {
             <div
               key={index}
               className={`slider-item h-full flex-shrink-0 cursor-pointer absolute top-0 left-0 px-4 transition-all ease-in-out duration-[1500ms]`}
-              onClick={handleClick}
+              onClick={() => handleClick(slide.encodeId)}
               style={{ width: `calc(100%/${cols})`, transform: `translateX(calc(100%*${index}))` }}>
               <img
                 src={slide.banner}

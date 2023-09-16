@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PlayListItem from '@components/PlayListItem'
 import { ReactComponent as ArrowIcon } from '@static/icons/arrow-right-icon.svg'
+import { PlaylistDetailProps } from '@models/common'
 
 interface PlayListProps {
   title: string,
   sectionId: string,
   link?: string,
-  playList: Array<object>
+  playList: PlaylistDetailProps[]
 }
 
 const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList }) => {
@@ -27,7 +28,7 @@ const Playlist: React.FC<PlayListProps> = ({ title, sectionId, link, playList })
       </div>
       <div className="content py-10 px-4 grid grid-cols-5 -mx-2">
         {
-          playList.map((item: any, index: number) =>
+          playList.map((item: PlaylistDetailProps, index: number) =>
             <PlayListItem
               key={index}
               encodeId={item.encodeId}

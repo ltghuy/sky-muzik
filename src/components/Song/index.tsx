@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { SongProps } from '@models/common'
 import { formatDuration } from '@utils/formatTime'
+import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
 import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as VipIcon } from '@static/icons/vip-icon.svg'
@@ -40,9 +41,9 @@ const Song: React.FC<songInterface> = ({ index, thumbnail, title, encodeId, stre
       setCurrentAlbum(params.playlistID || currentAlbum)
       setSongId(encodeId)
 
-      localStorage.setItem('songId', encodeId)
-      localStorage.setItem('currentAlbum', params.playlistID || currentAlbum)
-      localStorage.setItem('currentIndex', index.toString())
+      localStorage.setItem(LOCAL_STORAGE_KEYS.SONG_ID, encodeId)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_ALBUM, params.playlistID || currentAlbum)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_INDEX, index.toString())
     }
   }
 

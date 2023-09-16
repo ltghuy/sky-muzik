@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AudioContext } from '../..'
+import { AudioContext } from '@containers/Player'
 import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as PlayIcon } from '@static/icons/play-solid.svg'
 import { ReactComponent as PauseIcon } from '@static/icons/pause-solid.svg'

@@ -1,4 +1,4 @@
-export const formatTime = ( sec_num: number ):string => {
+export const formatTime = (sec_num: number): string => {
     let hours: number | string = Math.floor(sec_num / 3600);
     let minutes: number | string = Math.floor((sec_num - hours * 3600) / 60);
     let seconds: number | string = Math.floor(sec_num - hours * 3600 - minutes * 60);

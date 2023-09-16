@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
+import Song from '@components/Song'
 import { PlaylistDetailProps } from '@models/common'
 import { useAudioStore } from '@stores/useAudioStore'
-import Song from '../Song.tsx'
 
 const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCurrentPlaylist }) => {
   const { currentIndexPlaylist } = useAudioStore()

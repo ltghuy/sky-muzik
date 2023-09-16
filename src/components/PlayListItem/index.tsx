@@ -1,16 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { PlaylistDetailProps } from '@models/common'
 import { ReactComponent as HeartIcon } from '@static/icons/heart-icon.svg'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as DotsIcon } from '@static/icons/triple-dots.svg'
-
-interface ItemProps {
-  encodeId: string,
-  title: string,
-  description: string
-  thumbnail: string,
-  artistsNames: string
-}
 
 const addToLikeList = (e: any) => {
   e.preventDefault()
@@ -19,7 +12,6 @@ const addToLikeList = (e: any) => {
 
 const playPlayList = (e: any) => {
   e.preventDefault()
-  console.log('Play playlist')
 }
 
 const openOption = (e: any) => {
@@ -27,7 +19,7 @@ const openOption = (e: any) => {
   console.log('Open options modal')
 }
 
-const PlayListItem: React.FC<ItemProps> = ({ encodeId, title, description, thumbnail, artistsNames }) => {
+const PlayListItem: React.FC<PlaylistDetailProps> = ({ encodeId, title, description, thumbnail, artistsNames }) => {
   return (
     <div className="playlist-item col-span-1 mx-2 my-4">
       <div className="item-top cursor-pointer overflow-hidden rounded-bl-3xl rounded-tr-3xl group relative">

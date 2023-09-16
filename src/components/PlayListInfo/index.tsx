@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from '@components/Button'
 import { useAudioStore } from '@stores/useAudioStore'
 import { PlaylistDetailProps } from '@models/common'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as LikedIcon } from '@static/icons/heart-icon.svg'
-import Button from '../Button'
 
 const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like, isCurrentPlaylist }) => {
   const { isPlay, changePlayIcon } = useAudioStore()

@@ -1,29 +1,30 @@
 import React, { useEffect } from "react"
 import { useMVStore } from "@stores/useMVStore"
 import { useAudioStore } from "@stores/useAudioStore"
-import { getDetailPlaylist } from "@apis/detailPlaylist"
 import Navbar from "@components/Navbar"
 import Player from "@containers/Player"
 import MVPanel from "@components/MVPanel"
 import RouterPage from "./route"
+import { useDetailPlaylist } from "@hooks/detail-playlist"
+import { LOCAL_STORAGE_KEYS } from "@constants/localStorageKeys"
 
 const App: React.FC = () => {
   const { currentAlbum, setPlaylistSong } = useAudioStore()
   const { isShowMV } = useMVStore()
+  const { data } = useDetailPlaylist(currentAlbum)
 
   useEffect(() => {
     (
       async () => {
-        if (currentAlbum) {
-          const detailPlayList = await getDetailPlaylist(currentAlbum)
-          setPlaylistSong(detailPlayList.song.items)
+        if (currentAlbum && data) {
+          setPlaylistSong(data.song.items)
         }
       }
     )()
-  }, [currentAlbum])
+  }, [currentAlbum, data])
 
   useEffect(() => {
-    const themeMode = localStorage.getItem('themeMode')
+    const themeMode = localStorage.getItem(LOCAL_STORAGE_KEYS.THEME_MODE)
     if (themeMode) {
       document.body.classList.add(themeMode)
     }

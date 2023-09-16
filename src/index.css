@@ -90,7 +90,7 @@ body {
   display: none;  /* Safari and Chrome */
 }
 
-/* Dragbar CSS */
+/* Drag bar CSS */
 .drag-bar {
   accent-color: var(--primary-light);
 }

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, createContext } from 'react'
 import { useAudioStore } from '@stores/useAudioStore'
-import PlayerLeft from './PlayerLeft'
-import PlayerCenter from './PlayerCenter'
-import PlayerRight from './PlayerRight'
-import LyricPanel from './LyricPanel'
-import { getSong, getSongInfo } from '@apis/song'
+import PlayerLeft from '@containers/Player/PlayerLeft'
+import PlayerCenter from '@containers/Player/PlayerCenter'
+import PlayerRight from '@containers/Player/PlayerRight'
+import LyricPanel from '@containers/Player/LyricPanel'
+import { useSong, useSongInfo } from '@hooks/song'
 
 export const AudioContext = createContext<HTMLAudioElement | null | undefined>(null)
 
@@ -55,35 +55,28 @@ const Player: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    (
-      async () => {
-        try {
-          if (songID === "") {
-            console.log("Song ID not found")
-          } else {
-            const linkSong = await getSong(songID)
-            linkSong[128] ? setSrcAudio(linkSong[128]) : setSrcAudio("")
+  const { data } = useSong(songID)
+  const { data: songInfo } = useSongInfo(songID)
 
-            const infoSong = await getSongInfo(songID)
-            setInfoSong(
-              {
-                title: infoSong.title,
-                thumbnail: infoSong.thumbnail,
-                thumbnailM: infoSong.thumbnailM,
-                artistsNames: infoSong.artistsNames,
-                artists: infoSong.artists,
-                hasLyric: infoSong.hasLyric,
-                mvlink: infoSong.mvlink,
-              }
-            )
-          }
-        } catch (err) {
-          console.log(err)
+  useEffect(() => {
+    if (songID === "") {
+      console.log("Song ID not found!")
+    }
+    if (data && songInfo) {
+      data[128] ? setSrcAudio(data[128]) : setSrcAudio("")
+      setInfoSong(
+        {
+          title: songInfo?.title,
+          thumbnail: songInfo?.thumbnail,
+          thumbnailM: songInfo?.thumbnailM,
+          artistsNames: songInfo?.artistsNames,
+          artists: songInfo?.artists,
+          hasLyric: songInfo?.hasLyric,
+          mvlink: songInfo?.mvlink,
         }
-      }
-    )()
-  }, [songID])
+      )
+    }
+  }, [songID, data, songInfo])
 
   return (
     <section className='player fixed left-0 bottom-0 w-full h-[var(--player-height)] z-50 bg-[color:var(--primary-darker)]'>

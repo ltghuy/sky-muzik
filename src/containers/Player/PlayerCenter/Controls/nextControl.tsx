@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAudioStore } from '@stores/useAudioStore'
-import { ReactComponent as Nexticon } from '@static/icons/next-icon.svg'
+import { ReactComponent as NextIcon } from '@static/icons/next-icon.svg'
+import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
 
 const NextControl: React.FC = () => {
   const {
@@ -25,7 +26,7 @@ const NextControl: React.FC = () => {
       setSongId(playListSong[currentIndex].encodeId)
       changePlayIcon(true)
       setAutoplay(true)
-      localStorage.setItem('songId', playListSong[currentIndex].encodeId)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.SONG_ID, playListSong[currentIndex].encodeId)
     }
   }
 
@@ -33,7 +34,7 @@ const NextControl: React.FC = () => {
     <button
       className='text-[color:var(--white)] button-hover transition'
       onClick={handleNextSong} >
-      <Nexticon className='w-5 h-5' />
+      <NextIcon className='w-5 h-5' />
     </button>
   )
 }

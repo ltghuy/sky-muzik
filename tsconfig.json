@@ -22,7 +22,6 @@
     "typeRoots": ["node_modules/@types", "src/models"],
     "baseUrl": "./src",
     "paths": {
-      "@apis/*": ["./apis/*"],
       "@components/*": ["./components/*"],
       "@constants/*": ["./constants/*"],
       "@containers/*": ["./containers/*"],
@@ -31,6 +30,7 @@
       "@pages/*": ["./pages/*"],
       "@route/*": ["./route/*"],
       "@stores/*": ["./stores/*"],
+      "@services/*": ["./services/*"],
       "@static/*": ["./static/*"],
       "@utils/*": ["./utils/*"]
     }

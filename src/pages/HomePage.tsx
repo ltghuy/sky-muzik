@@ -1,26 +1,25 @@
 import React from 'react'
-import { useQuery } from 'react-query'
-import { getHomePlaylist, getHomeBanner } from '../apis/home'
-import Loading from '../components/Loading'
-import Slider from '../components/Slider'
-import MainLayout from '../containers/MainLayout'
-import Playlist from '../containers/PlayList'
+import Loading from '@components/Loading'
+import Slider from '@components/Slider'
+import MainLayout from '@containers/MainLayout'
+import Playlist from '@containers/PlayList'
+import { useHomeBanner, useHomePlayList } from '@hooks/home-section'
 
 const HomePage: React.FC = () => {
-  const bannerQuery = useQuery('banner', getHomeBanner)
-  const playListsQuery = useQuery('playlists', getHomePlaylist, { staleTime: 60000 })
+  const { data, isLoading } = useHomeBanner()
+  const { data: playlistData, isLoading: isPlaylistLoading } = useHomePlayList()
 
   return (
     <MainLayout>
       <div className="page-content">
-        <div className={`home-slider w-full h-60 overflow-hidden relative ${bannerQuery.isLoading && 'rounded-2xl'}`}>
-          {bannerQuery.isLoading && <Loading />}
-          {bannerQuery.isSuccess && <Slider data={bannerQuery.data} cols={3} />}
+        <div className={`home-slider w-full h-60 overflow-hidden relative ${isLoading && 'rounded-2xl'}`}>
+          {isLoading && <Loading />}
+          {data && <Slider data={data} cols={3} />}
         </div>
         <div className="playlist-wrapper mt-12 relative rounded-2xl min-h-[300px]">
-          {playListsQuery.isLoading && <Loading />}
-          {playListsQuery.isSuccess &&
-            playListsQuery.data?.map((item: any, index: number) =>
+          {isPlaylistLoading && <Loading />}
+          {playlistData &&
+            playlistData.map((item: any, index: number) =>
               <Playlist
                 key={index}
                 title={item.title}
