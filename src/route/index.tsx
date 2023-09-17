@@ -1,31 +1,33 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Top100 from '@pages/Top100Page'
-import HomePage from '@pages/HomePage'
-import PlaylistPage from '@pages/PlaylistPage'
-import SearchPage from '@pages/SearchPage'
-import ArtistPage from '@pages/ArtistPage'
-import MVPage from '@pages/MVPage'
-import Chartspage from '@pages/ChartsPage'
+const Top100 = lazy(() => import('@pages/Top100Page'));
+const HomePage = lazy(() => import('@pages/HomePage'));
+const PlaylistPage = lazy(() => import('@pages/PlaylistPage'));
+const SearchPage = lazy(() => import('@pages/SearchPage'));
+const ArtistPage = lazy(() => import('@pages/ArtistPage'));
+const MVPage = lazy(() => import('@pages/MVPage'));
+const ChartPage = lazy(() => import('@pages/ChartsPage'));
 
 const RouterPage: React.FC = () => {
   return (
-    <Routes>
-      <Route index element={<HomePage />} />
-      <Route path='/' element={<HomePage />} />
-      <Route path='/top100' element={<Top100 />} />
-      <Route path='/charts' element={<Chartspage />} />
-      <Route path='/mv' element={<MVPage />} />
-      <Route path='/playlist' element={<PlaylistPage />}>
-        <Route path=':playlistID' element={<PlaylistPage />} />
-      </Route>
-      <Route path="/search" element={<SearchPage />}>
-        <Route path=":keyword" element={<SearchPage />} />
-      </ Route>
-      <Route path="/artist" element={<ArtistPage />}>
-        <Route path=":artistID" element={<ArtistPage />} />
-      </ Route>
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/top100' element={<Top100 />} />
+        <Route path='/charts' element={<ChartPage />} />
+        <Route path='/mv' element={<MVPage />} />
+        <Route path='/playlist' element={<PlaylistPage />}>
+          <Route path=':playlistID' element={<PlaylistPage />} />
+        </Route>
+        <Route path="/search" element={<SearchPage />}>
+          <Route path=":keyword" element={<SearchPage />} />
+        </ Route>
+        <Route path="/artist" element={<ArtistPage />}>
+          <Route path=":artistID" element={<ArtistPage />} />
+        </ Route>
+      </Routes>
+    </Suspense>
   )
 }
 
