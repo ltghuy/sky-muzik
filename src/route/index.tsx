@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import FullScreenLoading from '@components/Loading/FullScreen';
 const Top100 = lazy(() => import('@pages/Top100Page'));
 const HomePage = lazy(() => import('@pages/HomePage'));
 const PlaylistPage = lazy(() => import('@pages/PlaylistPage'));
@@ -10,7 +11,7 @@ const ChartPage = lazy(() => import('@pages/ChartsPage'));
 
 const RouterPage: React.FC = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<FullScreenLoading />}>
       <Routes>
         <Route index element={<HomePage />} />
         <Route path='/' element={<HomePage />} />
