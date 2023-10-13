@@ -7,14 +7,13 @@ import { useCharts } from '@hooks/charts'
 import useOnClickOutside from '@hooks/core/useOnClickOutSide'
 
 const SearchBox: React.FC = () => {
+  const navigate = useNavigate()
   const [keyword, setKeyword] = useState<string>('')
   const [isInputFocus, setIsInputFocus] = useState<boolean>(false)
   const searchboxRef = useRef<HTMLDivElement>(null)
 
   useOnClickOutside(searchboxRef, () => setIsInputFocus(false))
   const { data } = useCharts()
-
-  const navigate = useNavigate()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value)
@@ -64,7 +63,10 @@ const SearchBox: React.FC = () => {
                 .map((item: any, index: number) =>
                   <li
                     className='w-full text-white hover:bg-violet-300 rounded py-2 pl-5 flex cursor-pointer' key={index}
-                    onClick={() => handleSearch(item.title)}
+                    onClick={() => {
+                      handleSearch(item.title)
+                      setIsInputFocus(false)
+                    }}
                   >
                     <span className='mr-2'>
                       <MicroIcon className='w-4' />

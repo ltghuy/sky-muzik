@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import MainLayout from '@containers/MainLayout'
 import Playlist from '@containers/PlayList'
 import Loading from '@components/Loading'
 import Song from '@components/Song'
@@ -10,7 +9,7 @@ const ArtistPage: React.FC = () => {
   const params = useParams<{ artistID: string }>()
   const { data } = useArtist(params.artistID ?? '')
   return (
-    <MainLayout>
+    <>
       <div className="banner-wrapper w-full h-[410px] relative">
         {
           data ? (
@@ -133,7 +132,7 @@ const ArtistPage: React.FC = () => {
           </div>
         </section>
       </main>
-    </MainLayout>
+    </>
   )
 }
 

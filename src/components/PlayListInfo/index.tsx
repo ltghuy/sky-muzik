@@ -1,23 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useMemo } from 'react'
 import Button from '@components/Button'
+import { Link, useParams } from 'react-router-dom'
 import { useAudioStore } from '@stores/useAudioStore'
+import { useDetailPlaylist } from '@hooks/detail-playlist'
 import { PlaylistDetailProps } from '@models/common'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as LikedIcon } from '@static/icons/heart-icon.svg'
+import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
 
 const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like, isCurrentPlaylist }) => {
-  const { isPlay, changePlayIcon } = useAudioStore()
+  const { isPlay, currentAlbum, playListSong, changePlayIcon, setCurrentIndexPlaylist, setSongId, setCurrentAlbum, setAutoplay, setPlaylistSong } = useAudioStore()
+  const params = useParams<{ playlistID: string }>()
+  const { data } = useDetailPlaylist(params.playlistID ?? currentAlbum)
   const playlistLastUpdate = contentLastUpdate && (new Date(contentLastUpdate * 1000)).toLocaleDateString("vi-VN")
+
+  const isCurrentAlbum = useMemo(() => {
+    return currentAlbum === params.playlistID
+  }, [params])
+
+  useEffect(() => {
+    setPlaylistSong(data?.song ?? playListSong)
+  }, [])
 
   const onPlaylistPlay = () => {
     const audio = document.querySelector('audio')
-    if (isPlay) {
-      changePlayIcon(false)
-      audio?.pause()
-    } else {
+    if (!isCurrentAlbum) {
+      setCurrentIndexPlaylist(0)
+      setCurrentAlbum(params.playlistID ?? currentAlbum)
+      setSongId(playListSong.items[0]?.encodeId ?? '')
+      setAutoplay(true)
       changePlayIcon(true)
-      audio?.play()
+
+      localStorage.setItem(LOCAL_STORAGE_KEYS.SONG_ID, playListSong.items[0]?.encodeId ?? '')
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_ALBUM, params.playlistID ?? currentAlbum)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_INDEX, '0')
+    } else {
+      if (isPlay) {
+        changePlayIcon(false)
+        audio?.pause()
+      } else {
+        changePlayIcon(true)
+        audio?.play()
+      }
     }
   }
 
@@ -62,11 +86,17 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
         </p>
       </div>
       <div className="playlist-button flex justify-center my-5">
-        <Button
-          classStyle='w-[175px] flex justify-center uppercase'
-          text={isPlay ? 'Tạm dừng' : 'Tiếp tục phát'}
-          handleClick={onPlaylistPlay}
-        />
+        {
+          isCurrentAlbum ? <Button
+            classStyle='w-[175px] flex justify-center uppercase'
+            text={isPlay ? 'Tạm dừng' : 'Tiếp tục phát'}
+            handleClick={onPlaylistPlay}
+          /> : <Button
+            classStyle='w-[175px] flex justify-center uppercase'
+            text={'Bắt đầu phát'}
+            handleClick={onPlaylistPlay}
+          />
+        }
       </div>
     </div>
   )

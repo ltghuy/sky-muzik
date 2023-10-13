@@ -14,7 +14,7 @@ const MusicList: React.FC = () => {
   useEffect(() => {
     if (document && isShowList) {
       const currentPlaylistItem = document.querySelector(`#side-playlist-item-${currentIndexPlaylist}`) as HTMLLIElement
-      currentPlaylistItem.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      currentPlaylistItem && currentPlaylistItem.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }, [isShowList])
 
