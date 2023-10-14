@@ -7,12 +7,12 @@ import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as VipIcon } from '@static/icons/vip-icon.svg'
 
-interface songInterface extends SongProps {
+interface SongInterface extends SongProps {
   isShortened?: boolean,
   handleClick?: Function
 }
 
-const Song: React.FC<songInterface> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, isShortened, handleClick }) => {
+const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, streamingStatus, artists, artistsNames, album, duration, isShortened, handleClick }) => {
   const SONG_VIP = 2
   const SONG_NORMAL = 1
   const {

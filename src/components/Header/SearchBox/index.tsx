@@ -23,6 +23,7 @@ const SearchBox: React.FC = () => {
     e.preventDefault()
     navigate(`${API_ROUTES.SEARCH}/${e.target[0].value}`)
     setIsInputFocus(false)
+    setKeyword('')
   }
 
   const handleFocus = () => {
@@ -37,7 +38,7 @@ const SearchBox: React.FC = () => {
     <div className='search-box h-10 relative flex-1'>
       <div
         ref={searchboxRef}
-        className={`search-wrapper flex flex-col items-start ${isInputFocus ? 'h-56 bg-[color:var(--primary-light)] rounded-2xl' : 'h-full'}`}
+        className={`search-wrapper flex flex-col items-start ${isInputFocus ? 'h-56 bg-[color:var(--primary-light)] rounded-2xl z-50' : 'h-full'}`}
       >
         <form
           method='GET'

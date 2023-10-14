@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect, useRef } from 'react'
 import Song from '@components/Song'
 import { PlaylistDetailProps } from '@models/common'
-import { useAudioStore } from '@stores/useAudioStore'
+import { useAudioStore } from '@stores/useAudioStore';
 
 const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCurrentPlaylist }) => {
-  const { currentIndexPlaylist } = useAudioStore()
+  const scrollContainer = useRef<HTMLDivElement | null>(null);
   const totalDuration = song?.totalDuration && (new Date(song?.totalDuration * 1000).toISOString().slice(11, 19))
+  const { currentIndexPlaylist, playListSong } = useAudioStore()
 
   useEffect(() => {
-    if (isCurrentPlaylist && document) {
-      const currentSongItem = document.querySelector(`#playlist-item-${currentIndexPlaylist}`) as HTMLLIElement
-      currentSongItem.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
+    scrollContainer.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [isCurrentPlaylist])
 
   return (
@@ -28,19 +26,22 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCur
       <ul className="playlist-list mt-5">
         {
           song && song.items.map((item: any, index: number) => (
-            <li className="playlist-item" id={`playlist-item-${index}`} key={index}>
-              <Song
-                index={index}
-                thumbnail={item?.thumbnail}
-                title={item?.title}
-                encodeId={item?.encodeId}
-                duration={item?.duration}
-                streamingStatus={item?.streamingStatus}
-                artists={item?.artists}
-                artistsNames={item?.artistsNames}
-                album={item?.album}
-              />
-            </li>
+            <Fragment key={item.encodeId ?? index}>
+              <li className="playlist-item">
+                <Song
+                  index={index}
+                  thumbnail={item?.thumbnail}
+                  title={item?.title}
+                  encodeId={item?.encodeId}
+                  duration={item?.duration}
+                  streamingStatus={item?.streamingStatus}
+                  artists={item?.artists}
+                  artistsNames={item?.artistsNames}
+                  album={item?.album}
+                />
+                <div ref={isCurrentPlaylist && playListSong[currentIndexPlaylist]?.encodeId === item?.encodeId ? scrollContainer : undefined}></div>
+              </li>
+            </Fragment>
           ))
         }
       </ul>
