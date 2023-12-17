@@ -34,7 +34,7 @@ const NextControl: React.FC = () => {
     <button
       className='text-[color:var(--white)] button-hover transition'
       onClick={handleNextSong} >
-      <NextIcon className='w-5 h-5' />
+      <NextIcon className='media-control-btn' />
     </button>
   )
 }

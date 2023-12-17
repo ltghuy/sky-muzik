@@ -1,8 +1,8 @@
-import React from 'react'
 import { MVProps } from '@models/common'
-import { useMVStore } from '@stores/useMVStore'
-import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { useMVStore } from '@stores/useMVStore'
+import React from 'react'
 
 
 const MVHorizontalItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, artistsNames }) => {
@@ -18,7 +18,7 @@ const MVHorizontalItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, arti
 
   return (
     <div className="mv-item h-full flex items-stretch">
-      <div className="mv-left flex-1 overflow-hidden group rounded cursor-pointer relative">
+      <div className="mv-left w-20 flex-shrink-0 overflow-hidden group rounded cursor-pointer relative">
         <img
           src={thumbnailM}
           alt={title}
@@ -34,11 +34,11 @@ const MVHorizontalItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, arti
       </div>
       <div className="mv-right flex-1 font-inter my-auto ml-3">
         <button className="mv-name text-left" onClick={() => playMV(encodeId)}>
-          <span className='text-xl lg:text-sm leading-4 font-medium text-white hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
+          <span className='text-base md:text-xl lg:text-sm leading-4 font-medium text-white hover:text-[color:var(--primary)] cursor-pointer transition one-line' title={title}>
             {title}
           </span>
         </button>
-        <div className="mv-artists text-base lg:text-xs font-medium text-[color:var(--black)] opacity-50 one-line">
+        <div className="mv-artists text-sm md:text-base lg:text-xs font-medium text-[color:var(--black)] opacity-50 one-line">
           {artistsNames}
         </div>
       </div>

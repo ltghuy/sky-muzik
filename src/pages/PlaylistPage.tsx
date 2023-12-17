@@ -16,8 +16,8 @@ const PlaylistPage: React.FC = () => {
   }, [currentAlbum, playlistID])
 
   return (
-    <div className='playlist grid grid-cols-9 pt-10'>
-      <div className='col-span-8 lg:col-span-4 relative min-h-[200px] rounded-3xl'>
+    <div className='playlist grid grid-cols-9 pt-5 md:pt-10 gap-5'>
+      <div className='col-span-9 lg:col-span-4 relative min-h-[200px] rounded-3xl'>
         {isLoading && <Loading />}
         {
           data &&
@@ -31,7 +31,7 @@ const PlaylistPage: React.FC = () => {
           />
         }
       </div>
-      <div className="col-span-8 lg:col-span-5 relative min-h-[500px] rounded-3xl ml-5">
+      <div className="col-span-9 lg:col-span-5 relative min-h-[500px] rounded-3xl">
         {isLoading && <Loading />}
         {
           data &&

@@ -1,12 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import Song from '@components/Song'
-import MVItem from '@components/MVItem'
 import Loading from '@components/Loading'
+import MVItem from '@components/MVItem'
 import PlayListItem from '@components/PlayListItem'
+import Song from '@components/Song'
 import { useSearch } from '@hooks/search'
 import { formatFollowing } from '@utils/formatFollow'
+import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 const SearchPage: React.FC = () => {
   const params = useParams<{ keyword: string }>()
@@ -21,11 +20,11 @@ const SearchPage: React.FC = () => {
               Nghệ sĩ/OA
             </h3>
             <div className="search-list h-max w-full">
-              <div className="search-wrapper h-full grid grid-cols-5 -mx-4 overflow-hidden">
+              <div className="search-wrapper h-full flex sm:justify-center sm:flex-wrap gap-4 overflow-x-scroll snap-x hidden-scrollbar">
                 {
                   data.artists.slice(0, 5)
                     .map((item: any, index: number) => (
-                      <div className="search-item h-full mx-4" key={index}>
+                      <div className="search-item h-full snap-start min-w-[120px] max-w-[150px]" key={index}>
                         <div className="top rounded-full overflow-hidden" title={item.name}>
                           <Link to={`/artist/${item.alias}`}>
                             <img
@@ -36,7 +35,7 @@ const SearchPage: React.FC = () => {
                         </div>
                         <div className="bottom font-inter text-center pt-5">
                           <Link to={`/artist/${item.alias}`}>
-                            <span className='font-medium text-black dark:text-white hover:text-[color:var(--primary)] transition'>
+                            <span className='font-medium text-black dark:text-white hover:text-[color:var(--primary)] transition one-line'>
                               {item.name}
                               {item.spotlight && <span>&#128970;</span>}
                             </span>
@@ -94,7 +93,7 @@ const SearchPage: React.FC = () => {
                     Playlist/Album
                   </h3>
                   <div className="search-list h-max w-full">
-                    <div className="search-wrapper h-full grid grid-cols-5 overflow-hidden -mx-2">
+                    <div className="search-wrapper h-full grid grid-cols-1 md:grid-cols-5 overflow-hidden -mx-2">
                       {
                         // Only get max 5 songs
                         data.playlists.slice(0, 5)
@@ -124,12 +123,12 @@ const SearchPage: React.FC = () => {
                     MV
                   </h3>
                   <div className="search-list h-max w-full">
-                    <div className="search-wrapper h-full grid grid-cols-3 -mx-4 overflow-hidden">
+                    <div className="search-wrapper h-full grid grid-cols-1 md:grid-cols-3 -mx-4 gap-4 overflow-hidden">
                       {
                         // Only get max 3 songs
                         data.videos.slice(0, 3)
                           .map((item: any, index: number) => (
-                            <div className="h-72 mx-4" key={index}>
+                            <div className="h-72" key={index}>
                               <MVItem
                                 artist={item.artist}
                                 artistsNames={item.artistsNames}

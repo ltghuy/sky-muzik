@@ -5,9 +5,9 @@ import PreviousControl from './previousControl'
 import RepeatControl from './repeatControl'
 import ShuffleControl from './shuffleControl'
 
-const PlayerControls: React.FC = ({}) => {
+const PlayerControls: React.FC = ({ }) => {
   return (
-    <div className='player-controls text-white flex justify-center items-center space-x-5'>
+    <div className='player-controls text-white flex justify-center items-center space-x-2 md:space-x-5'>
       <ShuffleControl />
       <PreviousControl />
       <PlayControl />

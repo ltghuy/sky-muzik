@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useAudioStore } from '@stores/useAudioStore'
 import Button from '@components/Button'
 import Loading from '@components/Loading'
 import Song from '@components/Song'
 import { useCharts } from '@hooks/charts'
+import { useAudioStore } from '@stores/useAudioStore'
+import React, { useState } from 'react'
 
 const ChartsPage: React.FC = () => {
   const [hasLoadMore, setHasLoadMore] = useState<boolean>(true)
@@ -40,19 +40,19 @@ const ChartsPage: React.FC = () => {
         data &&
         <>
           <section className="charts-list">
-            <h2 className='title text-3xl text-black dark:text-white font-inter font-bold mb-5'>
+            <h2 className='title text-xl md:text-3xl text-black dark:text-white font-inter font-bold mb-5'>
               Bảng xếp hạng
             </h2>
             {
               data.RTChart.items.slice(0, count)
                 .map((item: any, index: number) => (
-                  <div className='item flex justify-between items-center' key={index}>
-                    <div className="number w-16 flex-shrink-0 text-center font-black">
-                      <span className={`text-transparent text-4xl ${sortRankings(index + 1)}`}>
+                  <div className='chart-item flex justify-between items-center' key={index}>
+                    <div className="number w-10 md:w-16 flex-shrink-0 text-center font-black">
+                      <span className={`text-transparent text-2xl md:text-4xl ${sortRankings(index + 1)}`}>
                         {index + 1}
                       </span>
                     </div>
-                    <div className="dash text-4xl text-gray-500 px-2 mr-4">-</div>
+                    <div className="dash text-4xl text-gray-500 px-2 md:mr-4">-</div>
                     <Song
                       index={index}
                       thumbnail={item?.thumbnail}
@@ -77,7 +77,7 @@ const ChartsPage: React.FC = () => {
             }
           </section>
           <section className="new-release mt-10">
-            <h2 className='title text-3xl text-black dark:text-white font-inter font-bold mb-5'>
+            <h2 className='title text-xl md:text-3xl text-black dark:text-white font-inter font-bold mb-5'>
               Mới phát hành
             </h2>
             <div className="new-release__list grid grid-cols-1 lg:grid-cols-2 -mx-2">

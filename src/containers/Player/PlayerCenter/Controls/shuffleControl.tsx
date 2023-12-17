@@ -15,7 +15,7 @@ const ShuffleControl: React.FC = () => {
       className={`${isShuffle ? 'text-[color:var(--primary-light)]' : 'text-[color:var(--white)]'} button-hover transition`}
       onClick={handleShuffleSong}
       title='Phát bài hát ngẫu nhiên' >
-      <ShuffleIcon className='w-5 h-5' />
+      <ShuffleIcon className='media-control-btn' />
     </button>
   )
 }

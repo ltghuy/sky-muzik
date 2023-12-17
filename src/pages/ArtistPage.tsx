@@ -1,24 +1,24 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import Playlist from '@containers/PlayList'
 import Loading from '@components/Loading'
 import Song from '@components/Song'
+import Playlist from '@containers/PlayList'
 import { useArtist } from '@hooks/artist'
+import React from 'react'
+import { useParams } from 'react-router-dom'
 
 const ArtistPage: React.FC = () => {
   const params = useParams<{ artistID: string }>()
   const { data } = useArtist(params.artistID ?? '')
   return (
-    <>
-      <div className="banner-wrapper w-full h-[410px] relative">
+    <div className='artist'>
+      <div className="artist-banner w-full h-40 md:h-[400px] relative">
         {
           data ? (
             <div
               className="banner w-full h-full bg-cover bg-center relative"
               style={{ backgroundImage: `url('${data.cover}')` }}>
-              <div className="banner-content absolute bg-black bg-opacity-30 w-full h-full px-16 py-8 font-inter flex flex-col justify-end">
-                <h2 className='artist-name text-white text-6xl font-bold'>{data.name}</h2>
-                <p className='text-base font-medium text-white mt-8 opacity-75'>
+              <div className="banner-content absolute bg-black bg-opacity-30 w-full h-full px-8 md:px-16 py-8 font-inter flex flex-col justify-end">
+                <h2 className='artist-name text-white text-3xl md:text-6xl font-bold'>{data.name}</h2>
+                <p className='text-base font-medium text-white mt-4 md:mt-8 opacity-75'>
                   {`${new Intl.NumberFormat().format(data.totalFollow)} người quan tâm`}
                 </p>
               </div>
@@ -26,7 +26,7 @@ const ArtistPage: React.FC = () => {
           ) : <Loading />
         }
       </div>
-      <main className='px-8 py-5 font-inter'>
+      <main className='artist-content md:px-8 py-5 font-inter'>
         <section className="best-song mt-5 lg:min-h-[30vh] rounded-2xl relative">
           {
             data?.sections ?
@@ -87,8 +87,8 @@ const ArtistPage: React.FC = () => {
               {`Về ${data?.name}`}
             </h3>
           }
-          <div className="flex justify-between items-start pt-5">
-            <div className="artist-thumbnail w-[40%] flex-shrink-0 min-h-[350px] h-[350px] rounded-2xl relative">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-5 md:gap-10 pt-5">
+            <div className="artist-thumbnail w-full md:w-[40%] flex-shrink-0 h-[250px] md:h-[350px] rounded-2xl relative">
               {
                 data?.thumbnailM !== undefined ?
                   (
@@ -99,7 +99,7 @@ const ArtistPage: React.FC = () => {
                   ) : <Loading />
               }
             </div>
-            <div className="artist-bio flex-1 min-h-[350px] h-[350px] ml-10 rounded-2xl relative">
+            <div className="artist-bio flex-1 h-[350px] rounded-2xl relative">
               {
                 data?.biography !== undefined ?
                   (
@@ -132,7 +132,7 @@ const ArtistPage: React.FC = () => {
           </div>
         </section>
       </main>
-    </>
+    </div>
   )
 }
 

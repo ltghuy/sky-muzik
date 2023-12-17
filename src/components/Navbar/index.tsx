@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import { ReactComponent as MenuIcon } from '@static/icons/menu-icon.svg'
 import { ReactComponent as HomeIcon } from '@static/icons/home-icon.svg'
+import { ReactComponent as MenuIcon } from '@static/icons/menu-icon.svg'
 import { ReactComponent as MusicIcon } from '@static/icons/music-icon.svg'
-import { ReactComponent as Top100 } from '@static/icons/top-100-icon.svg'
 import { ReactComponent as MVIcon } from '@static/icons/mv-icon.svg'
+import { ReactComponent as Top100 } from '@static/icons/top-100-icon.svg'
 import logo from '@static/images/sky.gif'
+import React, { useEffect, useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import './navbar.scss'
 
 const Navbar: React.FC = () => {
@@ -32,19 +32,19 @@ const Navbar: React.FC = () => {
   }, [toggleSidebar])
 
   return (
-    <section className='navbar w-[var(--sidebar-width)] fixed left-0 top-0 bottom-[var(--player-height)] bg-white dark:bg-[color:var(--primary-sidebar)] shadow transition-all ease-in-out duration-150 z-20' ref={navbarRef} >
+    <section className='navbar w-14 md:w-[var(--sidebar-width)] fixed left-0 top-0 bottom-[var(--player-height)] bg-white dark:bg-[color:var(--primary-sidebar)] shadow transition-all ease-in-out duration-150 z-20' ref={navbarRef} >
       <div className="navbar-wrapper py-4">
-        <div className="navbar-logo flex items-center justify-between px-3 text-[color:var(--primary)] dark:text-white">
+        <div className="navbar-logo hidden md:flex items-center justify-between px-3 text-[color:var(--primary)] dark:text-white">
           <NavLink to={'/'} className='item-toggle flex items-center' >
             <img
               className='h-12'
               src={logo}
-              alt="sky musik logo" />
+              alt="Sky muzik logo" />
             <h3 className='font-semibold text-lg ml-1'>skyMuzik</h3>
           </NavLink>
           <MenuIcon className='cursor-pointer' onClick={handleSidebar} />
         </div>
-        <ul className="navbar-list mt-10 pl-5 dark:text-white">
+        <ul className="navbar-list md:mt-10 pl-5 dark:text-white">
           <li className='navbar-item mb-8'>
             <NavLink
               to='/'

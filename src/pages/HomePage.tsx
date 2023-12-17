@@ -10,11 +10,11 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <div className={`home-slider w-full h-60 overflow-hidden relative ${isLoading && 'rounded-2xl'}`}>
+      <div className={`home-slider w-full h-40 md:h-60 overflow-hidden relative ${isLoading && 'rounded-2xl'}`}>
         {isLoading && <Loading />}
         {data && <Slider data={data} cols={3} />}
       </div>
-      <div className="playlist-wrapper mt-12 relative rounded-2xl min-h-[300px]">
+      <div className="playlist-wrapper mt-6 md:mt-12 relative rounded-2xl min-h-[300px]">
         {isPlaylistLoading && <Loading />}
         {playlistData &&
           playlistData.map((item: any, index: number) =>

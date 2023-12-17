@@ -122,7 +122,7 @@ body {
 
 @layer components {
   .slider-arrow {
-    @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white bg-opacity-30 cursor-pointer justify-center items-center;
+    @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white bg-opacity-30 cursor-pointer flex justify-center items-center;
   }
   .button-hover {
     @apply p-2 xl:hover:bg-gray-50 xl:hover:bg-opacity-30 rounded-full;
@@ -137,6 +137,9 @@ body {
     @apply transform translate-y-full;
   }
   .page-content {
-    @apply px-8 py-5 mt-[var(--header-height)];
+    @apply px-4 md:px-8 py-5 mt-[var(--header-height)];
+  }
+  .media-control-btn {
+    @apply w-4 h-4 md:w-5 md:h-5;
   }
 }

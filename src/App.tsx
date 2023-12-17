@@ -1,12 +1,12 @@
-import React, { useEffect } from "react"
-import { useMVStore } from "@stores/useMVStore"
-import { useAudioStore } from "@stores/useAudioStore"
-import Navbar from "@components/Navbar"
-import Player from "@containers/Player"
 import MVPanel from "@components/MVPanel"
-import RouterPage from "./route"
-import { useDetailPlaylist } from "@hooks/detail-playlist"
+import Navbar from "@components/Navbar"
 import { LOCAL_STORAGE_KEYS } from "@constants/localStorageKeys"
+import Player from "@containers/Player"
+import { useDetailPlaylist } from "@hooks/detail-playlist"
+import { useAudioStore } from "@stores/useAudioStore"
+import { useMVStore } from "@stores/useMVStore"
+import React, { useEffect } from "react"
+import RouterPage from "./route"
 
 const App: React.FC = () => {
   const { currentAlbum, setPlaylistSong } = useAudioStore()
@@ -29,7 +29,6 @@ const App: React.FC = () => {
       document.body.classList.add(themeMode)
     }
   }, [])
-
   return (
     <>
       <Navbar />

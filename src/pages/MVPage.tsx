@@ -1,4 +1,3 @@
-import React from 'react'
 import Loading from '@components/Loading'
 import MVItem from '@components/MVItem'
 import { INITIAL_LIST_COUNT, MV_ENCODE } from '@constants/mv'
@@ -6,6 +5,7 @@ import useInfinityScroll from '@hooks/core/useInfinityScroll'
 import { useMV } from '@hooks/mv'
 import { MVProps } from '@models/common'
 import { useMVStore } from '@stores/useMVStore'
+import React from 'react'
 
 const MVPage: React.FC = () => {
   const { currentCount, currentPage, setCurrentCount, setCurrentPage } = useMVStore()
@@ -32,10 +32,10 @@ const MVPage: React.FC = () => {
       {isLoading && <Loading />}
       {data &&
         <>
-          <div className="mv-list grid grid-cols-2 lg:grid-cols-3 -mx-5" id='mv-list'>
+          <div className="mv-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -mx-5" id='mv-list'>
             {
               data.items.map((e: MVProps) => (
-                <div className="h-72 mb-10 mx-5" key={e.title}>
+                <div className="h-48 sm:h-72 mb-10 mx-5" key={e.title}>
                   <MVItem
                     artist={e.artist}
                     artistsNames={e.artistsNames}
