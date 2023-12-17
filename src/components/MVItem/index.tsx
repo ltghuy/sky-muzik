@@ -1,9 +1,9 @@
-import React from 'react'
 import { MVProps } from '@models/common'
-import { useMVStore } from '@stores/useMVStore'
-import { useAudioStore } from '@stores/useAudioStore'
-import { Link } from 'react-router-dom'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { useMVStore } from '@stores/useMVStore'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 const MVItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, artist, artistsNames }) => {

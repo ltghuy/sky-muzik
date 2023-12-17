@@ -24,7 +24,7 @@ const PlayControl: React.FC = () => {
 
   return (
     <button
-      className='w-12 h-12 text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition border border-current rounded-full flex justify-center items-center'
+      className='w-10 md:w-12 h-10 md:h-12 text-[color:var(--white)] hover:text-[color:var(--primary-light)] transition border border-current rounded-full flex justify-center items-center'
       onClick={handlePlaySong} >
       {isPlay ? <PauseIcon className='w-4' /> : <PlayIcon className='w-4 ml-1' />}
     </button>

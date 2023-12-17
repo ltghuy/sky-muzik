@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, createContext } from 'react'
-import { useAudioStore } from '@stores/useAudioStore'
-import PlayerLeft from '@containers/Player/PlayerLeft'
-import PlayerCenter from '@containers/Player/PlayerCenter'
-import PlayerRight from '@containers/Player/PlayerRight'
 import LyricPanel from '@containers/Player/LyricPanel'
+import PlayerCenter from '@containers/Player/PlayerCenter'
+import PlayerLeft from '@containers/Player/PlayerLeft'
+import PlayerRight from '@containers/Player/PlayerRight'
 import { useSong, useSongInfo } from '@hooks/song'
+import { useAudioStore } from '@stores/useAudioStore'
+import React, { createContext, useEffect, useRef } from 'react'
 
 export const AudioContext = createContext<HTMLAudioElement | null | undefined>(null)
 
@@ -81,7 +81,7 @@ const Player: React.FC = () => {
   return (
     <section className='player fixed left-0 bottom-0 w-full h-[var(--player-height)] z-50 bg-[color:var(--primary-darker)]'>
       <AudioContext.Provider value={audioRef.current}>
-        <main className="player-wrapper h-full px-5 flex justify-center items-center">
+        <main className="player-wrapper h-full px-5 flex justify-evenly items-center">
           <PlayerLeft />
           <PlayerCenter />
           <PlayerRight />

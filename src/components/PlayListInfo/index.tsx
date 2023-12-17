@@ -42,7 +42,7 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
 
   return (
     <div className='playlist-info px-5 sticky top-[calc(var(--header-height)+2rem)]' ref={ref}>
-      <div className="playlist-thumbnail w-[35%] lg:w-[65%] relative mx-auto">
+      <div className="playlist-thumbnail w-[200px] lg:w-[65%] relative mx-auto">
         <img
           src={thumbnailM}
           alt={title}

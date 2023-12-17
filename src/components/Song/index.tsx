@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { SongProps } from '@models/common'
-import { formatDuration } from '@utils/formatTime'
 import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
-import { useAudioStore } from '@stores/useAudioStore'
+import { SongProps } from '@models/common'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as VipIcon } from '@static/icons/vip-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import { formatDuration } from '@utils/formatTime'
+import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 interface SongInterface extends SongProps {
   isShortened?: boolean,
@@ -48,9 +48,9 @@ const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, stre
   }
 
   return (
-    <div className={`song w-full font-inter h-16 rounded-lg my-2 transition ${currentIndexPlaylist === index && songID === encodeId ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary-light)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
-      <div className={`song-container h-full px-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
-        <div className={`song-info flex-shrink-0 pr-5 flex items-center ${isShortened ? 'w-full' : 'w-1/2'}`}>
+    <div className={`song w-full font-inter rounded-lg my-2 transition ${currentIndexPlaylist === index && songID === encodeId ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary-light)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
+      <div className={`song-container p-3 md:p-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
+        <div className={`song-info flex-1 md:flex-0 pr-5 flex items-center ${isShortened ? 'w-full' : 'w-1/2'}`}>
           <div className={`song-thumbnail w-10 h-10 flex-shrink-0 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`}
             onClick={() => handleChangeSong(encodeId, streamingStatus, index)}>
             <img src={thumbnail} alt={title} className='rounded-md' />
@@ -59,7 +59,7 @@ const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, stre
             </div>
           </div>
           <div className='song-desc ml-2 flex flex-col text-black dark:text-white'>
-            <h3 className='song-name text-sm leading-4 font-medium flex items-center' title={title}>
+            <h3 className='song-name text-sm leading-4 font-medium flex items-center break-all' title={title}>
               <span className='one-line '>{title}</span>
               {streamingStatus === SONG_VIP && <span className='ml-1'><VipIcon /></span>}
             </h3>
@@ -84,7 +84,7 @@ const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, stre
             </div>
           </div>
         </div>
-        <div className={`song-album flex-1 basis-auto ${isShortened && 'hidden'}`}>
+        <div className={`song-album hidden md:block flex-1 basis-auto ${isShortened && 'hidden'}`}>
           {
             album !== undefined ? (
               <Link

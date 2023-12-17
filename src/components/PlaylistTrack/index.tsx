@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useRef } from 'react'
-import Song from '@components/Song'
-import { PlaylistDetailProps } from '@models/common'
+import Song from '@components/Song';
+import { PlaylistDetailProps } from '@models/common';
 import { useAudioStore } from '@stores/useAudioStore';
+import React, { Fragment, useEffect, useRef } from 'react';
 
 const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCurrentPlaylist }) => {
   const scrollContainer = useRef<HTMLDivElement | null>(null);

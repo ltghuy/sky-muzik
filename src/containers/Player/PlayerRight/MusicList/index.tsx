@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react'
 import Song from '@components/Song'
-import { useAudioStore } from '@stores/useAudioStore'
 import { ReactComponent as MusicListIcon } from '@static/icons/music-list.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 
 const MusicList: React.FC = () => {
   const [isShowList, setIsShowList] = useState<boolean>(false)

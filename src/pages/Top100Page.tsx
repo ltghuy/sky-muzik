@@ -1,7 +1,7 @@
-import React from 'react'
 import Loading from '@components/Loading'
 import Playlist from '@containers/PlayList'
 import { useTop100 } from '@hooks/top100'
+import React from 'react'
 
 const Top100: React.FC = () => {
   const { data, isLoading } = useTop100()

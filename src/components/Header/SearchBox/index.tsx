@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { API_ROUTES } from '@constants/apiRoutes'
-import { ReactComponent as MicroIcon } from '@static/icons/micro-icon.svg'
-import { ReactComponent as SearchIcon } from '@static/icons/search-icon.svg'
 import { useCharts } from '@hooks/charts'
 import useOnClickOutside from '@hooks/core/useOnClickOutSide'
+import { ReactComponent as MicroIcon } from '@static/icons/micro-icon.svg'
+import { ReactComponent as SearchIcon } from '@static/icons/search-icon.svg'
+import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SearchBox: React.FC = () => {
   const navigate = useNavigate()
@@ -57,7 +57,7 @@ const SearchBox: React.FC = () => {
           />
         </form>
         <div className={`recommend-list w-full px-2 ${(isInputFocus && data) ? 'block' : 'hidden'}`}>
-          <h3 className='recomment-title font-inter font-bold text-sm text-white pl-2 pb-2'>Đề xuất cho bạn</h3>
+          <h3 className='recommend-title font-inter font-bold text-sm text-white pl-2 pb-2'>Đề xuất cho bạn</h3>
           <ul className='space-y-1 text-xs text-white opacity-80'>
             {
               data?.newRelease.slice(0, 4)

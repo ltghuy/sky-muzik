@@ -15,7 +15,7 @@ const RepeatControl: React.FC = () => {
       className={`${isLoop ? 'text-[color:var(--primary-light)]' : 'text-[color:var(--white)]'} button-hover transition`}
       onClick={handleRepeat}
       title='Lặp lại bài hát'>
-      <RepeatIcon className='w-5 h-5' />
+      <RepeatIcon className='media-control-btn' />
     </button>
   )
 }

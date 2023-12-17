@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
 import SearchBox from '@components/Header/SearchBox'
 import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
 import { ReactComponent as ArrowIcon } from '@static/icons/arrow-icon.svg'
 import { ReactComponent as MessageIcon } from '@static/icons/message-icon.svg'
+import { ReactComponent as MoonIcon } from '@static/icons/moon-icon.svg'
 import { ReactComponent as NotificationIcon } from '@static/icons/notification-icon.svg'
 import { ReactComponent as SunIcon } from '@static/icons/sun-icon.svg'
-import { ReactComponent as MoonIcon } from '@static/icons/moon-icon.svg'
+import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 enum THEME_MODE {
   DARK = 'dark',
@@ -48,18 +48,20 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <section className={`header fixed top-0 right-0 left-[var(--sidebar-width)] h-[var(--header-height)] z-10 ${stickyClass}`} ref={headerRef}>
-      <div className="header-container px-8 h-full flex items-center justify-between">
-        <div className="header-left flex items-center max-w-[60%] lg:max-w-[450px] flex-1">
-          <button className='hover:text-[color:var(--primary)] dark:text-white transition' onClick={() => navigate(-1)}>
-            <ArrowIcon className='w-[20px] -rotate-90' />
-          </button>
-          <button className='hover:text-[color:var(--primary)] dark:text-white transition mx-5' onClick={() => navigate(+1)}>
-            <ArrowIcon className='w-[20px] rotate-90' />
-          </button>
+    <section className={`header fixed top-0 right-0 left-14 md:left-[var(--sidebar-width)] h-[var(--header-height)] z-10 ${stickyClass}`} ref={headerRef}>
+      <div className="header-container px-4 md:px-8 h-full flex items-center justify-between">
+        <div className="header-left flex items-center sm:max-w-[450px] flex-1">
+          <div className='hidden sm:flex items-center'>
+            <button className='hover:text-[color:var(--primary)] dark:text-white transition' onClick={() => navigate(-1)}>
+              <ArrowIcon className='w-[20px] -rotate-90' />
+            </button>
+            <button className='hover:text-[color:var(--primary)] dark:text-white transition mx-5' onClick={() => navigate(+1)}>
+              <ArrowIcon className='w-[20px] rotate-90' />
+            </button>
+          </div>
           <SearchBox />
         </div>
-        <ul className="header-right flex items-center space-x-3 ml-3 flex-shrink-0">
+        <ul className="header-right hidden md:flex items-center space-x-3 ml-3 flex-shrink-0">
           <li>
             <button
               className={'w-20 h-8 rounded-2xl border-slate-300 dark:border-gray-500 border shadow-sm py-1 px-2 flex justify-center items-center relative ' + (isDarkMode === 'dark' ? 'bg-transparent' : 'bg-white')}

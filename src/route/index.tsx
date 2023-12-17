@@ -1,7 +1,7 @@
-import React, { lazy, Suspense, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
 import FullScreenLoading from '@components/Loading/FullScreen';
 import MainLayout from '@containers/MainLayout';
+import React, { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 const Top100 = lazy(() => import('@pages/Top100Page'));
 const HomePage = lazy(() => import('@pages/HomePage'));
 const PlaylistPage = lazy(() => import('@pages/PlaylistPage'));

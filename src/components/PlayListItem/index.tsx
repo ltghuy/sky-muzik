@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
 import { PlaylistDetailProps } from '@models/common'
 import { ReactComponent as HeartIcon } from '@static/icons/heart-icon.svg'
 import { ReactComponent as PlayIcon } from '@static/icons/play-icon.svg'
 import { ReactComponent as DotsIcon } from '@static/icons/triple-dots.svg'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const addToLikeList = (e: any) => {
   e.preventDefault()
