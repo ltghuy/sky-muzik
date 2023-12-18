@@ -63,7 +63,7 @@ const SearchPage: React.FC = () => {
                         // Only get max 6 songs
                         data.songs.slice(0, 6)
                           .map((item: any, index: number) => (
-                            <div key={index} className='mb-4 mx-4'>
+                            <div key={index} className='m-2'>
                               <Song
                                 index={index}
                                 thumbnail={item?.thumbnail}

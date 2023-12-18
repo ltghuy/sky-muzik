@@ -48,8 +48,8 @@ const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, stre
   }
 
   return (
-    <div className={`song w-full font-inter rounded-lg my-2 transition ${currentIndexPlaylist === index && songID === encodeId ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary-light)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
-      <div className={`song-container p-3 md:p-5 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
+    <div className={`song w-full font-inter rounded-lg transition ${currentIndexPlaylist === index && songID === encodeId ? 'bg-[color:var(--primary-lighter)] dark:bg-[color:var(--primary-light)]' : 'hover:bg-gray-100 dark:hover:bg-gray-400'}`}>
+      <div className={`song-container p-3 flex justify-between items-center group ${streamingStatus === SONG_VIP && 'opacity-40'}`}>
         <div className={`song-info flex-1 md:flex-0 pr-5 flex items-center ${isShortened ? 'w-full' : 'w-1/2'}`}>
           <div className={`song-thumbnail w-10 h-10 flex-shrink-0 relative ${streamingStatus === SONG_VIP && 'pointer-events-none'}`}
             onClick={() => handleChangeSong(encodeId, streamingStatus, index)}>
@@ -84,7 +84,7 @@ const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, stre
             </div>
           </div>
         </div>
-        <div className={`song-album hidden md:block flex-1 basis-auto ${isShortened && 'hidden'}`}>
+        <div className={`song-album hidden flex-1 basis-auto ${isShortened ? 'hidden' : 'md:block'}`}>
           {
             album !== undefined ? (
               <Link

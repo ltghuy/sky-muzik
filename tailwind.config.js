@@ -26,6 +26,9 @@ module.exports = {
         fadeIn: 'fadeIn 2s linear',
         fadeInInfinite: 'fadeIn 3s ease-out infinite alternate',
       },
+      dropShadow: {
+        '3xl': '10px 20px 20px rgba(127, 127, 127, 0.2)',
+      },
     },
     fontFamily: {
       'inter': ['Inter', 'sans-serif'],

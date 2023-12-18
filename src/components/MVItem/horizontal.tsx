@@ -18,7 +18,7 @@ const MVHorizontalItem: React.FC<MVProps> = ({ thumbnailM, title, encodeId, arti
 
   return (
     <div className="mv-item h-full flex items-stretch">
-      <div className="mv-left w-20 flex-shrink-0 overflow-hidden group rounded cursor-pointer relative">
+      <div className="mv-left w-28 flex-shrink-0 overflow-hidden group rounded-md cursor-pointer relative">
         <img
           src={thumbnailM}
           alt={title}

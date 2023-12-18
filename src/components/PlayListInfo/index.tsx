@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useRef } from 'react'
 import Button from '@components/Button'
-import { Link, useParams } from 'react-router-dom'
-import { useAudioStore } from '@stores/useAudioStore'
 import { useDetailPlaylist } from '@hooks/detail-playlist'
 import { PlaylistDetailProps } from '@models/common'
 import { ReactComponent as LikedIcon } from '@static/icons/heart-icon.svg'
+import { useAudioStore } from '@stores/useAudioStore'
+import React, { useEffect, useMemo, useRef } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, contentLastUpdate, artists, like, isCurrentPlaylist }) => {
   const { isPlay, currentAlbum, playListSong, changePlayIcon, setCurrentIndexPlaylist, setSongId, setCurrentAlbum, setAutoplay, setPlaylistSong } = useAudioStore()
@@ -41,15 +41,15 @@ const PlayListInfo: React.FC<PlaylistDetailProps> = ({ thumbnailM, title, conten
   }, [data])
 
   return (
-    <div className='playlist-info px-5 sticky top-[calc(var(--header-height)+2rem)]' ref={ref}>
-      <div className="playlist-thumbnail w-[200px] lg:w-[65%] relative mx-auto">
+    <div className='playlist-info px-5 sticky top-[calc(var(--header-height)+2rem)] flex flex-col overflow-hidden' ref={ref}>
+      <div className="playlist-thumbnail relative mx-auto drop-shadow-3xl">
         <img
           src={thumbnailM}
           alt={title}
-          className={`w-full object-cover shadow-2xl shadow-slate-700 ${isCurrentPlaylist && isPlay ? 'rounded-full animate-rotate' : 'rounded-2xl'}`} />
+          className={`w-full object-cover ${isCurrentPlaylist && isPlay ? 'rounded-full animate-rotate' : 'rounded-2xl'}`} />
         {isCurrentAlbum && isPlay &&
           <div className="absolute w-full h-full inset-0 flex justify-center items-center">
-            <div className='rounded-full border-[20px] border-slate-200 outline outline-4 outline-zinc-700 flex justify-center items-center'
+            <div className='rounded-full border-[20px] border-slate-200 flex justify-center items-center'
             >
               <div className='p-3 bg-white border border-zinc-900 rounded-full'></div>
             </div>

@@ -1,5 +1,5 @@
 import SearchBox from '@components/Header/SearchBox'
-import { LOCAL_STORAGE_KEYS } from '@constants/localStorageKeys'
+import useDarkMode from '@hooks/core/useDarkMode'
 import { ReactComponent as ArrowIcon } from '@static/icons/arrow-icon.svg'
 import { ReactComponent as MessageIcon } from '@static/icons/message-icon.svg'
 import { ReactComponent as MoonIcon } from '@static/icons/moon-icon.svg'
@@ -8,29 +8,11 @@ import { ReactComponent as SunIcon } from '@static/icons/sun-icon.svg'
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-enum THEME_MODE {
-  DARK = 'dark',
-  LIGHT = 'light',
-}
-
 const Header: React.FC = () => {
   const navigate = useNavigate()
+  const { isDarkMode, toggleDarkMode } = useDarkMode()
   const headerRef = useRef<HTMLElement>(null)
   const [stickyClass, setStickyClass] = useState<string>('bg-none')
-  const [isDarkMode, setIsDarkMode] = useState<string>(localStorage.getItem(LOCAL_STORAGE_KEYS.THEME_MODE) ?? THEME_MODE.LIGHT)
-
-  const toggleDarkMode = () => {
-    if (isDarkMode === THEME_MODE.DARK) {
-      setIsDarkMode(THEME_MODE.LIGHT)
-      document.body.classList.remove(THEME_MODE.DARK)
-      localStorage.setItem(LOCAL_STORAGE_KEYS.THEME_MODE, THEME_MODE.LIGHT)
-    }
-    else {
-      setIsDarkMode(THEME_MODE.DARK)
-      document.body.classList.add(THEME_MODE.DARK)
-      localStorage.setItem(LOCAL_STORAGE_KEYS.THEME_MODE, THEME_MODE.DARK)
-    }
-  }
 
   useEffect(() => {
     const wrapper = document.querySelector('.main-content') as HTMLElement

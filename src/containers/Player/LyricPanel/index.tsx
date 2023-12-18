@@ -70,7 +70,7 @@ const LyricPanel: React.FC = () => {
             <>
               <div className="lyric-thumbnail w-40 h-40 lg:w-[22rem] lg:h-[22rem] flex-shrink-0 p-5 rounded-2xl relative mt-16 lg:mt-0 group">
                 <img
-                  className='absolute w-full object-cover inset-0 shadow-xl rounded-[inherit] shadow-[color:var(--primary)]'
+                  className='absolute w-full object-cover inset-0 shadow-xl rounded-[inherit] drop-shadow-3xl'
                   src={infoSong.thumbnailM}
                   alt={infoSong.title} />
                 <div className="lyric-controls absolute w-full h-full inset-0 rounded-[inherit] bg-black bg-opacity-30 transition hidden group-hover:flex justify-center items-center space-x-4">
