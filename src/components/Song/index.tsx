@@ -38,11 +38,11 @@ const Song: React.FC<SongInterface> = ({ index, thumbnail, title, encodeId, stre
 
     if (streamingStatus === SONG_NORMAL && (params.playlistID || currentAlbum)) {
       setCurrentIndexPlaylist(index)
-      setCurrentAlbum(params.playlistID || currentAlbum)
+      setCurrentAlbum(params.playlistID ?? currentAlbum)
       setSongId(encodeId)
 
       localStorage.setItem(LOCAL_STORAGE_KEYS.SONG_ID, encodeId)
-      localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_ALBUM, params.playlistID || currentAlbum)
+      localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_ALBUM, params.playlistID ?? currentAlbum)
       localStorage.setItem(LOCAL_STORAGE_KEYS.CURRENT_INDEX, index.toString())
     }
   }

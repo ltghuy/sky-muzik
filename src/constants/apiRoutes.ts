@@ -9,6 +9,6 @@ export const API_ROUTES = {
   VIDEO: '/video',
   SEARCH: '/search',
   SONG: '/song',
-  INFOSONG: '/infosong',
-  TOP100: '/top100',
+  INFO_SONG: '/infosong',
+  TOP_100: '/top100',
 };

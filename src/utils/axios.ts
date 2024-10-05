@@ -1,3 +1,4 @@
+import { API_ROUTES } from "@constants/apiRoutes";
 import axios, { AxiosInstance } from "axios"
 
 const instance: AxiosInstance = axios.create({
@@ -5,13 +6,27 @@ const instance: AxiosInstance = axios.create({
   timeout: 0
 })
 
-// custom response
 instance.interceptors.response.use(
-  (response) => {
+  async (response) => {
+    if (response.config?.url?.includes(API_ROUTES.SONG) && response.data.err === -1110 && response.data.url) {
+      // Make a new request through your proxy
+      try {
+        const newResponse = await axios.get(`${window.location.origin}?url=${encodeURIComponent(response.data.url)}`, {
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+        return newResponse.data
+      } catch (newError) {
+        return Promise.reject(newError)
+      }
+    }
     return response.data.data
-  }, function (error) {
-    return Promise.reject(error);
-  });
-
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 export default instance

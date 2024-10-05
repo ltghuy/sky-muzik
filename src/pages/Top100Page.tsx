@@ -8,8 +8,8 @@ const Top100: React.FC = () => {
   return (
     <div className="top100 rounded-2xl relative min-h-[500px]">
       {isLoading && <Loading />}
-      {data &&
-        data.map((item: any, index: number) =>
+      {
+        data?.map((item: any, index: number) =>
           <Playlist
             key={index}
             title={item.title}

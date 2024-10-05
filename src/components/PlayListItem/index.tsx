@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 
 const addToLikeList = (e: any) => {
   e.preventDefault()
-  console.log('Add to like list')
 }
 
 const playPlayList = (e: any) => {
@@ -16,7 +15,6 @@ const playPlayList = (e: any) => {
 
 const openOption = (e: any) => {
   e.preventDefault()
-  console.log('Open options modal')
 }
 
 const PlayListItem: React.FC<PlaylistDetailProps> = ({ encodeId, title, description, thumbnail, artistsNames }) => {

@@ -20,7 +20,7 @@ const getSongInfo = async (
   context: QueryFunctionContext,
   id: string
 ) => {
-  const response = await axios.get<SongProps, any>(API_ROUTES.INFOSONG, {
+  const response = await axios.get<SongProps, any>(API_ROUTES.INFO_SONG, {
     params: { id },
     signal: context.signal
   })

@@ -25,7 +25,7 @@ const PlaylistTrack: React.FC<PlaylistDetailProps> = ({ description, song, isCur
       </h6>
       <ul className="playlist-list mt-5">
         {
-          song && song.items.map((item: any, index: number) => (
+          song?.items.map((item: any, index: number) => (
             <Fragment key={item.encodeId ?? index}>
               <li className="playlist-item [&:not(:first-child)]:mt-2">
                 <Song
